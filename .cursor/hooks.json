@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "hooks": {
+    "after_edit": [
+      {
+        "command": "pnpm typecheck --filter $(git diff --name-only HEAD | head -1 | cut -d'/' -f1)",
+        "description": "ファイル編集後に変更されたパッケージの型チェックを実行",
+        "optional": true
+      }
+    ],
+    "before_commit": [
+      {
+        "command": "pnpm format",
+        "description": "コミット前にコードをフォーマット"
+      },
+      {
+        "command": "pnpm lint --fix",
+        "description": "コミット前にリントを実行（自動修正含む）"
+      },
+      {
+        "command": "pnpm typecheck",
+        "description": "コミット前に型チェックを実行",
+        "optional": true
+      }
+    ]
+  }
+}

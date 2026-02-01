@@ -1,0 +1,47 @@
+# Cursor
+.cursor/scratchpad.md
+.cursor/plans/
+.cursor/mcp.json
+# .cursor/rules/, .cursor/skills/, .cursor/commands/, .cursor/hooks.json, .cursor/mcp.json.example はコミットする
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+build/
+dist/
+.next/
+.expo/
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env
+.env.local
+.env.*.local
+*.env
+
+# ただし、.env.exampleはコミットする
+!.env.example
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
