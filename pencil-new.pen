@@ -12,6 +12,3808 @@
       "height": 600,
       "fill": "#FFFFFF",
       "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "KYMbe",
+      "x": 900,
+      "y": 0,
+      "name": "Family Pet Care - Dashboard",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "vertical",
+      "justifyContent": "space_between",
+      "children": [
+        {
+          "type": "frame",
+          "id": "2NZmZ",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 54,
+          "padding": [
+            14,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "JeARi",
+              "name": "timeText",
+              "fill": "$--text-primary",
+              "content": "9:41",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "PnvbT",
+              "name": "statusIcons",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "0rGC6",
+                  "name": "signalIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--text-primary"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "jnXRZ",
+                  "name": "wifiIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--text-primary"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "SRtF4",
+                  "name": "batteryIcon",
+                  "width": 20,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--text-primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qxHv3",
+          "name": "Content Wrapper",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            0,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "85kbH",
+              "name": "Header",
+              "width": "fill_container",
+              "padding": [
+                8,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "j41nI",
+                  "name": "headerLeft",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eZBqv",
+                      "name": "headerTitle",
+                      "fill": "$--text-primary",
+                      "content": "マイペット",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 32,
+                      "fontWeight": "800",
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "text",
+                      "id": "LNAXL",
+                      "name": "headerSubtitle",
+                      "fill": "$--text-secondary",
+                      "content": "おかえりなさい！ペットたちは元気です。",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eyMGf",
+                  "name": "notifButton",
+                  "width": 44,
+                  "height": 44,
+                  "fill": "$--surface",
+                  "cornerRadius": 12,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000010",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 16
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Nc90T",
+                      "name": "bellIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "bell",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--accent-coral"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZT4SV",
+              "name": "Pet Switcher",
+              "width": "fill_container",
+              "gap": 12,
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "QWqo6",
+                  "name": "Pet Card - Dog",
+                  "width": 105,
+                  "height": 120,
+                  "fill": "$--surface",
+                  "cornerRadius": 24,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 3,
+                    "fill": "$--accent-coral"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#FF6B5B20",
+                    "offset": {
+                      "x": 0,
+                      "y": 6
+                    },
+                    "blur": 16
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "8RmKU",
+                      "name": "pet1Avatar",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "_jebin_ephrimraj_",
+                        "link": "https://unsplash.com/@_jebin_ephrimraj_",
+                        "author": "jebin ephrimraj"
+                      },
+                      "width": 56,
+                      "height": 56,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1669228025048-5525e9a5e0b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Njk5MzcyNTl8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZGoJD",
+                      "name": "pet1Name",
+                      "fill": "$--text-primary",
+                      "content": "マックス",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Cpxj8",
+                      "name": "pet1Type",
+                      "fill": "$--text-muted",
+                      "content": "犬",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "92BaH",
+                  "name": "Pet Card - Cat",
+                  "width": 105,
+                  "height": 120,
+                  "fill": "$--surface",
+                  "cornerRadius": 24,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "iNl7U",
+                      "name": "pet2Avatar",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "walczewski",
+                        "link": "https://unsplash.com/@walczewski",
+                        "author": "Peter"
+                      },
+                      "width": 56,
+                      "height": 56,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1758049392325-03555562d0b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Njk5MzcyNjJ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28
+                    },
+                    {
+                      "type": "text",
+                      "id": "DrHqQ",
+                      "name": "pet2Name",
+                      "fill": "$--text-primary",
+                      "content": "もち",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y0Zqr",
+                      "name": "pet2Type",
+                      "fill": "$--text-muted",
+                      "content": "猫",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YRCnw",
+                  "name": "Pet Card - Lizard",
+                  "width": 105,
+                  "height": 120,
+                  "fill": "$--surface",
+                  "cornerRadius": 24,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NXXLJ",
+                      "name": "pet3Avatar",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "axel_pastora",
+                        "link": "https://unsplash.com/@axel_pastora",
+                        "author": "Axel Pastora"
+                      },
+                      "width": 56,
+                      "height": 56,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1591629817090-e652d9fb40c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Njk5MzcyNjR8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28
+                    },
+                    {
+                      "type": "text",
+                      "id": "BHjy3",
+                      "name": "pet3Name",
+                      "fill": "$--text-primary",
+                      "content": "レオ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3bsja",
+                      "name": "pet3Type",
+                      "fill": "$--text-muted",
+                      "content": "爬虫類",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 11
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5plg3",
+              "name": "Timeline Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gFofb",
+                  "name": "timelineHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WC1l7",
+                      "name": "timelineTitle",
+                      "fill": "$--text-primary",
+                      "content": "最近のアクティビティ",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ykUHX",
+                      "name": "viewAllLink",
+                      "fill": "$--accent-coral",
+                      "content": "すべて見る",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ztebX",
+                  "name": "Timeline Card",
+                  "width": "fill_container",
+                  "fill": "$--surface",
+                  "cornerRadius": 24,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000008",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 24
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NPkGD",
+                      "name": "Activity Row 1",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "2cNnm",
+                          "name": "activity1Icon",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$--accent-green-soft",
+                          "cornerRadius": 20,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "GF8bI",
+                              "name": "activity1IconInner",
+                              "width": 18,
+                              "height": 18,
+                              "iconFontName": "utensils",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-green"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "pvZNq",
+                          "name": "activity1Content",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YX4Bk",
+                              "name": "activity1Text",
+                              "fill": "$--text-primary",
+                              "content": "レオにごはんをあげました",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "YWRiN",
+                              "name": "activity1Meta",
+                              "fill": "$--text-muted",
+                              "content": "2時間前 • パパ",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 12
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "m1chs",
+                      "name": "divider1",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$--border"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "htC2z",
+                      "name": "Activity Row 2",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pCD9N",
+                          "name": "activity2Icon",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$--accent-coral-soft",
+                          "cornerRadius": 20,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "mYk9u",
+                              "name": "activity2IconInner",
+                              "width": 18,
+                              "height": 18,
+                              "iconFontName": "footprints",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-coral"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "6ZcIM",
+                          "name": "activity2Content",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "JcQEs",
+                              "name": "activity2Text",
+                              "fill": "$--text-primary",
+                              "content": "マックスがお散歩しました",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "2qJEe",
+                              "name": "activity2Meta",
+                              "fill": "$--text-muted",
+                              "content": "5時間前 • ママ • 30分",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 12
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Gp80X",
+                      "name": "divider2",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$--border"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TAhqr",
+                      "name": "Activity Row 3",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "G0QUk",
+                          "name": "activity3Icon",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$--accent-purple-soft",
+                          "cornerRadius": 20,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "7QFCT",
+                              "name": "activity3IconInner",
+                              "width": 18,
+                              "height": 18,
+                              "iconFontName": "heart-pulse",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-purple"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Qno5R",
+                          "name": "activity3Content",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "iMyuP",
+                              "name": "activity3Text",
+                              "fill": "$--text-primary",
+                              "content": "もちの健康チェック完了",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "9RqHQ",
+                              "name": "activity3Meta",
+                              "fill": "$--text-muted",
+                              "content": "昨日 • お姉ちゃん",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 12
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "47P28",
+              "name": "Quick Actions",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "6zea1",
+                  "name": "actionsHeader",
+                  "fill": "$--text-primary",
+                  "content": "クイックアクション",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "LZ5pL",
+                  "name": "actionsRow",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "U0o83",
+                      "name": "Feed Button",
+                      "width": "fill_container",
+                      "height": 90,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FF9F43",
+                            "position": 0
+                          },
+                          {
+                            "color": "#FF6B5B",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 24,
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#FF6B5B30",
+                        "offset": {
+                          "x": 0,
+                          "y": 6
+                        },
+                        "blur": 16
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "WdwyM",
+                          "name": "feedIcon",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "utensils",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "text",
+                          "id": "D5Fny",
+                          "name": "feedText",
+                          "fill": "#FFFFFF",
+                          "content": "ごはん",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "klpZw",
+                      "name": "Log Button",
+                      "width": "fill_container",
+                      "height": 90,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#4ECDC4",
+                            "position": 0
+                          },
+                          {
+                            "color": "#45B7AA",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 24,
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#4ECDC430",
+                        "offset": {
+                          "x": 0,
+                          "y": 6
+                        },
+                        "blur": 16
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "IcgFV",
+                          "name": "logIcon",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "clipboard-list",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "text",
+                          "id": "a8fNf",
+                          "name": "logText",
+                          "fill": "#FFFFFF",
+                          "content": "記録",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Te8NX",
+                      "name": "Health Button",
+                      "width": "fill_container",
+                      "height": 90,
+                      "fill": "$--surface",
+                      "cornerRadius": 24,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "RNVoe",
+                          "name": "healthIcon",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "heart-pulse",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--accent-purple"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kwPS6",
+                          "name": "healthText",
+                          "fill": "$--text-primary",
+                          "content": "健康",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "312Q9",
+          "name": "Tab Bar Container",
+          "width": "fill_container",
+          "padding": [
+            12,
+            24,
+            32,
+            24
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "FjQ16",
+              "name": "Tab Bar Pill",
+              "width": "fill_container",
+              "fill": "$--surface",
+              "cornerRadius": 36,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000010",
+                "offset": {
+                  "x": 0,
+                  "y": -4
+                },
+                "blur": 20
+              },
+              "padding": 4,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "03qoM",
+                  "name": "Tab Home Active",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FF9F43",
+                        "position": 0
+                      },
+                      {
+                        "color": "#FF6B5B",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 28,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Nhcho",
+                      "name": "tab1Icon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "house",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MBUbL",
+                      "name": "tab1Label",
+                      "fill": "#FFFFFF",
+                      "content": "ホーム",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 10,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Qu6mt",
+                  "name": "Tab Pets",
+                  "width": "fill_container",
+                  "height": 56,
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "TMQG8",
+                      "name": "tab2Icon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "paw-print",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GCbQi",
+                      "name": "tab2Label",
+                      "fill": "$--text-muted",
+                      "content": "ペット",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 10,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yX0Qf",
+                  "name": "Tab Schedule",
+                  "width": "fill_container",
+                  "height": 56,
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "PNdS7",
+                      "name": "tab3Icon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "calendar",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "m3GuG",
+                      "name": "tab3Label",
+                      "fill": "$--text-muted",
+                      "content": "予定",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 10,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8zp8J",
+                  "name": "Tab Settings",
+                  "width": "fill_container",
+                  "height": 56,
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "X3f94",
+                      "name": "tab4Icon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "settings",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NRDJ8",
+                      "name": "tab4Label",
+                      "fill": "$--text-muted",
+                      "content": "設定",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 10,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "afVCQ",
+      "x": 1390,
+      "y": 0,
+      "name": "01 - Splash Screen",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 135,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "#FF9F43",
+            "position": 0
+          },
+          {
+            "color": "#FF6B5B",
+            "position": 0.5
+          },
+          {
+            "color": "#A78BFA",
+            "position": 1
+          }
+        ]
+      },
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "HS57L",
+          "x": -80,
+          "y": -50,
+          "name": "blobTop",
+          "rotation": -14.999999999999998,
+          "fill": "#FFFFFF15",
+          "width": 300,
+          "height": 200
+        },
+        {
+          "type": "ellipse",
+          "id": "J4xad",
+          "x": 200,
+          "y": 150,
+          "name": "blobMid",
+          "rotation": 25,
+          "fill": "#FFFFFF10",
+          "width": 250,
+          "height": 180
+        },
+        {
+          "type": "ellipse",
+          "id": "eYXJw",
+          "x": -100,
+          "y": 620,
+          "name": "blobBottom",
+          "rotation": -10,
+          "fill": "#FFFFFF12",
+          "width": 400,
+          "height": 250
+        },
+        {
+          "type": "frame",
+          "id": "VSOHo",
+          "x": 0,
+          "y": 280,
+          "name": "logoGroup",
+          "width": 390,
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ydoEu",
+              "name": "pawBg",
+              "rotation": 8,
+              "width": 140,
+              "height": 140,
+              "fill": "#FFFFFF",
+              "cornerRadius": 40,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000030",
+                "offset": {
+                  "x": 0,
+                  "y": 20
+                },
+                "blur": 60
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "mZBfq",
+                  "name": "pawIcon",
+                  "width": 70,
+                  "height": 70,
+                  "iconFontName": "paw-print",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FF6B5B"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "9PkM6",
+              "name": "appNameLarge",
+              "fill": "#FFFFFF",
+              "content": "ペットケア",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 42,
+              "fontWeight": "800",
+              "letterSpacing": -1
+            },
+            {
+              "type": "text",
+              "id": "mRPaD",
+              "name": "taglineText",
+              "fill": "#FFFFFFCC",
+              "content": "家族みんなで、愛を記録する",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 16,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "ellipse",
+          "id": "VmBWj",
+          "x": 60,
+          "y": 200,
+          "name": "decoCircle1",
+          "fill": "#FFD93D",
+          "width": 20,
+          "height": 20
+        },
+        {
+          "type": "ellipse",
+          "id": "40T37",
+          "x": 320,
+          "y": 120,
+          "name": "decoCircle2",
+          "fill": "#4ECDC4",
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "ellipse",
+          "id": "YMGtc",
+          "x": 280,
+          "y": 700,
+          "name": "decoCircle3",
+          "fill": "#FFFFFF40",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "type": "ellipse",
+          "id": "68AZc",
+          "x": 50,
+          "y": 550,
+          "name": "decoCircle4",
+          "fill": "#A78BFA",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "frame",
+          "id": "BqbPF",
+          "x": 115,
+          "y": 720,
+          "name": "startHint",
+          "width": 160,
+          "layout": "vertical",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "CQI07",
+              "name": "startText",
+              "fill": "#FFFFFFAA",
+              "content": "タップして始める",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "icon_font",
+              "id": "3b535",
+              "name": "arrowDown",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "chevron-down",
+              "iconFontFamily": "lucide",
+              "fill": "#FFFFFF80"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iwdcj",
+      "x": 1830,
+      "y": 0,
+      "name": "02 - Onboarding 1",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "HSpJV",
+          "x": -150,
+          "y": -100,
+          "name": "bgBlob1",
+          "fill": "$--accent-coral-soft",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "ellipse",
+          "id": "MkclP",
+          "x": 200,
+          "y": 50,
+          "name": "bgBlob2",
+          "fill": "$--accent-orange-soft",
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "frame",
+          "id": "e8EqT",
+          "x": 35,
+          "y": 120,
+          "name": "illustFrame",
+          "rotation": -5,
+          "width": 320,
+          "height": 320,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/generated-1769938368425.png",
+            "mode": "fill"
+          },
+          "cornerRadius": 40,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#FF6B5B30",
+            "offset": {
+              "x": 0,
+              "y": 16
+            },
+            "blur": 48
+          },
+          "justifyContent": "center",
+          "alignItems": "center"
+        },
+        {
+          "type": "frame",
+          "id": "htLZ7",
+          "x": 25,
+          "y": 480,
+          "name": "onb1Content",
+          "width": 340,
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "oamG3",
+              "name": "onb1Title",
+              "fill": "$--text-primary",
+              "textGrowth": "fixed-width",
+              "width": 340,
+              "content": "みんな一緒に\n健康管理",
+              "lineHeight": 1.2,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 36,
+              "fontWeight": "800",
+              "letterSpacing": -1
+            },
+            {
+              "type": "text",
+              "id": "SWBQQ",
+              "name": "onb1Desc",
+              "fill": "$--text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 320,
+              "content": "犬も猫も爬虫類も。\nすべてのペットをひとつのアプリで。",
+              "lineHeight": 1.6,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ebl94",
+          "x": 24,
+          "y": 700,
+          "name": "onb1Bottom",
+          "width": 342,
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "0uKwp",
+              "name": "onb1Indicators",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "o3qUG",
+                  "name": "onb1Dot1",
+                  "width": 32,
+                  "height": 8,
+                  "fill": "$--accent-coral",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "SVsjn",
+                  "name": "onb1Dot2",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "ymSwP",
+                  "name": "onb1Dot3",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Xf6mB",
+              "name": "onb1NextBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#FF9F43",
+                    "position": 0
+                  },
+                  {
+                    "color": "#FF6B5B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#FF6B5B40",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pHaE1",
+                  "name": "onb1NextText",
+                  "fill": "#FFFFFF",
+                  "content": "次へ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "j843i",
+                  "name": "onb1NextIcon",
+                  "width": 22,
+                  "height": 22,
+                  "iconFontName": "arrow-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "eIyh9",
+              "name": "onb1SkipText",
+              "fill": "$--text-muted",
+              "content": "スキップ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SAuFB",
+      "x": 2270,
+      "y": 0,
+      "name": "03 - Onboarding 2",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "KbAcx",
+          "x": 100,
+          "y": -150,
+          "name": "onb2Blob1",
+          "fill": "$--accent-green-soft",
+          "width": 450,
+          "height": 450
+        },
+        {
+          "type": "ellipse",
+          "id": "uNxpC",
+          "x": -150,
+          "y": 100,
+          "name": "onb2Blob2",
+          "fill": "$--accent-purple-soft",
+          "width": 350,
+          "height": 350
+        },
+        {
+          "type": "frame",
+          "id": "dex43",
+          "x": 35,
+          "y": 120,
+          "name": "onb2IllustFrame",
+          "rotation": 5,
+          "width": 320,
+          "height": 320,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/generated-1769938397855.png",
+            "mode": "fill"
+          },
+          "cornerRadius": 40,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#4ECDC430",
+            "offset": {
+              "x": 0,
+              "y": 16
+            },
+            "blur": 48
+          },
+          "justifyContent": "center",
+          "alignItems": "center"
+        },
+        {
+          "type": "frame",
+          "id": "wxzsl",
+          "x": 25,
+          "y": 480,
+          "name": "onb2Content",
+          "width": 340,
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "KhJEe",
+              "name": "onb2Title",
+              "fill": "$--text-primary",
+              "textGrowth": "fixed-width",
+              "width": 340,
+              "content": "家族で\nシェア",
+              "lineHeight": 1.2,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 36,
+              "fontWeight": "800",
+              "letterSpacing": -1
+            },
+            {
+              "type": "text",
+              "id": "VqctS",
+              "name": "onb2Desc",
+              "fill": "$--text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 320,
+              "content": "パパがごはんをあげた。ママがお散歩した。\nみんなの記録をリアルタイムで共有。",
+              "lineHeight": 1.6,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "axK0s",
+          "x": 24,
+          "y": 700,
+          "name": "onb2Bottom",
+          "width": 342,
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "d9o7m",
+              "name": "onb2Indicators",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "A1NFn",
+                  "name": "onb2Dot1",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "Ksk6r",
+                  "name": "onb2Dot2",
+                  "width": 32,
+                  "height": 8,
+                  "fill": "$--accent-green",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "D32A3",
+                  "name": "onb2Dot3",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Vx8NW",
+              "name": "onb2NextBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#4ECDC4",
+                    "position": 0
+                  },
+                  {
+                    "color": "#45B7AA",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#4ECDC440",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LIPeV",
+                  "name": "onb2NextText",
+                  "fill": "#FFFFFF",
+                  "content": "次へ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "zlGq2",
+                  "name": "onb2NextIcon",
+                  "width": 22,
+                  "height": 22,
+                  "iconFontName": "arrow-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "RHJW5",
+              "name": "onb2SkipText",
+              "fill": "$--text-muted",
+              "content": "スキップ",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "9KbVF",
+      "x": 2710,
+      "y": 0,
+      "name": "04 - Onboarding 3",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "XF9xo",
+          "x": -100,
+          "y": -80,
+          "name": "onb3Blob1",
+          "fill": "$--accent-yellow-soft",
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "ellipse",
+          "id": "vgnYU",
+          "x": 150,
+          "y": 80,
+          "name": "onb3Blob2",
+          "fill": "$--accent-coral-soft",
+          "width": 350,
+          "height": 350
+        },
+        {
+          "type": "frame",
+          "id": "bR80e",
+          "x": 35,
+          "y": 120,
+          "name": "onb3IllustFrame",
+          "rotation": -3.0000000000000004,
+          "width": 320,
+          "height": 320,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/generated-1769938421496.png",
+            "mode": "fill"
+          },
+          "cornerRadius": 40,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#FFD93D40",
+            "offset": {
+              "x": 0,
+              "y": 16
+            },
+            "blur": 48
+          },
+          "justifyContent": "center",
+          "alignItems": "center"
+        },
+        {
+          "type": "frame",
+          "id": "p4RAq",
+          "x": 25,
+          "y": 480,
+          "name": "onb3Content",
+          "width": 340,
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "Rrd0i",
+              "name": "onb3Title",
+              "fill": "$--text-primary",
+              "textGrowth": "fixed-width",
+              "width": 340,
+              "content": "忘れない\nリマインダー",
+              "lineHeight": 1.2,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 36,
+              "fontWeight": "800",
+              "letterSpacing": -1
+            },
+            {
+              "type": "text",
+              "id": "xI1Zj",
+              "name": "onb3Desc",
+              "fill": "$--text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 320,
+              "content": "ごはんの時間、お薬、健康診断。\n大切な予定を通知でお知らせします。",
+              "lineHeight": 1.6,
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KAI9Z",
+          "x": 24,
+          "y": 700,
+          "name": "onb3Bottom",
+          "width": 342,
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "yemLO",
+              "name": "onb3Indicators",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "1qSE2",
+                  "name": "onb3Dot1",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "5ej0i",
+                  "name": "onb3Dot2",
+                  "width": 8,
+                  "height": 8,
+                  "fill": "$--border",
+                  "cornerRadius": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "xLrSm",
+                  "name": "onb3Dot3",
+                  "width": 32,
+                  "height": 8,
+                  "fill": "$--accent-orange",
+                  "cornerRadius": 4
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "K2ZF9",
+              "name": "onb3StartBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#FF9F43",
+                    "position": 0
+                  },
+                  {
+                    "color": "#FF6B5B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#FF9F4340",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "LJzyp",
+                  "name": "onb3StartIcon",
+                  "width": 22,
+                  "height": 22,
+                  "iconFontName": "sparkles",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "MfQ4G",
+                  "name": "onb3StartText",
+                  "fill": "#FFFFFF",
+                  "content": "はじめる",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "4INPG",
+      "x": 3150,
+      "y": 0,
+      "name": "05 - User Registration",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "vertical",
+      "justifyContent": "space_between",
+      "children": [
+        {
+          "type": "frame",
+          "id": "X0VAr",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 54,
+          "fill": "transparent",
+          "padding": [
+            14,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "UYK0A",
+              "name": "userRegTime",
+              "fill": "$--text-primary",
+              "content": "9:41",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "NrbtF",
+              "name": "userRegIcons",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "45RH4",
+                  "name": "userRegSignal",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "WfvsH",
+                  "name": "userRegWifi",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "IcoZU",
+                  "name": "userRegBatt",
+                  "width": 20,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mLN3a",
+          "name": "userRegContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Vlsqd",
+              "name": "userRegHeader",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "k2pwM",
+                  "name": "userRegTitle",
+                  "fill": "$--text-primary",
+                  "content": "アカウント作成",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 32,
+                  "fontWeight": "800",
+                  "letterSpacing": -1
+                },
+                {
+                  "type": "text",
+                  "id": "wwBAS",
+                  "name": "userRegSubtitle",
+                  "fill": "$--text-secondary",
+                  "content": "ペットケアを始めましょう",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 15
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "csJlD",
+              "name": "userRegForm",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xqb7h",
+                  "name": "nameField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zIwwi",
+                      "name": "nameLabel",
+                      "fill": "$--text-primary",
+                      "content": "お名前（ニックネーム）",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QhKIt",
+                      "name": "nameInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qvLPn",
+                          "name": "namePlaceholder",
+                          "fill": "$--text-muted",
+                          "content": "例：パパ、ママ、たろう",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 15
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XuGbf",
+                  "name": "emailField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "P67Q5",
+                      "name": "emailLabel",
+                      "fill": "$--text-primary",
+                      "content": "メールアドレス",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "huFRI",
+                      "name": "emailInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "uxMo9",
+                          "name": "emailIcon",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "mail",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--accent-coral"
+                        },
+                        {
+                          "type": "text",
+                          "id": "k9Gok",
+                          "name": "emailPlaceholder",
+                          "fill": "$--text-muted",
+                          "content": "example@email.com",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 15
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WRIBw",
+                  "name": "passField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tWAWI",
+                      "name": "passLabel",
+                      "fill": "$--text-primary",
+                      "content": "パスワード",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TOaLi",
+                      "name": "passInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "TjaqH",
+                          "name": "passLeft",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "s7Z8m",
+                              "name": "passIcon",
+                              "width": 20,
+                              "height": 20,
+                              "iconFontName": "lock",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-coral"
+                            },
+                            {
+                              "type": "text",
+                              "id": "XVzl0",
+                              "name": "passPlaceholder",
+                              "fill": "$--text-muted",
+                              "content": "6文字以上",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 15
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "pdNt0",
+                          "name": "passEye",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "eye-off",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--text-muted"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Yrmbw",
+                  "name": "avatarSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LMKxl",
+                      "name": "avatarLabel",
+                      "fill": "$--text-primary",
+                      "content": "アイコンを選択",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Bk0tH",
+                      "name": "avatarRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "UwOSS",
+                          "name": "avatar1",
+                          "width": 56,
+                          "height": 56,
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FF9F43",
+                                "position": 0
+                              },
+                              {
+                                "color": "#FF6B5B",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 28,
+                          "stroke": {
+                            "align": "outside",
+                            "thickness": 3,
+                            "fill": "#FFFFFF"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#FF6B5B30",
+                            "offset": {
+                              "x": 0,
+                              "y": 4
+                            },
+                            "blur": 12
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "jz3o3",
+                              "name": "avatar1Icon",
+                              "width": 28,
+                              "height": 28,
+                              "iconFontName": "smile",
+                              "iconFontFamily": "lucide",
+                              "fill": "#FFFFFF"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Vqq0L",
+                          "name": "avatar2",
+                          "width": 56,
+                          "height": 56,
+                          "fill": "$--accent-green-soft",
+                          "cornerRadius": 28,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "iraKz",
+                              "name": "avatar2Icon",
+                              "width": 28,
+                              "height": 28,
+                              "iconFontName": "user",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-green"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ENBJl",
+                          "name": "avatar3",
+                          "width": 56,
+                          "height": 56,
+                          "fill": "$--accent-purple-soft",
+                          "cornerRadius": 28,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "zEx4B",
+                              "name": "avatar3Icon",
+                              "width": 28,
+                              "height": 28,
+                              "iconFontName": "star",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--accent-purple"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "4ZE4V",
+                          "name": "avatar4",
+                          "width": 56,
+                          "height": 56,
+                          "fill": "$--surface",
+                          "cornerRadius": 28,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "$--border"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "l6yzI",
+                              "name": "avatar4Icon",
+                              "width": 24,
+                              "height": 24,
+                              "iconFontName": "camera",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--text-muted"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "9Ey3K",
+          "name": "userRegBottom",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            24,
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "BG0zb",
+              "name": "registerBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#FF9F43",
+                    "position": 0
+                  },
+                  {
+                    "color": "#FF6B5B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#FF6B5B40",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LMnvG",
+                  "name": "registerBtnText",
+                  "fill": "#FFFFFF",
+                  "content": "アカウント作成",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uR1u2",
+              "name": "loginLink",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "0dyz1",
+                  "name": "loginText1",
+                  "fill": "$--text-secondary",
+                  "content": "すでにアカウントをお持ちの方は",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13
+                },
+                {
+                  "type": "text",
+                  "id": "B3jcz",
+                  "name": "loginText2",
+                  "fill": "$--accent-coral",
+                  "content": "ログイン",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "37JvK",
+              "name": "dividerRow",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yTkID",
+                  "name": "dividerLine1",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "$--border"
+                },
+                {
+                  "type": "text",
+                  "id": "LcCi0",
+                  "name": "dividerText",
+                  "fill": "$--text-muted",
+                  "content": "または",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 12
+                },
+                {
+                  "type": "frame",
+                  "id": "BOs4x",
+                  "name": "dividerLine2",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "$--border"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YQbLF",
+              "name": "socialBtns",
+              "width": "fill_container",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IK680",
+                  "name": "googleBtn",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "$--surface",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "$--border"
+                  },
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rKAck",
+                      "name": "googleIcon",
+                      "fill": "$--text-primary",
+                      "content": "G",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gzUJq",
+                      "name": "googleText",
+                      "fill": "$--text-primary",
+                      "content": "Google",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lWg1R",
+                  "name": "appleBtn",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "$--text-primary",
+                  "cornerRadius": 16,
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "2ERgq",
+                      "name": "appleIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "apple",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ziqNf",
+                      "name": "appleText",
+                      "fill": "#FFFFFF",
+                      "content": "Apple",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "qHgn8",
+      "x": 3590,
+      "y": 0,
+      "name": "06 - Pet Registration",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "vertical",
+      "justifyContent": "space_between",
+      "children": [
+        {
+          "type": "frame",
+          "id": "KlZoM",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 54,
+          "padding": [
+            14,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "MesUg",
+              "name": "petRegTime",
+              "fill": "$--text-primary",
+              "content": "9:41",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "QM6iA",
+              "name": "petRegIcons",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "2Lmpu",
+                  "name": "petRegSignal",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "oBfQ0",
+                  "name": "petRegWifi",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "EJbrS",
+                  "name": "petRegBatt",
+                  "width": 20,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zce3Q",
+          "name": "petRegContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            0,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "OpqeU",
+              "name": "petRegNav",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sUTdv",
+                  "name": "backBtn",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$--surface",
+                  "cornerRadius": 12,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000010",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 8
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "gLcBz",
+                      "name": "backIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "arrow-left",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-primary"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "RZNdz",
+                  "name": "stepIndicator",
+                  "fill": "$--accent-coral",
+                  "content": "ステップ 1/2",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "tJdOO",
+                  "name": "skipBtn",
+                  "fill": "$--text-muted",
+                  "content": "スキップ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "S84EP",
+              "name": "petRegHeader",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "cWYy7",
+                  "name": "petRegTitle",
+                  "fill": "$--text-primary",
+                  "content": "ペットを登録",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 32,
+                  "fontWeight": "800",
+                  "letterSpacing": -1
+                },
+                {
+                  "type": "text",
+                  "id": "HTjeM",
+                  "name": "petRegSubtitle",
+                  "fill": "$--text-secondary",
+                  "content": "まずはペットの種類を選んでください",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 15
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tyeFL",
+              "name": "petTypeSection",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5qI01",
+                  "name": "petTypeLabel",
+                  "fill": "$--text-primary",
+                  "content": "ペットの種類",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "vfzwb",
+                  "name": "petTypeGrid",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "A6kyp",
+                      "name": "petTypeDog",
+                      "width": "fill_container",
+                      "height": 100,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FF9F43",
+                            "position": 0
+                          },
+                          {
+                            "color": "#FF6B5B",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 24,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 0
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#FF6B5B30",
+                        "offset": {
+                          "x": 0,
+                          "y": 8
+                        },
+                        "blur": 20
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "sA9wP",
+                          "name": "petTypeDogIcon",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "dog",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QqvCl",
+                          "name": "petTypeDogText",
+                          "fill": "#FFFFFF",
+                          "content": "犬",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UPaHa",
+                      "name": "petTypeCat",
+                      "width": "fill_container",
+                      "height": 100,
+                      "fill": "$--surface",
+                      "cornerRadius": 24,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "auU73",
+                          "name": "petTypeCatIcon",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "cat",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cOxIu",
+                          "name": "petTypeCatText",
+                          "fill": "$--text-secondary",
+                          "content": "猫",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3DrfH",
+                  "name": "petTypeGrid2",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HPuuC",
+                      "name": "petTypeReptile",
+                      "width": "fill_container",
+                      "height": 100,
+                      "fill": "$--surface",
+                      "cornerRadius": 24,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "aMsLS",
+                          "name": "petTypeReptileIcon",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "turtle",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tPIrI",
+                          "name": "petTypeReptileText",
+                          "fill": "$--text-secondary",
+                          "content": "爬虫類",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "v7YEw",
+                      "name": "petTypeBird",
+                      "width": "fill_container",
+                      "height": 100,
+                      "fill": "$--surface",
+                      "cornerRadius": 24,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "PjSmX",
+                          "name": "petTypeBirdIcon",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "bird",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "maAuH",
+                          "name": "petTypeBirdText",
+                          "fill": "$--text-secondary",
+                          "content": "鳥",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0W7Ak",
+                  "name": "petTypeOther",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "$--surface",
+                  "cornerRadius": 16,
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ikobv",
+                      "name": "petTypeOtherIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "plus",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EAmlZ",
+                      "name": "petTypeOtherText",
+                      "fill": "$--text-secondary",
+                      "content": "その他",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GsxZE",
+          "name": "petRegBottom",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            24,
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "WpCr7",
+              "name": "nextPetBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#FF9F43",
+                    "position": 0
+                  },
+                  {
+                    "color": "#FF6B5B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#FF6B5B40",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VJ1XH",
+                  "name": "nextPetBtnText",
+                  "fill": "#FFFFFF",
+                  "content": "次へ",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "OAAGl",
+                  "name": "nextPetBtnIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "UCV34",
+      "x": 4030,
+      "y": 0,
+      "name": "07 - Pet Detail Registration",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--bg",
+      "layout": "vertical",
+      "justifyContent": "space_between",
+      "children": [
+        {
+          "type": "frame",
+          "id": "JEwAp",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 54,
+          "padding": [
+            14,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "S4dUO",
+              "name": "petDetailTime",
+              "fill": "$--text-primary",
+              "content": "9:41",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "3HUtq",
+              "name": "petDetailIcons",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "GzQhe",
+                  "name": "petDetailSignal",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "2OJov",
+                  "name": "petDetailWifi",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "g3P9s",
+                  "name": "petDetailBatt",
+                  "width": 20,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2C2C2C"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "8ydsJ",
+          "name": "petDetailContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            0,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "xLtaU",
+              "name": "petDetailNav",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fp1Xf",
+                  "name": "backBtn2",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$--surface",
+                  "cornerRadius": 12,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000010",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 8
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "X4lvA",
+                      "name": "backIcon2",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "arrow-left",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--text-primary"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "BCB6l",
+                  "name": "stepIndicator2",
+                  "fill": "$--accent-coral",
+                  "content": "ステップ 2/2",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "lkJkj",
+                  "name": "emptySpace",
+                  "width": 40,
+                  "height": 40
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eZwwb",
+              "name": "petDetailHeader",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iKqAa",
+                  "name": "petDetailTitle",
+                  "fill": "$--text-primary",
+                  "content": "ペットの情報",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 32,
+                  "fontWeight": "800",
+                  "letterSpacing": -1
+                },
+                {
+                  "type": "text",
+                  "id": "TyeNY",
+                  "name": "petDetailSubtitle",
+                  "fill": "$--text-secondary",
+                  "content": "ペットの詳細を入力してください",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 15
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ipcro",
+              "name": "petPhotoSection",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "4gMyg",
+                  "name": "petPhotoCircle",
+                  "width": 100,
+                  "height": 100,
+                  "fill": "$--surface-warm",
+                  "cornerRadius": 50,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "$--border"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "gY8cd",
+                      "name": "petPhotoIcon",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--accent-coral"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "qV0zX",
+                  "name": "petPhotoText",
+                  "fill": "$--accent-coral",
+                  "content": "写真を追加",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Gqjpa",
+              "name": "petDetailForm",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "6M5bZ",
+                  "name": "petNameField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Fl5i2",
+                      "name": "petNameLabel",
+                      "fill": "$--text-primary",
+                      "content": "名前",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nOaCl",
+                      "name": "petNameInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bLIBM",
+                          "name": "petNamePlaceholder",
+                          "fill": "$--text-muted",
+                          "content": "例：マックス、もち、レオ",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 15
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M0YIx",
+                  "name": "breedField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MsGrj",
+                      "name": "breedLabel",
+                      "fill": "$--text-primary",
+                      "content": "品種",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "uWwWZ",
+                      "name": "breedInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OSR5A",
+                          "name": "breedPlaceholder",
+                          "fill": "$--text-muted",
+                          "content": "選択してください",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 15
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "OSmWX",
+                          "name": "breedChevron",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "chevron-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--accent-coral"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PRA2p",
+                  "name": "birthdayField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OspzO",
+                      "name": "birthdayLabel",
+                      "fill": "$--text-primary",
+                      "content": "誕生日（任意）",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "j6zK8",
+                      "name": "birthdayInput",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "$--surface",
+                      "cornerRadius": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "$--border"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TIa3n",
+                          "name": "birthdayPlaceholder",
+                          "fill": "$--text-muted",
+                          "content": "日付を選択",
+                          "fontFamily": "LINE Seed JP",
+                          "fontSize": 15
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "JoN7f",
+                          "name": "birthdayIcon",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "calendar",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--accent-coral"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fTdhl",
+                  "name": "genderField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Pbbd0",
+                      "name": "genderLabel",
+                      "fill": "$--text-primary",
+                      "content": "性別",
+                      "fontFamily": "LINE Seed JP",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XrTdD",
+                      "name": "genderRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "cfhWs",
+                          "name": "genderMale",
+                          "width": "fill_container",
+                          "height": 48,
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FF9F43",
+                                "position": 0
+                              },
+                              {
+                                "color": "#FF6B5B",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 16,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 0
+                          },
+                          "gap": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "KZMQl",
+                              "name": "genderMaleIcon",
+                              "width": 16,
+                              "height": 16,
+                              "iconFontName": "circle",
+                              "iconFontFamily": "lucide",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bdcIl",
+                              "name": "genderMaleText",
+                              "fill": "#FFFFFF",
+                              "content": "オス",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EY5y9",
+                          "name": "genderFemale",
+                          "width": "fill_container",
+                          "height": 48,
+                          "fill": "$--surface",
+                          "cornerRadius": 16,
+                          "gap": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tBOkz",
+                              "name": "genderFemaleIcon",
+                              "width": 16,
+                              "height": 16,
+                              "iconFontName": "circle",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--text-muted"
+                            },
+                            {
+                              "type": "text",
+                              "id": "83ata",
+                              "name": "genderFemaleText",
+                              "fill": "$--text-secondary",
+                              "content": "メス",
+                              "fontFamily": "LINE Seed JP",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "8EOeA",
+          "name": "petDetailBottom",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            0,
+            24,
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "1upUi",
+              "name": "completePetBtn",
+              "width": "fill_container",
+              "height": 60,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#FF9F43",
+                    "position": 0
+                  },
+                  {
+                    "color": "#FF6B5B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 20,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#FF6B5B40",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "wFwgb",
+                  "name": "completePetBtnIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "26WwF",
+                  "name": "completePetBtnText",
+                  "fill": "#FFFFFF",
+                  "content": "登録を完了",
+                  "fontFamily": "LINE Seed JP",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "9DGXd",
+              "name": "addMorePetText",
+              "fill": "$--text-muted",
+              "content": "あとでペットを追加できます",
+              "fontFamily": "LINE Seed JP",
+              "fontSize": 13
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "variables": {
+    "--accent-coral": {
+      "type": "color",
+      "value": "#FF6B5B"
+    },
+    "--accent-coral-soft": {
+      "type": "color",
+      "value": "#FFE8E5"
+    },
+    "--accent-green": {
+      "type": "color",
+      "value": "#4ECDC4"
+    },
+    "--accent-green-soft": {
+      "type": "color",
+      "value": "#E0FAF8"
+    },
+    "--accent-orange": {
+      "type": "color",
+      "value": "#FF9F43"
+    },
+    "--accent-orange-soft": {
+      "type": "color",
+      "value": "#FFF0E0"
+    },
+    "--accent-purple": {
+      "type": "color",
+      "value": "#A78BFA"
+    },
+    "--accent-purple-soft": {
+      "type": "color",
+      "value": "#F3EEFF"
+    },
+    "--accent-yellow": {
+      "type": "color",
+      "value": "#FFD93D"
+    },
+    "--accent-yellow-soft": {
+      "type": "color",
+      "value": "#FFFAEB"
+    },
+    "--bg": {
+      "type": "color",
+      "value": "#FFF8F0"
+    },
+    "--bg-warm": {
+      "type": "color",
+      "value": "#FFEDE0"
+    },
+    "--border": {
+      "type": "color",
+      "value": "#F0DFD0"
+    },
+    "--border-strong": {
+      "type": "color",
+      "value": "#E5CFBC"
+    },
+    "--gradient-coral": {
+      "type": "color",
+      "value": "#FF6B5B"
+    },
+    "--gradient-warm": {
+      "type": "color",
+      "value": "#FF9F43"
+    },
+    "--surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--surface-warm": {
+      "type": "color",
+      "value": "#FFF5EB"
+    },
+    "--text-muted": {
+      "type": "color",
+      "value": "#A08272"
+    },
+    "--text-primary": {
+      "type": "color",
+      "value": "#2D1B0E"
+    },
+    "--text-secondary": {
+      "type": "color",
+      "value": "#6B5344"
+    }
+  }
 }
