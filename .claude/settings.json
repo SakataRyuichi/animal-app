@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "project": {
+    "name": "animal-app",
+    "description": "ペット管理アプリ（iOS/Android）のモノレポプロジェクト",
+    "monorepo": true,
+    "packageManager": "pnpm",
+    "workspaceRoot": "."
+  },
+  "codeStyle": {
+    "preferFunctionalProgramming": true,
+    "preferExplicitTypes": true,
+    "avoidAny": true,
+    "useESModules": true,
+    "preferDestructuring": true,
+    "variableNaming": "readable",
+    "noAbbreviations": true
+  },
+  "techStack": {
+    "frontend": {
+      "mobile": "react-native-expo",
+      "admin": "nextjs"
+    },
+    "backend": "convex",
+    "auth": "clerk",
+    "ui": "tamagui",
+    "monorepo": "turborepo"
+  },
+  "paths": {
+    "mobileApp": "apps/expo",
+    "adminApp": "apps/admin",
+    "backend": "packages/backend",
+    "ui": "packages/ui",
+    "utils": "packages/utils",
+    "tsconfig": "packages/tsconfig"
+  },
+  "references": {
+    "rules": [
+      ".cursor/rules/PROJECT.md",
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "schema": [
+      "packages/backend/convex/schema.ts",
+      "packages/backend/convex/_generated/api.d.ts",
+      "CONVEX_SCHEMA.md"
+    ],
+    "userStories": "USER_STORIES.md",
+    "design": "DESIGN_DOCUMENT.md",
+    "setup": "SETUP_CHECKLIST.md"
+  },
+  "mcp": {
+    "enabled": true,
+    "recommendedServers": [
+      "sequential-thinking",
+      "filesystem",
+      "google-search",
+      "github"
+    ],
+    "convexSchema": {
+      "autoReference": true,
+      "schemaPath": "packages/backend/convex/schema.ts",
+      "apiPath": "packages/backend/convex/_generated/api.d.ts"
+    }
+  },
+  "workflow": {
+    "beforeCodeChange": [
+      "確認: 関連ファイルと依存関係を確認",
+      "確認: 既存パターンを確認",
+      "確認: USER_STORIES.mdを参照"
+    ],
+    "afterCodeChange": [
+      "実行: pnpm typecheck",
+      "実行: pnpm lint",
+      "実行: pnpm format",
+      "実行: 該当するテスト"
+    ]
+  },
+  "commands": {
+    "verify": {
+      "description": "包括的な検証（型チェック、リント、テスト）",
+      "command": "pnpm typecheck && pnpm lint && pnpm test"
+    },
+    "typecheck": {
+      "description": "TypeScriptの型チェック",
+      "command": "pnpm typecheck"
+    },
+    "lint": {
+      "description": "ESLintを実行",
+      "command": "pnpm lint"
+    },
+    "format": {
+      "description": "Prettierでフォーマット",
+      "command": "pnpm format"
+    },
+    "test": {
+      "description": "テストを実行",
+      "command": "pnpm test"
+    }
+  }
+}
