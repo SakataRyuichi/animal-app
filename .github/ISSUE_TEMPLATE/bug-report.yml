@@ -1,0 +1,93 @@
+name: "🐛 Bug Report"
+description: バグレポート用テンプレート
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🐛 バグレポート
+        バグの詳細を記述してください。再現手順や期待される動作を具体的に記載してください。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 バグの説明 (Description)
+      description: バグの内容を簡潔に記述してください
+      placeholder: 何が問題なのか、どのような症状が発生しているか
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 🔄 再現手順 (Steps to Reproduce)
+      description: バグを再現する手順を記載してください
+      placeholder: |
+        1. 
+        2. 
+        3. 
+        4. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: ✅ 期待される動作 (Expected Behavior)
+      description: 正常な場合の期待される動作を記載してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: ❌ 実際の動作 (Actual Behavior)
+      description: 実際に発生している動作を記載してください
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 優先度 (Priority)
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 💻 環境 (Environment)
+      description: 発生環境を記載してください
+      placeholder: |
+        - OS: iOS 17.0 / Android 13
+        - デバイス: iPhone 15 Pro / Pixel 7
+        - アプリバージョン: 1.0.0
+        - ブラウザ（管理画面の場合）: Chrome 120
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 📸 スクリーンショット (Screenshots)
+      description: 可能であれば、スクリーンショットや動画を添付してください
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 📋 ログ・エラーメッセージ (Logs / Error Messages)
+      description: エラーログやコンソール出力があれば記載してください
+      placeholder: |
+        ```
+        エラーメッセージをここに貼り付け
+        ```
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 追加情報 (Additional Context)
+      description: その他の情報があれば記載してください

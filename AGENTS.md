@@ -1,41 +1,10 @@
 # Cursor エージェントガイドライン
 
+**📚 ドキュメントインデックス**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) ⭐ **まずここから**
+
 このドキュメントは、Cursorエージェントがこのプロジェクトで作業する際のガイドラインです。
 
-## プロジェクト概要
-
-ペット管理アプリ（iOS/Android）のモノレポプロジェクトです。
-
-### ディレクトリ構成
-
-```
-my-pet-platform/
-├── apps/
-│   ├── expo/                # モバイルアプリ (React Native Expo)
-│   │   ├── app/            # Expo Router (画面定義)
-│   │   └── components/    # アプリ専用UI
-│   └── admin/              # ローカル専用管理画面 (Next.js)
-│       ├── app/            # App Router
-│       └── components/      # 管理画面専用UI
-├── packages/
-│   ├── backend/            # バックエンド (Convex) - 独立パッケージ
-│   │   ├── convex/         # スキーマ、関数、AIアクション
-│   │   └── package.json
-│   ├── ui/                 # 共通UIコンポーネント (Tamagui)
-│   ├── utils/              # 共通ロジック (ビジネスロジック)
-│   └── tsconfig/           # TypeScript共通設定
-├── package.json            # ルートの依存関係・ワークスペース定義
-├── turbo.json              # Turborepoのタスクパイプライン設定
-└── pnpm-workspace.yaml     # pnpmのモノレポ定義
-```
-
-### 技術スタック
-
-- **フロントエンド**: React Native Expo (モバイル), Next.js (管理画面)
-- **バックエンド**: Convex (`packages/backend/` - 独立パッケージ)
-- **認証**: Clerk
-- **モノレポ**: Turborepo + pnpm
-- **UI**: Tamagui (`packages/ui/`で共通化)
+**重要**: プロジェクトの基本情報（ディレクトリ構成、技術スタック、コマンドなど）は [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) を参照してください。
 
 ## エージェントの使い方
 
@@ -101,97 +70,37 @@ my-pet-platform/
 
 ## モノレポでの作業
 
-### パッケージの特定
+モノレポの構造と共有パッケージの活用については、[.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) の「モノレポでの作業」セクションを参照してください。
 
-作業対象のパッケージを明確にしてください：
-
-- `apps/expo/`: React Native Expoアプリ
-- `apps/admin/`: Next.js管理画面（ローカルのみ）
-- `packages/backend/`: Convexバックエンド（独立パッケージ）
-- `packages/ui/`: 共有UIコンポーネント（Tamagui）
-- `packages/utils/`: 共有ロジック（ビジネスロジック）
-- `packages/tsconfig/`: TypeScript共通設定
-
-### 共有パッケージの活用
-
-**重要原則**:
-1. **バックエンドは独立パッケージ**: `packages/backend/`に配置し、`apps/expo`と`apps/admin`の両方から型安全に呼び出す
-2. **UIコンポーネントは共通化**: `packages/ui/`にTamaguiコンポーネントを配置し、モバイルとWebの両方で使用
-3. **ビジネスロジックは集約**: `packages/utils/`にビジネスロジックを集約し、計算結果のズレを防ぐ
-4. **重複コードを避ける**: 既存の共有パッケージを確認してから、新しいコードを書く
-
-**使用例**:
-- モバイルアプリから: `import { api } from "@repo/backend/convex/_generated/api"`
-- 管理画面から: `import { api } from "@repo/backend/convex/_generated/api"`
-- UIコンポーネント: `import { Button } from "@repo/ui"`
-- ユーティリティ: `import { calculateAge } from "@repo/utils"`
+**重要**: `.cursor/skills/monorepo-patterns/SKILL.md` も参照してください。
 
 ## 技術スタック固有の注意事項
 
-### React Native / Expo
+技術スタック固有の注意事項については、[.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) の「コードスタイル」セクションを参照してください。
 
-- Expo Routerのファイルベースルーティングに従う
-- Tamaguiコンポーネントを使用（`packages/ui`から）
-- ネイティブモジュールは使用前に確認（Expo Goで動作するか）
+**Skills**:
+- `.cursor/skills/react-native-patterns/SKILL.md`: React Native/Expo開発パターン
+- `.cursor/skills/convex-patterns/SKILL.md`: Convex開発パターン
 
-### Convex
+## エラーハンドリング・パフォーマンス・自動検証
 
-- Query/Mutation/Actionの使い分けを理解する
-- スキーマ定義（`CONVEX_SCHEMA.md`）を参照
-- 型安全性を確保（`v`スキーマを使用）
+これらの詳細については、[.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) および `.cursor/skills/development-workflow/SKILL.md` を参照してください。
 
-### TypeScript
-
-- 型定義を明示的に記述
-- `any`は避ける
-- 関数型プログラミングを優先
-
-## エラーハンドリング
-
-エラーが発生した場合：
-
-1. **エラーメッセージを確認**: エラーの全文を読み、原因を特定
-2. **関連ファイルを確認**: エラーが発生しているファイルとその依存関係を確認
-3. **段階的に修正**: 一度にすべてを変更せず、段階的に修正
-4. **検証**: 修正後、必ずテストまたは型チェックを実行
-
-## パフォーマンス考慮事項
-
-- **コンテキストウィンドウ**: 長い会話は避け、必要に応じて`/clear`を使用
-- **ファイル読み込み**: 必要なファイルのみを読み込む
-- **並列実行**: 複数のエージェントを並列実行する場合は、worktreeを使用
-
-## 自動検証フロー
-
-コード変更後は、以下のコマンドを使用して自動検証を実行できます：
-
-- `/verify`: 包括的な検証（型チェック、リント、テスト）
-- `/test`: テストのみ実行
-- `/lint`: リントのみ実行
-- `/typecheck`: 型チェックのみ実行
-- `/review`: コードレビューを実行
-- `/debug`: 問題をデバッグ
-
-詳細は`.cursor/commands/`を参照してください。
+**自動検証コマンド**: `.cursor/commands/` を参照してください。
 
 ## 参考ドキュメント
 
-- **`SETUP_CHECKLIST.md`**: ⭐ **セットアップ前に必読** - 設定が必要な項目のチェックリスト
-- **`USER_STORIES.md`**: ⭐ **開発の憲法** - ユーザーストーリー（AIへの指示に活用）
-- `.cursor/README.md`: Cursor設定ファイルの説明
-- `.cursor/MCP_SETUP.md`: MCP設定の詳細ガイド
-- `TECH_STACK_PLANNING.md`: 技術選定の詳細
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `CONVEX_SCHEMA.md`: Convexスキーマ定義
+**📚 すべてのドキュメントへのアクセス**: **[DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)** ⭐ **必ずここから始める**
+
+### クイックアクセス
+
+- **プロジェクトルール**: [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) - コードスタイル、ワークフロー、コマンド
+- **開発の憲法**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md#-開発の憲法必須読了) セクションを参照
+- **Skills**: `.cursor/skills/` ディレクトリ内の各SKILL.mdを参照
+  - `.cursor/skills/documentation-access/SKILL.md`: ドキュメントへの効率的なアクセス方法
 
 ### ユーザーストーリーの活用
 
-`USER_STORIES.md`は「開発の憲法」として機能します。機能の実装を依頼する際は、以下のように指示してください：
+機能実装時は、[USER_STORIES.md](./USER_STORIES.md) または [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md) を必ず参照してください。
 
-```
-ユーザーストーリードキュメントの US-009（トイレ記録）を実装して。
-特に『受け入れ基準』にある視覚的なアイコン選択と、異常時のAI相談への導線を忘れずに。
-『体験価値』にある『専門知識がなくても記録できる』UIを重視して作成して。
-```
-
-詳細は`USER_STORIES.md`の「AI（Cursor）への指示への活用」セクションを参照してください。
+詳細は [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) の「クイックリファレンス」セクションを参照してください。

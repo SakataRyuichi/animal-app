@@ -1,0 +1,182 @@
+name: "🤖 AI Task Template"
+description: AI（Claude Code/Cursor）が直接読み取り、実装を開始するための構造化テンプレート
+title: "[TASK]: "
+labels: ["status:ai-ready", "priority:medium"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🎯 AI向けガイドライン
+        このIssueはAIエージェント（Claude Code/Cursor）が読み取ります。技術スタックや制約を具体的に記述してください。
+        
+        **重要**: 実装前に必ず以下のドキュメントを参照してください：
+        - `USER_STORIES.md`: ユーザーストーリー（開発の憲法）
+        - `CONVEX_SCHEMA.md`: Convexスキーマ定義
+        - `DESIGN_DOCUMENT.md`: アプリ設計ドキュメント
+        - `.cursor/rules/PROJECT.md`: プロジェクトルール
+
+  - type: textarea
+    id: overview
+    attributes:
+      label: 🟢 概要 (Overview)
+      description: 何を、なぜ実装するのかを簡潔に記述してください。関連するユーザーストーリー（US-XXX）があれば記載してください。
+      placeholder: |
+        例: US-009（トイレ記録）を実装します。
+        特に『受け入れ基準』にある視覚的なアイコン選択と、異常時のAI相談への導線を忘れずに。
+        ユーザーの体験価値（専門知識がなくても記録できる）を重視したUIを作成します。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: goals
+    attributes:
+      label: 🛠 具体的ゴール (Goal)
+      description: 実装する項目を選択してください（複数選択可）
+      options:
+        - label: スキーマの定義/変更 (Convex)
+        - label: Convex関数の作成/修正 (Query/Mutation/Action)
+        - label: UIコンポーネントの作成/修正 (Tamagui)
+        - label: 画面の作成/修正 (Expo Router)
+        - label: 既存機能への統合とテスト
+        - label: デザインの作成/修正 (Pencil.dev)
+        - label: ドキュメントの更新
+
+  - type: textarea
+    id: user-story-reference
+    attributes:
+      label: 📚 関連ユーザーストーリー (User Story Reference)
+      description: 関連するユーザーストーリー（US-XXX）を記載してください。`USER_STORIES.md`を参照してください。
+      placeholder: |
+        例: US-009（トイレ記録）
+        特に重視する点:
+        - 『受け入れ基準』: 視覚的なアイコン選択
+        - 『体験価値』: 専門知識がなくても記録できる
+        - 『使用シーン』: 散歩後のトイレタイムに記録
+
+  - type: textarea
+    id: technical-context
+    attributes:
+      label: 📖 実装詳細・設計指示 (Technical Context)
+      description: 技術的な詳細を記述してください。対象テーブル、関数名、参照ドキュメントなどを記載してください。
+      placeholder: |
+        **対象テーブル/スキーマ**:
+        - `activities`テーブル（CONVEX_SCHEMA.md参照）
+        - `deletion`オブジェクトを使用した論理削除対応
+        
+        **使用する関数名**:
+        - `createActivity` (mutation)
+        - `getActivitiesByPet` (query)
+        
+        **参照ドキュメント**:
+        - `USER_STORIES.md`: US-009
+        - `CONVEX_SCHEMA.md`: activitiesテーブル定義
+        - `.cursor/rules/PROJECT.md`: コードスタイル
+        
+        **実装方針**:
+        - 関数型プログラミングを必須とする
+        - Tamaguiコンポーネントを使用（`@repo/ui`から）
+        - Convexの型安全性を確保
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 優先度 (Priority)
+      description: タスクの優先度を選択してください
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: 📅 フェーズ (Phase)
+      description: 実装するフェーズを選択してください
+      options:
+        - Phase 1: 個人管理・基礎構築
+        - Phase 2: 家族・チーム管理
+        - Phase 3: SNS・商品データベース
+        - 共通機能（全フェーズ）
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: ⚠️ 制約・共通ルール (Constraints)
+      description: プロジェクト固有の制約やルールを記載してください。デフォルトの制約は以下です。
+      value: |
+        **必須ルール**:
+        - 関数型プログラミングを必須とする
+        - 変数名は短縮せずに人が読みやすい形式にする
+        - TypeScriptの型定義を明示的に記述（`any`は避ける）
+        - ES modules (import/export) を使用、CommonJS (require) は使用しない
+        
+        **UI/UX**:
+        - Tamaguiコンポーネントを使用（`packages/ui`から共有）
+        - 温かみのあるデザイン（柔らかい色、丸みのある角）
+        - Radius 20px以上を推奨
+        
+        **バックエンド**:
+        - Convex関数は`packages/backend/convex/`に配置
+        - 型安全性を確保（`v`スキーマを使用）
+        - 論理削除には`deletionSchema`を使用（`packages/backend/convex/lib/deletionSchema.ts`）
+        
+        **モノレポ**:
+        - 共有パッケージを活用（`@repo/ui`, `@repo/backend`, `@repo/utils`）
+        - 重複コードを避ける
+        
+        **その他**:
+        - ユーザーストーリー（`USER_STORIES.md`）を必ず参照
+        - 体験価値を重視した実装を行う
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ✅ 受け入れ基準 (Acceptance Criteria)
+      description: 実装が完了したと判断する基準を記載してください。ユーザーストーリーの「受け入れ基準」を参照してください。
+      placeholder: |
+        例:
+        - [ ] トイレタイプ（おしっこ/うんち）をワンタップで選択できる
+        - [ ] 状態（硬い/柔らかい/下痢など）を視覚的なアイコンで選択できる
+        - [ ] 異常な状態を記録した場合、AI相談への導線が表示される
+        - [ ] 記録後、タイムラインに表示される
+        - [ ] 型チェックとリントが通る
+
+  - type: textarea
+    id: testing-notes
+    attributes:
+      label: 🧪 テスト方針 (Testing Notes)
+      description: テストの方針や確認すべき項目を記載してください。
+      placeholder: |
+        例:
+        - [ ] 型チェック: `pnpm typecheck`
+        - [ ] リント: `pnpm lint`
+        - [ ] 手動テスト: 実際のデバイスで動作確認
+        - [ ] エッジケース: 異常な状態の記録が正しく動作するか
+
+  - type: checkboxes
+    id: status-management
+    attributes:
+      label: 🏁 進行管理フラグ (Status)
+      description: 現在の状態を選択してください
+      options:
+        - label: "✅ Definition Ready: AIに振って良い状態（実装開始可能）"
+        - label: "🤖 AI Generating: AIが実装中"
+        - label: "👀 Human Review Needed: 人間のレビュー待ち"
+        - label: "🔧 In Progress: 手動で実装中"
+        - label: "✅ Completed: 完了"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 追加コンテキスト (Additional Context)
+      description: その他の情報（スクリーンショット、参考リンク、関連Issueなど）があれば記載してください。
+      placeholder: |
+        例:
+        - 関連Issue: #123
+        - 参考デザイン: `designs/screen-name.pen`
+        - 参考実装: `apps/expo/app/example.tsx`

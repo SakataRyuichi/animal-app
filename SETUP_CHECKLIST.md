@@ -1,5 +1,11 @@
 # セットアップチェックリスト
 
+**📚 ドキュメントインデックス**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)
+
+**関連ドキュメント**:
+- [TECH_STACK_PLANNING.md](./TECH_STACK_PLANNING.md): 技術スタックの詳細
+- [AGENTS.md](./AGENTS.md): 開発ガイドライン
+
 このドキュメントは、プロジェクトを開始する前に設定すべき項目をまとめた実践的なチェックリストです。
 
 ## 📋 目次

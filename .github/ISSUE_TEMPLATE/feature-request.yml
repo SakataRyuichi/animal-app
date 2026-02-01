@@ -1,0 +1,92 @@
+name: "✨ Feature Request"
+description: 新機能の提案用テンプレート
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### ✨ 機能提案
+        新機能の提案を記述してください。ユーザーストーリーの形式で記述することを推奨します。
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: 👤 ユーザーストーリー (User Story)
+      description: 「As a / I want to / So that」の形式で記述してください
+      placeholder: |
+        **As a** [ユーザーのペルソナ]
+        **I want to** [ユーザーの行動]
+        **So that** [ユーザーの価値・感情]
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 機能の説明 (Description)
+      description: 提案する機能の詳細を記述してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ✅ 受け入れ基準 (Acceptance Criteria)
+      description: 機能が完成したと判断する基準を記載してください
+      placeholder: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 💡 動機・背景 (Motivation)
+      description: なぜこの機能が必要なのか、どのような問題を解決するのかを記載してください
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 優先度 (Priority)
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: 📅 フェーズ (Phase)
+      description: 実装するフェーズを選択してください
+      options:
+        - Phase 1: 個人管理・基礎構築
+        - Phase 2: 家族・チーム管理
+        - Phase 3: SNS・商品データベース
+        - 共通機能（全フェーズ）
+
+  - type: textarea
+    id: technical-considerations
+    attributes:
+      label: 🔧 技術的考慮事項 (Technical Considerations)
+      description: 実装に関する技術的な考慮事項があれば記載してください
+      placeholder: |
+        例:
+        - 対象テーブル: `activities`
+        - 必要なConvex関数: `createActivity`, `getActivitiesByPet`
+        - UIコンポーネント: Tamaguiの`Button`, `Input`
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔀 代替案 (Alternatives)
+      description: 検討した代替案があれば記載してください
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 追加情報 (Additional Context)
+      description: その他の情報（スクリーンショット、参考リンク、関連Issueなど）があれば記載してください

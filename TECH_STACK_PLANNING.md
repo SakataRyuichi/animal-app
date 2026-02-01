@@ -1,5 +1,11 @@
 # 技術選定プランニング
 
+**📚 ドキュメントインデックス**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)
+
+**関連ドキュメント**:
+- [DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [AGENTS.md](./AGENTS.md): 開発ガイドライン
+
 ## プロジェクト概要
 - **プラットフォーム**: iOS / Android
 - **フロントエンド**: React Native Expo
