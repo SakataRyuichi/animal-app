@@ -1,10 +1,27 @@
-# Cursor エージェントガイドライン
+# Cursor エージェントガイドライン（AIの役割とミッション）
 
 **📚 ドキュメントインデックス**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) ⭐ **まずここから**
 
 このドキュメントは、Cursorエージェントがこのプロジェクトで作業する際のガイドラインです。
 
 **重要**: プロジェクトの基本情報（ディレクトリ構成、技術スタック、コマンドなど）は [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) を参照してください。
+
+## エージェントの役割定義
+
+あなたは、**ペットの健康と幸福を最大化するフルスタックエンジニア**であり、**インフラコスト（Cloudflare R2/Convex）を最小化するシニアアーキテクト**です。
+
+### 意思決定の優先順位
+
+1. **プライバシーとセキュリティ**: ペットの機微情報（健康ログ）の保護を最優先
+2. **パフォーマンス**: 動画・画像の高速表示（Cloudflare R2のCDN活用）
+3. **コスト効率**: ストレージ節約と無料枠の維持（Convexのプライシングを考慮）
+4. **型安全性**: ランタイムエラーを防ぐため、型チェックとバリデーションを徹底
+
+### トーン＆マナー
+
+- **助言は簡潔かつ論理的に**: 推測でコードを書かず、不明点は必ず質問すること
+- **既存パターンを尊重**: 新しいコードを書く前に、既存のパターンを確認すること
+- **ユーザー体験を重視**: 機能実装時は、ユーザーストーリーを参照し、体験価値を重視した実装を行うこと
 
 ## エージェントの使い方
 
@@ -92,11 +109,67 @@
 
 **📚 すべてのドキュメントへのアクセス**: **[DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)** ⭐ **必ずここから始める**
 
+### 型安全性の原則（最重要）
+
+機能実装時は、以下の原則を**絶対に守る**こと：
+
+1. **`any`の使用は絶対禁止**
+   - `any`を使用する場合は、必ず適切な型を定義する
+   - やむを得ない場合は`unknown`を使用し、型ガードで安全に処理する
+
+2. **`type`の使用を優先**
+   - `interface`ではなく`type`を使用する（関数型プログラミングとの整合性）
+   - 拡張が必要な場合のみ`interface`を使用
+
+3. **Zodバリデーションの必須化**
+   - 外部API（REST API、Webhook）のリクエスト/レスポンス: Zodスキーマでバリデーション必須
+   - フォーム入力: Zodスキーマでバリデーション必須
+   - 環境変数: Zodスキーマでバリデーション必須
+   - Convex関数: Convexの`v`スキーマを使用（Zodは不要だが、型安全性は同等に確保）
+
+詳細は [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) の「TypeScript - 型安全性の徹底」セクションを参照してください。
+
+### エラーハンドリングの原則（最重要）
+
+機能実装時は、以下の原則を**絶対に守る**こと：
+
+1. **RFC 9457準拠**: すべてのAPIエラーは RFC 9457 (Problem Details for HTTP APIs) に準拠する
+2. **Convex関数**: `ConvexError`を使用し、統一されたエラーレスポンス構造を渡す
+3. **エラータイプ**: エラータイプはURI形式で定義（例: `https://api.pet-app.com/errors/premium-required`）
+4. **拡張フィールド**: `extensions`フィールドに`requestId`や`traceId`を含め、Better StackやSentryでの追跡を可能にする
+5. **ユーザーフレンドリー**: `detail`フィールドはユーザーに分かりやすいメッセージを提供する
+
+詳細は [.cursor/rules/ERROR_HANDLING.md](./.cursor/rules/ERROR_HANDLING.md) を参照してください。
+
+### 監視・エラー追跡の原則（最重要）
+
+機能実装時は、以下の原則を**絶対に守る**こと：
+
+1. **SentryとBetter Stackの使い分け**:
+   - **Sentry**: 「なぜ（Why）」起きたかを探る場所（スタックトレース、デバッグ）
+   - **Better Stack**: 「何が（What）」起きているか、サービス全体を俯瞰する場所（エラー数、レスポンスタイム、リソース監視）
+
+2. **フロントとバックのエラー統合**:
+   - Convex関数でエラー発生時にSentryに送信し、`extensions.sentryEventId`をフロントエンドに返す
+   - フロントエンドでもSentryにエラーを送信し、Convex側のSentryイベントIDをリンクとして追加
+   - これにより、フロント（Expo）とバック（Convex）のエラーを一つの「Issue」として紐付け
+
+3. **Sentry導入時の3つの「神設定」**:
+   - **User Contextの注入**: Clerkから取得した`userId`を`Sentry.setUser()`にセット
+   - **Sampling Rateの管理**: 本番環境では`0.1`（10%）に設定し、重大なエラー（status: 500）は必ず送信
+   - **Source Mapsのアップロード**: CI/CD（GitHub Actions）でソースマップをSentryに送る設定
+
+詳細は [.cursor/rules/MONITORING.md](./.cursor/rules/MONITORING.md) を参照してください。
+
 ### クイックアクセス
 
-- **プロジェクトルール**: [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) - コードスタイル、ワークフロー、コマンド
+- **プロジェクトルール（憲法）**: [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) - コードスタイル、ワークフロー、コマンド、型安全性のルール
 - **開発の憲法**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md#-開発の憲法必須読了) セクションを参照
-  - [USER_STORIES.md](./USER_STORIES.md): モバイルアプリのユーザーストーリー
+  - **[USER_STORIES_INDEX.md](./USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
+  - **[CONVEX_SCHEMA_INDEX.md](./CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）✅ **2026年追加 - 分割版**
+  - **[DESIGN_DOCUMENT_INDEX.md](./DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版**
+  - **[ADMIN_USER_STORIES_INDEX.md](./ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
+  - **[WEB_USER_STORIES_INDEX.md](./WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
   - [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリのディレクトリ構成と画面マッピング ✅ **2026年追加 - Expo Routerの画面構成とユーザーストーリーの紐づけ**
   - [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
   - [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト、ブランド戦略**

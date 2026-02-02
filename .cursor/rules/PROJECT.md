@@ -1,6 +1,8 @@
-# プロジェクトルール
+# プロジェクトルール（憲法）
 
-このファイルは、Cursorエージェントがコードをどのように扱うかを定義する永続的な指示です。
+このファイルは、Cursorエージェントがコードをどのように扱うかを定義する**永続的な指示（憲法）**です。
+
+**重要**: このファイルは「開発の憲法」として機能します。すべてのコード変更は、このルールに従う必要があります。
 
 ## プロジェクト構成
 
@@ -38,21 +40,128 @@
 - `pnpm --filter expo test`: モバイルアプリのテストのみ
 - `pnpm maestro test`: Maestro E2Eテストを実行
 
-## コードスタイル
+## コードスタイル（絶対に守るべきルール）
 
-### TypeScript
-- 関数型プログラミングを必須とする
-- 変数名は短縮せずに人が読みやすい形式にする
-- ES modules (import/export) を使用、CommonJS (require) は使用しない
-- 可能な場合はインポートを分割代入する: `import { foo } from 'bar'`
-- 型定義は明示的に記述する
+### TypeScript - 型安全性の徹底 ⚠️ **最優先事項**
 
-### React Native / Expo (`apps/expo/`)
-- Expo Routerを使用したファイルベースルーティング（`app/`ディレクトリ）
-- Tamaguiコンポーネントを使用（`@repo/ui`から共有）
-- Zustandでクライアント状態を管理
-- Convexの`useQuery`でサーバー状態を取得（`@repo/backend`から型安全に）
-- アプリ専用UIコンポーネントは`components/`に配置
+#### 基本原則
+- **関数型プログラミング**: 必須。副作用を最小限にし、純粋関数を優先
+- **変数名**: 短縮せずに人が読みやすい形式にする（例: `userName`、`petId`）
+- **ES modules**: `import/export`を使用、CommonJS (`require`) は使用しない
+- **分割代入**: 可能な場合はインポートを分割代入する: `import { foo } from 'bar'`
+
+#### 型定義のルール ⚠️ **厳格に遵守**
+1. **`any`の使用は絶対禁止**
+   - `any`を使用する場合は、必ず適切な型を定義する
+   - やむを得ない場合は`unknown`を使用し、型ガードで安全に処理する
+   - `as any`による型アサーションは禁止（緊急時のみ許可、理由をコメントで明記）
+
+2. **`type`の使用を優先**
+   - `interface`ではなく`type`を使用する（関数型プログラミングとの整合性）
+   - 拡張が必要な場合のみ`interface`を使用
+   - 型の合成には`&`（交差型）や`|`（合併型）を使用
+
+3. **明示的な型定義**
+   - 関数の引数と戻り値は必ず型を明示する
+   - 型推論が可能でも、公開APIは明示的に型を定義する
+   - 複雑な型は`type`エイリアスで定義し、再利用可能にする
+
+4. **Zodバリデーションの必須化**
+   - **外部API（REST API、Webhook）のリクエスト/レスポンス**: Zodスキーマでバリデーション必須
+   - **フォーム入力**: Zodスキーマでバリデーション必須
+   - **環境変数**: Zodスキーマでバリデーション必須
+   - **Convex関数**: Convexの`v`スキーマを使用（Zodは不要だが、型安全性は同等に確保）
+
+#### 型安全性の実装例
+
+詳細な実装例とチェックリストは **[TYPESCRIPT.md](./TYPESCRIPT.md)** を参照してください。
+
+```typescript
+// ✅ 良い例: typeを使用、明示的な型定義、Zodバリデーション
+import { z } from "zod";
+
+// Zodスキーマで型とバリデーションを同時に定義
+const PetSchema = z.object({
+  name: z.string().min(1).max(50),
+  species: z.enum(["dog", "cat", "reptile", "other"]),
+  birthDate: z.number(),
+});
+
+type Pet = z.infer<typeof PetSchema>;
+
+// 関数の型を明示
+const createPet = async (petData: Pet): Promise<Pet> => {
+  // Zodでバリデーション
+  const validatedData = PetSchema.parse(petData);
+  // ...
+  return validatedData;
+};
+
+// ❌ 悪い例: anyの使用、型定義なし
+const createPet = async (petData: any) => {
+  // anyは禁止
+  return petData;
+};
+```
+
+#### Convex関数での型安全性
+
+```typescript
+// Convex関数では`v`スキーマを使用（Zodは不要）
+import { v } from "convex/values";
+
+export const createPet = mutation({
+  args: {
+    name: v.string(),
+    species: v.union(v.literal("dog"), v.literal("cat"), v.literal("reptile"), v.literal("other")),
+    birthDate: v.number(),
+  },
+  handler: async (ctx, args) => {
+    // argsは自動的に型付けされる
+    const pet = await ctx.db.insert("pets", args);
+    return pet;
+  },
+});
+```
+
+#### 外部API呼び出し時のZodバリデーション
+
+```typescript
+// Convex Actionから外部APIを呼び出す場合
+import { z } from "zod";
+
+const ExternalApiResponseSchema = z.object({
+  data: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+  })),
+});
+
+export const fetchExternalData = action({
+  args: {
+    url: v.string(),
+  },
+  handler: async (ctx, args) => {
+    // 外部API呼び出し
+    const response = await fetch(args.url);
+    const json = await response.json();
+    
+    // Zodでバリデーション（必須）
+    const validatedData = ExternalApiResponseSchema.parse(json);
+    
+    return validatedData;
+  },
+});
+```
+
+### React Native / Expo (`apps/expo/`) ⚠️ **技術的制約**
+- **ルーティング**: Expo Routerを使用したファイルベースルーティング（`app/`ディレクトリ）
+- **UIライブラリ**: Tamaguiコンポーネントを使用（`@repo/ui`から共有）
+  - NativeWindは使用しない（Tamaguiを統一UIライブラリとして使用）
+- **状態管理**: Zustandでクライアント状態を管理
+- **サーバー状態**: Convexの`useQuery`でサーバー状態を取得（`@repo/backend`から型安全に）
+- **コンポーネント**: アプリ専用UIコンポーネントは`components/`に配置
+- **型安全性**: Convex関数の呼び出しは型安全に（`api`オブジェクトから型推論される）
 
 ### Next.js (管理画面) (`apps/admin/`)
 - App Routerを使用（`app/`ディレクトリ）
@@ -70,14 +179,17 @@
 - Convex関数は`@repo/backend`から型安全に呼び出す（ニュース、法務ドキュメントなど）
 - 法務ドキュメントは`@repo/policy`からMarkdown形式で読み込む
 
-### Convex (`packages/backend/`)
+### Convex (`packages/backend/`) ⚠️ **重要な制約**
 - **重要**: Convexは独立したパッケージ（`packages/backend/`）に配置
 - スキーマ、関数、AIアクションは`convex/`ディレクトリに配置
 - Query関数: `query`を使用
 - Mutation関数: `mutation`を使用
 - Action関数: `action`を使用（外部API呼び出し時）
-- 型安全性を確保（`v`スキーマを使用）
-- `apps/expo`と`apps/admin`の両方から、同じバックエンド関数を型安全に呼び出す
+- **型安全性**: `v`スキーマを使用し、型安全性を確保（`any`は禁止）
+- **外部API呼び出し**: Convex Actionからのみ外部API（Cloudflare R2、Discord、OpenAI等）を呼び出す
+  - Query/Mutationから外部APIを呼び出すことは禁止
+  - 外部APIのレスポンスはZodスキーマでバリデーション必須
+- **共有**: `apps/expo`と`apps/admin`の両方から、同じバックエンド関数を型安全に呼び出す
 
 ## ワークフロー
 
@@ -125,6 +237,70 @@
 - ブランチ名: `feature/`, `fix/`, `refactor/`プレフィックスを使用
 - コミットメッセージ: 明確で説明的なメッセージを書く
 - PR作成前に: 型チェック、リント、テストを実行
+
+## エラーハンドリング規格
+
+すべてのAPIエラーは **RFC 9457 (Problem Details for HTTP APIs)** に準拠する必要があります。
+
+詳細は **[ERROR_HANDLING.md](./ERROR_HANDLING.md)** を参照してください。
+
+### 監視・エラー追跡（Sentry + Better Stack）
+
+SentryとBetter Stackを活用した監視・エラー追跡の設計は **[MONITORING.md](./MONITORING.md)** を参照してください。
+
+**重要**: 
+- **Sentry**: 「なぜ（Why）」起きたかを探る場所（スタックトレース、デバッグ）
+- **Better Stack**: 「何が（What）」起きているか、サービス全体を俯瞰する場所（エラー数、レスポンスタイム、リソース監視）
+- **統合**: Convex関数でエラー発生時にSentryに送信し、`extensions.sentryEventId`をフロントエンドに返すことで、フロントとバックのエラーを一つの「Issue」として紐付け
+
+### 基本原則
+
+- **Convex関数**: `ConvexError`を使用し、RFC 9457準拠の構造を渡す
+- **Next.js API Route**: 同じエラーレスポンス構造を使用
+- **Expo（モバイルアプリ）**: Convex関数のエラーをキャッチし、ユーザーに分かりやすいメッセージを表示
+- **監視・分析**: Better Stack LogsとSentryに構造化されたエラーログを送信
+
+### エラーレスポンス構造
+
+```typescript
+type ErrorResponse = {
+  type: string;        // エラーの種類を特定するURI（例: https://api.pet-app.com/errors/premium-required）
+  title: string;       // 人間が読める短いエラー概要（例: Premium Required）
+  status: number;      // HTTPステータスコード（例: 403）
+  detail?: string;     // この発生事例に関する具体的な説明（例: この機能はプレミアム会員限定です）
+  instance?: string;   // エラーが発生した具体的なリソースのURI（デバッグ用）
+  extensions?: {       // 拡張フィールド（Better Stack、Sentry用）
+    requestId?: string;
+    traceId?: string;
+    userId?: string;
+    sentryEventId?: string; // SentryのイベントID（フロントとバックのエラーを紐付ける）
+    [key: string]: unknown;
+  };
+};
+```
+
+### 実装例
+
+```typescript
+// ✅ 良い例: RFC 9457準拠のエラー
+import { ConvexError } from "convex/values";
+
+throw new ConvexError({
+  type: "https://api.pet-app.com/errors/premium-required",
+  title: "Premium Required",
+  status: 403,
+  detail: "この機能はプレミアム会員限定です。",
+  instance: "/pets",
+  extensions: {
+    requestId: ctx.requestId,
+    userId: user._id,
+    sentryEventId: "<sentry-event-id>", // SentryのイベントIDを含める
+  },
+});
+
+// ❌ 悪い例: 単純な文字列エラー
+throw new Error("プレミアムが必要です");
+```
 
 ## 避けるべきこと
 
@@ -203,22 +379,51 @@
 - **スキーマ変更時の自動反映**: Convexスキーマを変更した際、AIが自動で関連するコードを更新できるようにする
 - **モノレポ構造の理解**: AIが`apps/expo`と`packages/backend`の関係を理解し、適切なインポートパスを提案する
 
-## ユーザーストーリーの活用
+## ドキュメント参照（開発の憲法）
 
-機能実装時は、以下のドキュメントを必ず参照してください：
-- **[USER_STORIES.md](../../USER_STORIES.md)**: モバイルアプリの機能
-- **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**: 管理画面の機能
-- **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)**: 公式サイトの機能 ✅ **2026年追加**
+機能実装時は、以下のドキュメントを**必ず参照**してください：
 
-詳細は **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)** の「クイックリファレンス」セクションを参照してください。
+### インデックスファイル（推奨） ✅ **2026年追加 - 分割版**
+- **[USER_STORIES_INDEX.md](../../USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）
+- **[CONVEX_SCHEMA_INDEX.md](../../CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）
+- **[DESIGN_DOCUMENT_INDEX.md](../../DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）
+- **[ADMIN_USER_STORIES_INDEX.md](../../ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）
+- **[WEB_USER_STORIES_INDEX.md](../../WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）
 
-## 重要な注意事項
+### 統合版ファイル（全体像の把握用）
+- **[USER_STORIES.md](../../USER_STORIES.md)**: モバイルアプリの機能（統合版）
+- **[CONVEX_SCHEMA.md](../../CONVEX_SCHEMA.md)**: Convexスキーマ定義（統合版）
+- **[DESIGN_DOCUMENT.md](../../DESIGN_DOCUMENT.md)**: アプリ設計の詳細（統合版）
+- **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**: 管理画面の機能（統合版）
+- **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)**: 公式サイトの機能（統合版）
 
+### マスタードキュメント
+- **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)**: すべてのドキュメントへのアクセス ⭐ **まずここから**
+
+**重要**: 機能実装時は、必ず対応するユーザーストーリーを参照し、ユーザーの体験価値を重視した実装を行ってください。
+
+## 重要な注意事項（憲法の原則）
+
+### 技術的制約（絶対に守るべきルール）
 - **関数型プログラミング**: 必須。副作用を最小限にし、純粋関数を優先
-- **変数名**: 短縮せず、読みやすい形式（例: `userName`）
+- **変数名**: 短縮せず、読みやすい形式（例: `userName`、`petId`）
 - **モノレポ**: 共有パッケージを活用し、重複コードを避ける
-- **型安全性**: TypeScriptの型を最大限活用し、`any`は避ける
+- **型安全性**: TypeScriptの型を最大限活用し、`any`は絶対禁止
+- **Zodバリデーション**: 外部API、フォーム入力、環境変数で必須
+- **Convex制約**: Actionからのみ外部APIを呼び出す（Query/Mutationからは禁止）
+
+### 開発の優先順位（意思決定の指針）
+1. **プライバシーとセキュリティ**: ペットの機微情報（健康ログ）の保護を最優先
+2. **パフォーマンス**: 動画・画像の高速表示（Cloudflare R2のCDN活用）
+3. **コスト効率**: ストレージ節約と無料枠の維持（Convexのプライシングを考慮）
+4. **型安全性**: ランタイムエラーを防ぐため、型チェックとバリデーションを徹底
+
+### 開発フローの原則
 - **MCP活用**: Convexのようなモダンなツールは進化が早いため、AIが「最新のドキュメント」と「あなたのローカルコード」を同時に見られる状態（MCP環境）を作ることが最強の開発効率を実現する鍵
-- **ユーザーストーリー重視**: 機能実装時は、必ず **[USER_STORIES.md](../../USER_STORIES.md)**、**[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**、または **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)** を参照し、ユーザーの体験価値を重視した実装を行う
-- **公式サイト開発**: 公式サイト（`apps/www/`）を開発する際は、ブランド戦略・UI/UXガイドライン（WEB-015〜WEB-017）を重視し、SEO・LLM最適化を実現 ✅ **2026年追加**
+- **ユーザーストーリー重視**: 機能実装時は、必ず対応するユーザーストーリーを参照し、ユーザーの体験価値を重視した実装を行う
 - **ドキュメント参照**: 詳細な情報が必要な場合は、**[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)** から適切なドキュメントを参照してください
+- **推測でコードを書かない**: 不明点は必ず質問し、既存のパターンを確認してから実装する
+
+### 公式サイト開発の特別ルール ✅ **2026年追加**
+- 公式サイト（`apps/www/`）を開発する際は、ブランド戦略・UI/UXガイドライン（WEB-015〜WEB-017）を重視し、SEO・LLM最適化を実現
+- 法務ドキュメントは`@repo/policy`からMarkdown形式で読み込む

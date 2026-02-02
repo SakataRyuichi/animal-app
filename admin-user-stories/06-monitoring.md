@@ -87,18 +87,28 @@
 - **構造化ログ**: 日記投稿、リマインダー完了、プレミアム登録などのイベントを構造化ログとして送信
 - **Heartbeat監視**: ConvexのCronが正常に動作していることを確認（日報送信の完了を報告）
 - **アラート設定**: Better Stack側でSQLクエリベースのアラートを設定（例: db_rowsが40,000を超えたら通知）
+- **エラーログ分析**: RFC 9457準拠のエラーレスポンスを構造化ログとして送信し、SQLクエリで分析
+- **Sentry連携**: SentryのイベントIDを含めたログを送信し、Better StackからSentryのURLにリンク
 
 **体験価値**:
 - **分析の容易さ**: Better Stack上でSQLクエリを使って深い分析ができる
 - **信頼性**: アプリがダウンしていても、Better Stackが外部から監視してくれる
 - **拡張性**: 将来的に「ユーザーが何曜日の何時に一番日記を書いているか」などの分析が可能
+- **統合監視**: SentryとBetter Stackを連携させ、エラーの「点」と「線」をつなぐ
 
 **使用シーン**:
 - Better Stackとの連携を設定する時
 - Better Stackでログを分析する時
 - システムの健全性を監視する時
+- SentryとBetter Stackを連携させてエラーを追跡する時
 
 **優先度**: 中
+
+**技術的実装**:
+- RFC 9457準拠のエラーレスポンスを構造化ログとして送信
+- SentryのイベントIDを`extensions.sentryEventId`に含める
+- Better StackにSentryのURLリンクを含めたログを送信
+- 詳細は [.cursor/rules/MONITORING.md](../.cursor/rules/MONITORING.md) を参照
 
 ---
 

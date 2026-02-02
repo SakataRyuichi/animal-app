@@ -141,11 +141,63 @@ const identity = await ctx.auth.getUserIdentity();
 if (!identity) throw new Error("Not authenticated");
 ```
 
-## エラーハンドリング
+## エラーハンドリング ⚠️ **RFC 9457準拠必須**
 
-- 認証エラー: `throw new Error("Not authenticated")`
-- 権限エラー: `throw new Error("Not authorized")`
-- データ不存在: `throw new Error("Resource not found")`
+すべてのエラーは **RFC 9457 (Problem Details for HTTP APIs)** に準拠する必要があります。
+
+詳細は [.cursor/rules/ERROR_HANDLING.md](../../rules/ERROR_HANDLING.md) を参照してください。
+
+### 基本原則
+
+- **ConvexErrorを使用**: `throw new Error()`ではなく、`ConvexError`を使用
+- **統一された構造**: RFC 9457準拠のエラーレスポンス構造を渡す
+- **エラータイプ**: URI形式で定義（例: `https://api.pet-app.com/errors/premium-required`）
+- **拡張フィールド**: `extensions`に`requestId`や`traceId`を含める
+
+### 実装例
+
+```typescript
+import { ConvexError } from "convex/values";
+
+// ✅ 良い例: RFC 9457準拠
+throw new ConvexError({
+  type: "https://api.pet-app.com/errors/authentication-required",
+  title: "Authentication Required",
+  status: 401,
+  detail: "認証が必要です。ログインしてください。",
+  instance: "/pets",
+  extensions: {
+    requestId: ctx.requestId,
+  },
+});
+
+// ❌ 悪い例: 単純な文字列エラー
+throw new Error("Not authenticated");
+```
+
+### エラーヘルパー関数の使用
+
+共通のエラーヘルパー関数を使用することで、一貫性を保ちます：
+
+```typescript
+import { createError } from "./lib/errors";
+
+// 認証エラー
+throw createError(
+  "authentication-required",
+  "認証が必要です。ログインしてください。",
+  "/pets",
+  { requestId: ctx.requestId }
+);
+
+// プレミアム会員エラー
+throw createError(
+  "premium-required",
+  "この機能はプレミアム会員限定です。",
+  "/pets",
+  { requestId: ctx.requestId, userId: user._id }
+);
+```
 
 ## インデックスの活用
 
