@@ -44,14 +44,25 @@ body:
   - type: textarea
     id: user-story-reference
     attributes:
-      label: 📚 関連ユーザーストーリー (User Story Reference)
-      description: 関連するユーザーストーリー（US-XXX）を記載してください。`USER_STORIES.md`を参照してください。
+      label: 📚 関連ユーザーストーリー (User Story Reference) ⚠️ 必須
+      description: 関連するユーザーストーリー（US-XXX, ADM-XXX, WEB-XXX）を記載してください。`USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md`を参照してください。
       placeholder: |
         例: US-009（トイレ記録）
-        特に重視する点:
+        
+        **ストーリーID**: US-009
+        **ストーリー名**: トイレ記録
+        **参照ファイル**: `USER_STORIES.md` または `user-stories/03-activity-logs.md`
+        
+        **特に重視する点**:
         - 『受け入れ基準』: 視覚的なアイコン選択
         - 『体験価値』: 専門知識がなくても記録できる
         - 『使用シーン』: 散歩後のトイレタイムに記録
+        
+        **関連する他のストーリー**:
+        - US-013（タイムライン表示）: 記録後の表示先
+        - US-020（AI相談）: 異常時の導線
+    validations:
+      required: true
 
   - type: dropdown
     id: epic
@@ -149,6 +160,7 @@ body:
       label: 📅 フェーズ (Phase)
       description: 実装するフェーズを選択してください
       options:
+        - Phase 0: 環境構築とコア機能（認証・ユーザー管理）
         - Phase 1: 個人管理・基礎構築
         - Phase 2: 家族・チーム管理
         - Phase 3: SNS・商品データベース

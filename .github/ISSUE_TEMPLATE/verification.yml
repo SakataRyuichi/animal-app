@@ -1,0 +1,117 @@
+name: "🧪 Verification Template"
+description: 動作検証フェーズ用テンプレート
+title: "[VERIFY]: "
+labels: ["verification", "status:testing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🧪 動作検証フェーズ
+        実装が完了した機能を実際の画面を通じて動作検証します。
+
+  - type: textarea
+    id: epic-reference
+    attributes:
+      label: 📦 対象エピック (Target Epic)
+      description: 検証対象のエピックを記載してください
+      placeholder: |
+        例: Epic 0-3: 認証機能の実装（デザインなし）
+    validations:
+      required: true
+
+  - type: textarea
+    id: implemented-features
+    attributes:
+      label: ✅ 実装済み機能 (Implemented Features)
+      description: 検証対象の実装済み機能をリストアップしてください
+      placeholder: |
+        例:
+        - ユーザー登録機能
+        - ログイン機能
+        - ログアウト機能
+        - 退会機能
+        - プロフィール編集機能
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification-checklist
+    attributes:
+      label: ✅ 検証チェックリスト (Verification Checklist)
+      description: 検証項目をチェックリスト形式で記載してください
+      placeholder: |
+        **機能的な検証**:
+        - [ ] ユーザー登録フローの動作確認
+        - [ ] ログインフローの動作確認
+        - [ ] ログアウトフローの動作確認
+        - [ ] 退会フローの動作確認
+        - [ ] プロフィール編集フローの動作確認
+        
+        **技術的な検証**:
+        - [ ] 型チェック: `pnpm typecheck`が通る
+        - [ ] リント: `pnpm lint`が通る
+        - [ ] セキュリティチェック: `pnpm security:audit`が通る
+        
+        **データの確認**:
+        - [ ] Convex Dashboardでデータが正しく保存されている
+        - [ ] エラーログがない（Sentry/Better Stack）
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification-method
+    attributes:
+      label: 🔍 検証方法 (Verification Method)
+      description: 検証の実施方法を記載してください
+      placeholder: |
+        1. 実際のデバイス（iOS/Android）でアプリを起動
+        2. 各認証フローを実際に操作
+        3. Convex Dashboardでデータを確認
+        4. エラーケースも含めて動作確認
+        5. Sentry/Better Stackでエラーログを確認
+    validations:
+      required: true
+
+  - type: textarea
+    id: test-devices
+    attributes:
+      label: 📱 テストデバイス (Test Devices)
+      description: 検証に使用するデバイスを記載してください
+      placeholder: |
+        - iOS: iPhone 15 Pro (iOS 17.0)
+        - Android: Pixel 7 (Android 13)
+        - エミュレータ: iOS Simulator, Android Emulator
+
+  - type: textarea
+    id: issues-found
+    attributes:
+      label: 🐛 発見された問題 (Issues Found)
+      description: 検証中に発見された問題があれば記載してください
+      placeholder: |
+        例:
+        - [ ] Issue #123: ログイン後のリダイレクトが正しく動作しない
+        - [ ] Issue #124: プロフィール画像のアップロードが失敗する
+
+  - type: dropdown
+    id: verification-status
+    attributes:
+      label: 🏁 検証ステータス (Verification Status)
+      description: 現在の検証ステータスを選択してください
+      options:
+        - "🔍 In Progress: 検証中"
+        - "✅ Passed: 検証完了（問題なし）"
+        - "❌ Failed: 検証失敗（問題あり）"
+        - "⚠️ Partial: 一部問題あり（修正後再検証が必要）"
+    validations:
+      required: true
+
+  - type: textarea
+    id: next-steps
+    attributes:
+      label: 🚀 次のステップ (Next Steps)
+      description: 検証完了後の次のステップを記載してください
+      placeholder: |
+        例:
+        - 問題が発見された場合は、対応するIssueを作成
+        - 検証が完了した場合は、次のエピックに進む
+        - Phase 0が完了した場合は、Phase 1に進む

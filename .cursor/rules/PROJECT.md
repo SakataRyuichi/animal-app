@@ -484,6 +484,7 @@ throw new Error("プレミアムが必要です");
 
 ### マスタードキュメント
 - **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)**: すべてのドキュメントへのアクセス ⭐ **まずここから**
+- **[.cursor/rules/ISSUE_REFERENCE.md](./ISSUE_REFERENCE.md)**: GitHub Issue参照方法のガイドライン ⭐ **SkillsやRulesファイルでIssueを参照する際は必読**
 
 ### 技術スタック統合ガイド
 - **[DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md](../../DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md)**: mise + Convex + Turborepo設計レビュー ⭐ **技術スタック統合時は必読**

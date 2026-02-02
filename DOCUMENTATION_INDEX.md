@@ -87,6 +87,9 @@
 | **[OBSIDIAN_SETUP.md](./OBSIDIAN_SETUP.md)** | Obsidian設定ガイド ✅ **2026年追加** | 開発者 |
 | **[ISSUE_GUIDELINES.md](./ISSUE_GUIDELINES.md)** | GitHub Issue作成ガイドライン ✅ **2026年追加** | 開発者 |
 | **[EPIC_OVERVIEW.md](./EPIC_OVERVIEW.md)** | 各エピックの概要とストーリー一覧 ✅ **2026年追加** | 開発者 |
+| **[IMPLEMENTATION_PHASES.md](./IMPLEMENTATION_PHASES.md)** | 実装フェーズ計画（Phase 0〜Phase 3） ✅ **2026年追加** | 開発者 |
+| **[EPIC_IMPLEMENTATION_PLAN.md](./EPIC_IMPLEMENTATION_PLAN.md)** | エピックと実装タスクの詳細定義（Phase 0〜Phase 1） ✅ **2026年追加** | 開発者 |
+| **[.cursor/rules/ISSUE_REFERENCE.md](./.cursor/rules/ISSUE_REFERENCE.md)** | GitHub Issue参照方法のガイドライン ✅ **2026年追加** | 開発者・AI |
 | **[PENCIL_DESIGN_BRIEF.md](./PENCIL_DESIGN_BRIEF.md)** | Pencilデザインブリーフ（画面単位のストーリーとデザイン要件） ✅ **2026年追加** | デザイナー・開発者 |
 | **[DIARY_DRAFT_VERIFICATION.md](./DIARY_DRAFT_VERIFICATION.md)** | 日記の更新・削除・下書き機能の検証と設計 ✅ **2026年追加** | 開発者 |
 | **[CLOUDFLARE_R2_MIGRATION.md](./CLOUDFLARE_R2_MIGRATION.md)** | Cloudflare R2移行設計（画像・動画保存） ✅ **2026年追加** | 開発者 |
@@ -982,7 +985,7 @@
 |--------|---------------------|
 | 新機能の実装 | `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md` → `APP_DIRECTORY_STRUCTURE.md` → `CONVEX_SCHEMA.md` → `DESIGN_DOCUMENT.md` |
 | モバイルアプリ画面の実装 | `APP_DIRECTORY_STRUCTURE.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
-| GitHub Issueの作成 | `ISSUE_GUIDELINES.md` → `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
+| GitHub Issueの作成 | `IMPLEMENTATION_PHASES.md` → `EPIC_IMPLEMENTATION_PLAN.md` → `ISSUE_GUIDELINES.md` → `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
 | エピックの確認 | `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
 | Pencilでのデザイン作成 | `PENCIL_DESIGN_BRIEF.md` → `USER_STORIES.md` → `DESIGN_DOCUMENT.md` ✅ **2026年追加** |
 | 日記機能の実装 | `DIARY_DRAFT_VERIFICATION.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
@@ -1011,6 +1014,8 @@
    - `DOCUMENTATION_INDEX.md`を更新
 
 2. **GitHub Issue作成時**:
+   - `IMPLEMENTATION_PHASES.md`で実装フェーズを確認
+   - `EPIC_IMPLEMENTATION_PLAN.md`でエピックと実装タスクを確認
    - `ISSUE_GUIDELINES.md`を参照してIssueを作成
    - `EPIC_OVERVIEW.md`からエピックを確認
    - 依存関係を確認して実装順序を決定

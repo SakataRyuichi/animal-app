@@ -1,0 +1,159 @@
+name: "📦 Epic Template"
+description: エピック（大きな機能単位）の定義用テンプレート
+title: "[EPIC]: "
+labels: ["epic", "status:planning"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 📦 エピック定義
+        エピックは、複数の実装タスクをまとめる大きな機能単位です。エピックを作成する際は、関連する実装タスクも同時に定義してください。
+
+  - type: textarea
+    id: epic-overview
+    attributes:
+      label: 🎯 エピック概要 (Epic Overview)
+      description: このエピックで実装する機能の概要を記述してください
+      placeholder: |
+        例: Epic 1: 認証・ユーザー管理
+        ユーザーの認証とプロフィール管理機能を実装します。
+        これにより、ユーザーがアプリを使用するための基盤を構築します。
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: 📚 関連ユーザーストーリー (Related User Stories)
+      description: このエピックに関連するユーザーストーリー（US-XXX）を記載してください
+      placeholder: |
+        例:
+        - US-001: ユーザー登録
+        - US-002: ログイン
+        - US-003: プロフィール編集
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: 📅 フェーズ (Phase)
+      description: このエピックが属するフェーズを選択してください
+      options:
+        - Phase 0: 環境構築とコア機能（認証・ユーザー管理）
+        - Phase 1: 個人管理・基礎構築
+        - Phase 2: 家族・チーム管理
+        - Phase 3: SNS・商品データベース
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 優先度 (Priority)
+      description: エピックの優先度を選択してください
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: required-documents
+    attributes:
+      label: 📚 必須参照ドキュメント (Required Documents) ⚠️ 必須
+      description: このエピックで必ず参照すべきドキュメントを記載してください。
+      placeholder: |
+        **ユーザーストーリー**:
+        - `USER_STORIES.md`: Epic X（該当するエピック）
+        - または `ADMIN_USER_STORIES.md`: Epic ADM-X（管理画面の場合）
+        - または `WEB_USER_STORIES.md`: Epic WEB-X（公式サイトの場合）
+        
+        **スキーマ定義**:
+        - `CONVEX_SCHEMA.md`: 使用するテーブル一覧
+        - または `CONVEX_SCHEMA_INDEX.md`: インデックスから該当テーブルを参照
+        
+        **設計ドキュメント**:
+        - `DESIGN_DOCUMENT.md`: 該当する機能の設計セクション
+        - または `DESIGN_DOCUMENT_INDEX.md`: インデックスから該当セクションを参照
+        
+        **実装計画**:
+        - `EPIC_IMPLEMENTATION_PLAN.md`: エピックと実装タスクの詳細定義
+        - `IMPLEMENTATION_PHASES.md`: 実装フェーズ計画
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-tasks
+    attributes:
+      label: ✅ 実装タスク (Implementation Tasks)
+      description: このエピックに含まれる実装タスクをリストアップしてください。各タスクは個別のIssueとして作成されます。
+      placeholder: |
+        例:
+        - [ ] TASK-0-3-1: Convexスキーマの定義（usersテーブル）
+          - 参照: `CONVEX_SCHEMA.md` (usersテーブル), `USER_STORIES.md` (US-001)
+        - [ ] TASK-0-3-2: Clerkのユーザー登録フロー実装
+          - 参照: `USER_STORIES.md` (US-001), `APP_DIRECTORY_STRUCTURE.md` (app/(auth)/register.tsx)
+        - [ ] TASK-0-3-3: Convex関数の作成（ユーザー情報の同期）
+          - 参照: `CONVEX_SCHEMA.md` (usersテーブル), `DESIGN_DOCUMENT.md` (認証フロー)
+        - [ ] TASK-0-3-4: ログイン機能の実装
+          - 参照: `USER_STORIES.md` (US-002), `APP_DIRECTORY_STRUCTURE.md` (app/(auth)/login.tsx)
+        - [ ] TASK-0-3-5: ログアウト機能の実装
+          - 参照: `USER_STORIES.md` (US-002関連), `.cursor/rules/SECURITY_IPA.md`
+        - [ ] TASK-0-3-6: ユーザー退会機能の実装
+          - 参照: `CONVEX_SCHEMA.md` (account_deletion_reasonsテーブル), `.cursor/rules/SECURITY_IPA.md`
+        - [ ] TASK-0-3-7: プロフィール編集機能の実装
+          - 参照: `USER_STORIES.md` (US-003), `APP_DIRECTORY_STRUCTURE.md` (app/settings/profile.tsx)
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification-phase
+    attributes:
+      label: 🧪 動作検証フェーズ (Verification Phase)
+      description: このエピックの完了後に実施する動作検証の内容を記載してください
+      placeholder: |
+        例:
+        - [ ] ユーザー登録フローの動作確認
+        - [ ] ログインフローの動作確認
+        - [ ] ログアウトフローの動作確認
+        - [ ] 退会フローの動作確認
+        - [ ] プロフィール編集フローの動作確認
+        - [ ] セキュリティチェック（IPAガイドライン準拠）
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 🔗 依存関係 (Dependencies)
+      description: このエピックが依存する他のエピックや機能を記載してください
+      placeholder: |
+        例:
+        - Epic 0-1: 環境構築とサービス疎通確認（必須）
+        依存関係がない場合は「なし」と記載してください。
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: ✅ 成功基準 (Success Criteria)
+      description: このエピックが完了したと判断する基準を記載してください
+      placeholder: |
+        例:
+        - [ ] すべての実装タスクが完了している
+        - [ ] 動作検証フェーズが完了している
+        - [ ] セキュリティチェックが通っている
+        - [ ] 型チェックとリントが通っている
+        - [ ] 実際のデバイスで動作確認済み
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 追加情報 (Additional Context)
+      description: その他の情報（参考リンク、関連Issueなど）があれば記載してください
+      placeholder: |
+        例:
+        - 関連ドキュメント: `EPIC_IMPLEMENTATION_PLAN.md`
+        - 関連Issue: #123, #124

@@ -3,3 +3,9 @@ contact_links:
   - name: 📚 ドキュメント
     url: https://github.com/sakataryuichi/animal-app#readme
     about: プロジェクトのドキュメントを確認してください
+  - name: 📦 Epic & Task Planning
+    url: https://github.com/sakataryuichi/animal-app/blob/main/EPIC_IMPLEMENTATION_PLAN.md
+    about: エピックと実装タスクの詳細定義を確認してください
+  - name: 📅 Implementation Phases
+    url: https://github.com/sakataryuichi/animal-app/blob/main/IMPLEMENTATION_PHASES.md
+    about: 実装フェーズ計画を確認してください
