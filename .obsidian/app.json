@@ -1,0 +1,21 @@
+{
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "attachments",
+  "defaultViewMode": "source",
+  "foldHeading": false,
+  "foldIndent": true,
+  "newFileLocation": "root",
+  "newFileFolderPath": "",
+  "readableLineLength": false,
+  "rightToLeft": false,
+  "showFrontmatter": true,
+  "showIndentGuide": true,
+  "showLineNumber": true,
+  "spellcheck": true,
+  "strictLineBreaks": false,
+  "tabSize": 2,
+  "useMarkdownLinks": true,
+  "useTab": false,
+  "vimMode": false,
+  "wordWrap": true
+}

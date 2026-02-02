@@ -13,10 +13,12 @@ Turborepo + pnpmモノレポでの作業パターンを提供します。
 
 - `apps/expo/`: React Native Expoアプリ
 - `apps/admin/`: Next.js管理画面（ローカルのみ）
+- `apps/www/`: Next.js公式サイト（Vercelにデプロイ）✅ **2026年追加**
 - `packages/backend/`: Convexバックエンド（独立パッケージ）✅ **重要**
 - `packages/ui/`: 共通UIコンポーネント（Tamagui）
 - `packages/utils/`: 共通ロジック（ビジネスロジック）
 - `packages/tsconfig/`: TypeScript共通設定
+- `packages/policy/`: 法務ドキュメント（Markdown形式）✅ **2026年追加**
 
 ## コマンド実行パターン
 
@@ -25,6 +27,7 @@ Turborepo + pnpmモノレポでの作業パターンを提供します。
 ```bash
 pnpm --filter expo dev
 pnpm --filter admin build
+pnpm --filter www dev  # 公式サイト ✅ **2026年追加**
 pnpm --filter backend dev  # Convexバックエンド
 pnpm --filter ui test
 ```
@@ -34,6 +37,7 @@ pnpm --filter ui test
 ```bash
 pnpm --filter expo... dev  # expoとその依存パッケージ（backend, ui, utils等）
 pnpm --filter admin... dev  # adminとその依存パッケージ
+pnpm --filter www... dev  # 公式サイトとその依存パッケージ（backend, ui, utils等）✅ **2026年追加**
 ```
 
 ### 全パッケージ実行

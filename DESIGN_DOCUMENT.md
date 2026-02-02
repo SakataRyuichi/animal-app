@@ -5,9 +5,12 @@
 ## 1. プロジェクト概要
 
 **関連ドキュメント**:
-- [USER_STORIES.md](./USER_STORIES.md): ユーザーストーリー
+- [USER_STORIES.md](./USER_STORIES.md): モバイルアプリのユーザーストーリー
+- [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
+- [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加**
 - [CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md): スキーマ定義
 - [TECH_STACK_PLANNING.md](./TECH_STACK_PLANNING.md): 技術選定の詳細
+- [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリディレクトリ構成と画面マッピング ✅ **2026年追加**
 
 ### 1.1 アプリの目的
 個人のペット管理から始まり、家族・チーム管理を経て、最終的にはペット特化のSNS兼商品データベースへと発展させるプラットフォーム。
@@ -474,13 +477,24 @@
 
 **詳細**: `CONVEX_SCHEMA.md`の「実装時の注意点 > 6. プレミアム権限管理」を参照してください。
 
-### 2.4 画像保存戦略 ✅ **Convexのプライシングを考慮した設計**
+### 2.4 画像・動画保存戦略 ✅ **2026年更新 - Cloudflare R2移行・動画対応**
 
-**設計思想**: Convexの無料枠（1GB File Storage）を考慮し、画像をWebP形式で保存することで、ストレージコストを最小化しながら、プレミアム機能としての最高画質保存を実現します。
+**設計思想**: Cloudflare R2を活用し、画像・動画を効率的に保存することで、コストを最小化しながら、プレミアム機能としての最高画質保存を実現します。
 
-**ダブルストレージ構造**:
+**Cloudflare R2への移行** ✅ **2026年追加**:
+- **コスト削減**: 下り通信料（Egress Fee）が完全に無料のため、動画再生時のコストが大幅に削減
+- **パフォーマンス向上**: Cloudflare CDNとの統合により、世界中のユーザーに高速なコンテンツ配信
+- **スケーラビリティ**: 動画のような大容量ファイルも扱いやすい
+
+**ダブルストレージ構造**（画像）:
 - **表示用（Preview）**: 無料ユーザーも参照可能、WebP形式、幅1080px、Quality 0.6-0.7、約500KB
 - **最高画質（Original）**: プレミアムユーザーのみ参照可能、WebP形式、リサイズなし、Quality 0.9-1.0、約数MB
+
+**動画の保存** ✅ **2026年追加**:
+- **無料ユーザー**: 1本あたり最大15秒、1ペットにつき月間3本まで、720p/HEVC（約15-20MB/分）
+- **プレミアムユーザー**: 1本あたり最大60秒、無制限、1080p/HEVC（約30-40MB/分）
+- **自動圧縮**: クライアント側（Expo）でアップロード前に自動で圧縮
+- **サムネイル生成**: 動画の最初のフレームから自動でサムネイル画像を生成
 
 **「温かみと誠実さ」を感じさせる設計**:
 - 無料ユーザーがアップロードした画像も、**裏で最高画質データを保存**
@@ -499,7 +513,11 @@
 - **無料ユーザー**: 表示用WebP（ウォーターマーク付き）のみダウンロード可能
 - **プレミアムユーザー**: 最高画質WebP（ウォーターマークなし）、編集前のオリジナル、一括ダウンロード
 
-**詳細**: `IMAGE_STORAGE_STRATEGY.md`を参照してください。
+**動画ダウンロード機能** ✅ **2026年追加**:
+- **無料ユーザー**: 不可（プレミアム案内が表示される）
+- **プレミアムユーザー**: 可能（HEVC形式）
+
+**詳細**: `IMAGE_STORAGE_STRATEGY.md`、`CLOUDFLARE_R2_MIGRATION.md`を参照してください。
 
 ---
 
@@ -662,15 +680,18 @@
 4. リアルタイムでフォロー状態が更新される
 ```
 
-**いいねフロー**:
+**リアクションフロー** ✅ **2026年更新 - 多機能リアクション**:
 ```
-1. ユーザーが投稿の「いいね」ボタンをタップ
-2. likes テーブルに新規作成（userId, activityId）
-3. いいね数がリアルタイムで更新される
-4. 再度タップでいいね解除（likes テーブルから削除）
-5. **専門家（獣医師など）が「いいね」した場合**:
+1. ユーザーが投稿のリアクションボタンをタップ
+   - **通常タップ**: デフォルトのリアクション（❤️ 大好き）を追加
+   - **長押し**: 複数のリアクションタイプから選択できるメニューを表示
+2. リアクションタイプを選択（❤️, 🌻, 💪, 🌟, 🌈）
+3. likes テーブルに新規作成（userId, activityId, reactionType）✅ **2026年追加**
+4. 投稿ごとのリアクションタイプ別の数を集計して表示 ✅ **2026年追加**
+5. リアクションの取り消しができる
+6. **専門家（獣医師など）がリアクションした場合**:
    - 投稿に「獣医師が推奨」などの特別なバッジが表示される
-   - 専門家の「いいね」は通常の「いいね」とは区別される
+   - 専門家のリアクションは通常のリアクションとは区別される
    - おすすめフィードで優先的に表示される
 ```
 
@@ -1291,6 +1312,126 @@ const feed = useQuery(
   - 広告の下に小さく「プレミアムなら広告なしで、もっとサクサク記録できます」という文字を添え、ワンタップでプラン比較画面へ
   - 設定画面にも「広告なしで快適に利用する」というオプションからプレミアムプラン比較画面へ導線を設置
 
+### 5.11 公式サイト（Next.js + Vercel）✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト**
+
+#### 5.11.1 ブランド戦略：公式サイトの役割 ✅ **2026年追加**
+公式サイトは、単なる「機能の説明」ではなく、**「このアプリがある生活がいかに安心で、温かいか」**をブランドとして伝える聖域です。
+
+- **アプリ**: 「実用的な道具」
+- **公式サイト**: 「ペットと飼い主が紡ぐ物語のショーケース」
+
+#### 5.11.2 ビジュアル・アイデンティティ：幸福の想起 ✅ **2026年追加**
+「清潔感（信頼）」と「体温（幸福）」の共存を目指します。
+
+- **メインビジュアル（ヒーローセクション）**:
+  - 構図：スマートフォンの中でアプリを操作する手元と、その奥でリラックスして眠るペットの「ボケ感」を活かした写真
+  - メッセージ：「記録は、愛した証。」のような、情緒的で短いコピーを配置
+- **カラーパレット**:
+  - アプリのベースカラー（例：柔らかなベージュやパステルブルー）を使いつつ、ウェブでは**「余白（ホワイトスペース）」**をアプリの1.5倍広く取り、情報の呼吸を助ける
+- **タイポグラフィ**:
+  - 見出しには少し丸みのある、親しみやすいフォントを採用
+  - ただし、信頼性を損なわないよう、本文は可読性の高い明朝体やクリーンなゴシック体を使い分ける
+
+#### 5.11.3 UIコンポーネントの共通化と拡張 ✅ **2026年追加 - モノレポ活用**
+モノレポでアプリとUIライブラリを共有する利点を最大化します。
+
+- **インタラクティブ・デモ**:
+  - アプリで使っている「トイレ記録の選択肢」や「動くフレーム」のUIコンポーネントを、ウェブ上で擬似的に操作できるセクションを設ける
+  - ユーザーがクリックすると、バッジが光ったりフレームが動いたりする演出をNext.jsで見せることで、DL前の「手触り感」を伝える
+  - `packages/ui`のコンポーネントをウェブ用に拡張して使用
+- **カードデザインの共通化**:
+  - アプリ内の「日記カード」のデザインをウェブの「ニュース」や「ギャラリー」でも流用
+  - `packages/ui`のコンポーネントを共有し、アプリと公式サイトで一貫したデザインを実現
+
+#### 5.11.4 ストーリーテリング型のコンテンツ構成 ✅ **2026年追加**
+上から下へスクロールするだけで、不安が解消され、期待感が高まる構成にします。
+
+- **Empathy（共感）セクション**:
+  - 「今日、何回トイレに行ったっけ？」「この子の小さな変化、見逃したくない。」という飼い主の不安に寄り添う
+  - 飼い主の悩みを可視化し、共感を生む
+- **Solution（解決）セクション**:
+  - アプリの機能（種類別記録、リマインダー）を、実際の操作画面アニメーションで提示
+  - インタラクティブ・デモを活用し、機能の価値を実感できる
+- **Future（未来）セクション**:
+  - 「虹の橋」や「アルバム」の機能を見せ、このアプリが一生（あるいは一生を超えて）寄り添う存在であることを提示
+  - ペットとの長期的な関係をイメージさせる
+- **Social Proof（信頼）セクション**:
+  - バッジを付けた誇らしいペットたちのギャラリーや、最新のアップデートニュース
+  - アプリの成長とコミュニティの活発さを示す
+
+#### 5.11.5 トップページ ✅ **2026年追加**
+- **メインビジュアル（ヒーローセクション）**:
+  - 構図：スマートフォンの中でアプリを操作する手元と、その奥でリラックスして眠るペットの「ボケ感」を活かした写真
+  - メッセージ：「記録は、愛した証。」のような、情緒的で短いコピーを配置
+- **ストーリーテリング型のコンテンツ構成**:
+  - Empathy（共感）、Solution（解決）、Future（未来）、Social Proof（信頼）のセクションを配置
+- ダウンロードボタン（App Store / Google Play）をヘッダーと各セクションに配置
+- 主要機能の概要を視覚的に分かりやすく表示
+- SEO最適化：適切なメタタグ、OGPタグ、構造化データ（JSON-LD）を設定
+- LLMフレンドリー：Semantic HTML（article, section, navなど）を正しく使用
+
+#### 5.11.6 機能詳細ページ ✅ **2026年追加**
+- 各機能ごとに個別のLP（ランディングページ）として詳しく解説
+- **機能ごとの専用サブページ** ✅ **2026年追加 - SEO・LLM最適化**:
+  - `features/cat-toilet`、`features/reptile-care`のように、ペット種別ごとのランディングページを生成
+  - 専門性の高いSEOキーワード（バーティカルSEO）として機能
+  - 各ページに適切なメタタグと構造化データを設定
+- 検索キーワード対策：例「レオパ 餌 記録 アプリ」など、種別ごとのキーワードに対応
+- 機能のスクリーンショットや動画を表示
+- **インタラクティブ・デモ** ✅ **2026年追加 - UIコンポーネントの共通化**:
+  - アプリで使っている「トイレ記録の選択肢」や「動くフレーム」のUIコンポーネントを、ウェブ上で擬似的に操作できるセクションを設ける
+  - ユーザーがクリックすると、バッジが光ったりフレームが動いたりする演出をNext.jsで見せることで、DL前の「手触り感」を伝える
+- SEO最適化：各機能ページに適切なメタタグと構造化データを設定
+
+#### 5.11.7 ニュース・更新情報ページ ✅ **2026年追加**
+- ニュース一覧を時系列で表示（新しい順）
+- 各ニュースにカテゴリ（機能追加、バグ修正、お知らせなど）を表示
+- ニュースの公開日時を表示
+- ニュース詳細ページでタイトル、本文、関連画像を表示
+- SEO最適化：ニュースページに適切なメタタグと構造化データを設定
+- **自動更新** ✅ **2026年追加 - モノレポ運用**:
+  - Convexの`news`テーブルを更新すると、VercelのOn-demand ISR（Incremental Static Regeneration）により、公式サイトのニュース一覧が瞬時に（かつ静的ファイルとして高速に）更新される
+
+#### 5.11.8 法務ドキュメントページ ✅ **2026年追加**
+- プライバシーポリシー、利用規約、特定商取引法表記などを表示
+- 改定日時とバージョンを表示
+- 改定履歴を表示
+- SEO最適化：適切なメタタグを設定
+- **一元管理** ✅ **2026年追加 - モノレポ運用**:
+  - `packages/policy/`にMarkdownファイルを置き、アプリの「設定 > 規約」と、公式サイトの「フッター > 規約」が常に同じファイルを読み込むようにビルド設定
+  - 法務ドキュメントの更新が、アプリと公式サイトの両方に即座に反映される
+
+#### 5.11.9 アプリダウンロードページ ✅ **2026年追加**
+- App StoreとGoogle Playへのリンクを表示
+- デバイス検出：iOS/Androidに応じて適切なストアに誘導
+- ダウンロードボタンを目立つ位置に配置
+
+#### 5.11.10 FAQセクション ✅ **2026年追加 - SEO・LLM最適化**
+- 「猫の多飲多尿を記録するには？」「爬虫類の掃除頻度は？」といった具体的な悩みへの回答をFAQ形式で配置
+- FAQPageの構造化データ（JSON-LD）を付与
+- SEO最適化：各FAQに適切なメタタグを設定
+- LLMフレンドリー：FAQの内容を構造化された形式で記述
+- 検索キーワード対策：具体的な悩みをキーワードとして含める
+
+#### 5.11.11 グローバル公開データのギャラリー（将来機能）✅ **2026年追加**
+- 公開設定されているペットのバッジやアルバムを一覧表示
+- 種別ごとにフィルタリング可能
+- 個別ページ（/pets/[id]）で詳細を表示
+- OGPタグ：SNS共有時に適切なプレビューが表示される
+
+#### 5.11.12 SEO最適化 ✅ **2026年追加**
+- sitemap.xmlの自動生成
+- robots.txtの設定
+- 適切なメタタグ（title, description, keywords）の設定
+- OGPタグの設定
+- 構造化データ（JSON-LD）の設定
+
+#### 5.11.13 LLMフレンドリーな構成 ✅ **2026年追加**
+- Semantic HTML（article, section, navなど）の使用
+- 構造化データ（JSON-LD）の設定
+- API Route（/api/ai-info）でアプリの機能一覧や最新ニュースをJSON形式で提供
+- FAQセクションの構造化（FAQPageの構造化データ）
+
 ---
 
 ## 6. API設計（Convex Functions）
@@ -1321,6 +1462,14 @@ const feed = useQuery(
   - ペットID、記録タイプ、日付範囲でフィルター可能
   - リマインダー完了記録を含めるかどうかを指定可能
   - ページネーション対応（`limit`、`cursor`パラメータ）
+- **日記フィルタリング** ✅ **2026年追加 - 日記の検索性向上**
+  - `getDiaryActivitiesWithFilters`: 日記をシーン、感情、時間帯、場所でフィルタリング
+    - `scenes`パラメータ: シーンIDの配列（複数選択可能）
+    - `emotion`パラメータ: 感情ID
+    - `timeOfDay`パラメータ: 時間帯（"morning", "noon", "evening", "night", "midnight"）
+    - `location`パラメータ: 場所（"home", "park", "dog_run", "clinic", "travel"）
+    - 複数のフィルターを組み合わせて検索可能
+    - ページネーション対応
 - `updateActivity`: 活動ログ更新
 - `deleteActivity`: 活動ログ削除
 - `getLastFeedingActivity`: 前回の食事記録を取得（食事記録画面のデフォルト値用）✅ **2026年追加**
@@ -1340,6 +1489,23 @@ const feed = useQuery(
 - `getCleaningActionMasters`: 清掃アクションのマスターデータを取得
   - ペットの種別を指定して、該当するアクションのみを取得
   - 表示順序でソート済み
+- **日記関連マスターデータ** ✅ **2026年追加 - 日記の簡単記録**
+  - `getDiaryScenes`: 日記シーンマスターデータを取得
+    - 有効なシーンのみを取得
+    - 表示順序でソート済み
+    - アイコンとシーン名を含む
+  - `getDiaryEmotions`: 日記感情マスターデータを取得
+    - 有効な感情のみを取得
+    - 表示順序でソート済み
+    - 顔文字アイコンと感情名を含む
+  - `getContextStamps`: コンテキストスタンプマスターデータを取得
+    - 有効なスタンプのみを取得
+    - 表示順序でソート済み
+    - シーンIDの配列と感情IDを含む
+  - `getReactionTypes`: リアクションタイプマスターデータを取得
+    - 有効なリアクションタイプのみを取得
+    - 表示順序でソート済み
+    - 絵文字アイコンとリアクション名を含む
 
 ### 6.3.2 リマインダー関連 ✅ **2026年追加 - 掃除のタイマー・リマインダー**
 - `getReminderCategoryMasters`: リマインダーカテゴリのマスターデータを取得
@@ -1496,6 +1662,73 @@ const feed = useQuery(
 - `updateActivityWithVersion`: バージョン番号をチェックして活動ログを更新
   - 競合が発生した場合はエラーを返し、UI側で優しいメッセージを表示
 
+### 6.16 ゲーミフィケーション要素関連 ✅ **2026年追加 - ポイント・バッジ・ショップ**
+- **ポイント関連**:
+  - `getCurrentPoints`: 現在の所持ポイント取得（US-083）
+  - `getPointHistory`: ポイント取得履歴取得（US-088）
+    - 時系列順に履歴を取得
+    - フィルター機能（獲得のみ、消費のみ、期間でフィルター）
+    - ソート機能（新しい順、古い順、ポイント数順）
+    - ページネーション対応
+    - 合計獲得ポイントと合計消費ポイントを返す
+  - `getPointEarningMethods`: ポイント取得方法一覧取得（US-084）
+- **バッジ関連**:
+  - `getUserBadges`: ユーザーが獲得したバッジ一覧取得
+  - `getBadgeDefinitions`: バッジ定義一覧取得（管理者用）
+  - `checkAndAwardBadges`: バッジ獲得条件をチェックして付与（内部用）
+- **ショップ関連**:
+  - `getShopItems`: ショップアイテム一覧取得（US-085）
+    - フィルター機能（ポイント購入可能、現金購入可能、期間限定）
+    - ソート機能（ポイント価格順、現金価格順、新着順）
+    - カテゴリ別フィルタリング（静止画フレーム、動くフレーム、アルバム表紙など）
+  - `getAssetById`: アイテム詳細取得（US-087）
+  - `getUserAssets`: ユーザーが所有しているアイテム一覧取得（US-086）
+  - `purchaseAssetWithPoints`: ポイントでアイテム交換（US-070）
+  - `purchaseAssetWithMoney`: 現金でアイテム購入（US-070、RevenueCat連携）
+
+### 6.17 公式サイト関連（Next.js + Vercel）✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト**
+- **ニュース関連**:
+  - `getNews`: 公開済みニュース一覧取得（時系列順、カテゴリフィルタリング対応）
+  - `getNewsById`: ニュース詳細取得
+  - `getLatestNews`: 最新ニュース取得（トップページ用、最新5件など）
+  - `createNews`: ニュース作成（管理者のみ）
+  - `updateNews`: ニュース更新（管理者のみ）
+  - `deleteNews`: ニュース削除（管理者のみ）
+  - `publishNews`: ニュース公開（管理者のみ）
+  - **自動更新** ✅ **2026年追加 - モノレポ運用**:
+    - Convexの`news`テーブルを更新すると、VercelのOn-demand ISR（Incremental Static Regeneration）により、公式サイトのニュース一覧が瞬時に（かつ静的ファイルとして高速に）更新される
+    - Next.js側で`revalidatePath`または`revalidateTag`を使用して実装
+- **法務ドキュメント関連**:
+  - `getLegalDocument`: 最新版の法務ドキュメント取得（タイプ指定）
+  - `getLegalDocumentByVersion`: 特定バージョンの法務ドキュメント取得
+  - `getLegalDocumentHistory`: 法務ドキュメントの改定履歴取得
+  - `createLegalDocument`: 法務ドキュメント作成（管理者のみ）
+  - `updateLegalDocument`: 法務ドキュメント更新（管理者のみ）
+  - **一元管理** ✅ **2026年追加 - モノレポ運用**:
+    - `packages/policy/`にMarkdownファイルを置き、アプリの「設定 > 規約」と、公式サイトの「フッター > 規約」が常に同じファイルを読み込むようにビルド設定
+    - 法務ドキュメントの更新が、アプリと公式サイトの両方に即座に反映される
+    - Convexの`legal_documents`テーブルと`packages/policy/`のMarkdownファイルを同期する仕組みを構築
+- **FAQ関連** ✅ **2026年追加 - SEO・LLM最適化**:
+  - FAQは`packages/policy/faq.md`または`apps/www/content/faq.md`にMarkdown形式で管理
+  - Next.js側でFAQを読み込み、FAQPageの構造化データ（JSON-LD）を生成
+  - SEO最適化：各FAQに適切なメタタグを設定
+  - LLMフレンドリー：FAQの内容を構造化された形式で記述
+  - 検索キーワード対策：具体的な悩みをキーワードとして含める
+- **統計情報（公式サイト用）**:
+  - `getPublicStats`: 公開可能な統計情報取得（例: 総ユーザー数、総記録数など）
+  - プライバシー保護：個人や特定のペットが特定されないよう集計処理
+- **グローバル公開データ（将来機能）**:
+  - `getPublicPets`: 公開設定されているペット一覧取得
+  - `getPublicPetById`: 公開設定されているペットの詳細取得
+  - `getPublicBadges`: 公開設定されているバッジ一覧取得
+  - `getPublicAlbums`: 公開設定されているアルバム一覧取得
+- **SEO・LLM最適化**:
+  - sitemap.xmlの自動生成（Next.jsのsitemap.ts）
+  - robots.txtの設定
+  - 構造化データ（JSON-LD）の生成
+  - API Route（/api/ai-info）でアプリの機能一覧や最新ニュースをJSON形式で提供
+  - FAQPageの構造化データ（JSON-LD）をNext.js側で生成 ✅ **2026年追加**
+
 ---
 
 ## 7. セキュリティ設計
@@ -1647,11 +1880,334 @@ const feed = useQuery(
 - **コアユーザー（課金）**: ポイントを待たずに、新作の「季節限定動くフレーム」や「プレミアム表紙」を都度課金で購入
 - **試算**: 1,000人のアクティブユーザーのうち、3%が毎月1つアイテムを買うだけで、月間約1.5万〜3万円の追加収益（ConvexのProプラン代を余裕で賄える）
 
+#### ポイント管理機能 ✅ **2026年追加**
+- **所持ポイント確認（US-083）**:
+  - プロフィール画面またはショップ画面に現在の所持ポイントを大きく表示
+  - ポイント数が視覚的に分かりやすく表示される（例: 1,234pt）
+  - ポイントの増減がリアルタイムで反映される
+  - ポイント獲得履歴へのリンクが表示される
+- **ポイント取得方法確認（US-084）**:
+  - ポイント取得方法の一覧を表示
+  - 各取得方法のポイント数と説明を明記
+  - 各取得方法から直接記録画面に遷移できる
+  - 1日の最大獲得ポイント（30pt）を明示
+- **ポイント取得履歴確認（US-088）**:
+  - ポイント取得履歴画面で、時系列順に履歴を表示
+  - 各履歴に獲得/消費日時、ポイント数、理由、関連する活動ログやアイテムへのリンクを表示
+  - フィルター機能（獲得のみ、消費のみ、期間でフィルター）
+  - ソート機能（新しい順、古い順、ポイント数順）
+  - ページネーション機能（履歴が多い場合）
+  - 合計獲得ポイントと合計消費ポイントを表示
+
+#### ショップ機能の拡張 ✅ **2026年追加**
+- **ショップ一覧表示（US-085）**:
+  - 利用可能なアイテムを一覧表示
+  - アイテムの種類別にカテゴリ分け（静止画フレーム、動くフレーム、アルバム表紙など）
+  - 各アイテムにポイント価格、現金価格、交換済みかどうかを表示
+  - フィルター機能（ポイント購入可能、現金購入可能、期間限定）
+  - ソート機能（ポイント価格順、現金価格順、新着順）
+- **交換済みアイテム確認（US-086）**:
+  - プロフィール画面またはショップ画面に「所有しているアイテム」セクションを表示
+  - 交換済みアイテムを一覧で表示（アイテム名、画像、交換日時、交換方法）
+  - アイテムをタップすると詳細画面に遷移
+  - アイテムを直接使用できる（フレームを選択してペットの写真に適用など）
+- **交換アイテム詳細確認（US-087）**:
+  - アイテム詳細画面でアイテム名、画像、説明、価格、種類、使用可能な場所を表示
+  - 期間限定アイテムの場合、利用可能期間を表示
+  - 所有しているアイテムの場合、「所有済み」と表示し、「使用する」ボタンを表示
+  - 所有していないアイテムの場合、「ポイントで交換」または「現金で購入」ボタンを表示
+  - アイテムのプレビューを表示（実際に使用した場合の見た目）
+
 #### UX設計
 - **ポイント獲得時のアニメーション**: 活動ログ記録時に、ポイント獲得を視覚的に通知
 - **バッジ獲得時の祝福**: バッジ獲得時に祝福のアニメーションを表示
 - **ショップUI**: Discord風のUIで、ポイント交換と現金購入を選択できる
 - **プロフィール画面**: 獲得したバッジと所有しているアイテムを表示
+- **ポイント表示**: プロフィール画面やショップ画面に現在の所持ポイントを大きく表示
+- **ショップ一覧**: カテゴリ分けとフィルター・ソート機能で、欲しいアイテムを素早く見つけられる
+- **アイテム詳細**: プレビュー機能で、実際に使用した場合の見た目を確認できる
+
+---
+
+### 10.8 監視・アラートシステム ✅ **2026年追加 - サービス停止防止**
+
+#### 設計の目的
+- **サービス停止防止**: Convexの無料枠やプランの限界を越えて、サービスが突然停止するのを防ぐ
+- **予兆検知**: リソースの枯渇を事前に検知し、適切な対策を講じる
+- **自動レポート**: 毎日のアプリの状況を自動で把握し、問題を早期発見する
+- **高度な監視**: Better Stackを活用した構造化ログと分析により、システムの健全性を可視化する
+
+#### 監視対象リソース
+
+**Convexのリソース限界**:
+- **Database Size（レコード数/容量）**: 無料枠の制限を監視
+- **Storage（ファイルストレージ）**: 画像やファイルの使用量を監視
+- **Monthly Operations（実行数）**: Action/Mutation/Queryの月間実行数を監視
+- **Action Duration（実行時間）**: Actionの実行時間がタイムアウト（最大10分）に近づいていないか監視
+
+**外部サービスの監視**:
+- **Amazon PA-API**: APIキーの状態、レート制限の状況
+- **Clerk（認証）**: 認証サービスの稼働状況
+- **RevenueCat（課金）**: サブスクリプション管理の稼働状況
+
+#### Convexリソース監視ダッシュボード（ADM-012）
+
+**実装方法**:
+- **内部Query関数**: `internal.health.getResourceUsage`で各テーブルのレコード数を集計
+- **ストレージ使用量**: Convex Storage APIを使用してファイルサイズを集計
+- **実行数**: Convexの内部メトリクス（利用可能な場合）またはログから集計
+- **ダッシュボード表示**: 管理画面（`apps/admin/`）でリアルタイムに表示
+
+**表示内容**:
+- データベースの総レコード数（テーブル別の内訳）
+- ストレージ使用量（GB）
+- 月間のAction実行数
+- 各リソースの使用率（無料枠に対する割合）
+- リソース使用状況の推移グラフ（過去30日間）
+- 閾値（80%、90%、95%）を超えた場合の警告表示
+- 各リソースの残り容量
+
+**技術実装**:
+```typescript
+// packages/backend/convex/health.ts
+export const getResourceUsage = internalQuery({
+  handler: async (ctx) => {
+    // 各テーブルのレコード数をカウント
+    const tableCounts = await Promise.all([
+      ctx.db.query("users").collect().then(rows => rows.length),
+      ctx.db.query("pets").collect().then(rows => rows.length),
+      ctx.db.query("activities").collect().then(rows => rows.length),
+      // ... 他のテーブル
+    ]);
+    
+    // ストレージ使用量を取得（Convex Storage APIを使用）
+    // 実行数はConvexの内部メトリクスから取得（利用可能な場合）
+    
+    return {
+      dbRows: tableCounts.reduce((sum, count) => sum + count, 0),
+      storageGB: 0, // Convex Storage APIから取得
+      monthlyOperations: 0, // Convex内部メトリクスから取得
+      usageRate: {
+        db: (tableCounts.reduce((sum, count) => sum + count, 0) / 50000) * 100, // 無料枠50,000レコード
+        storage: 0,
+        operations: 0,
+      },
+    };
+  },
+});
+```
+
+#### Discord日報送信機能（ADM-013）
+
+**実装方法**:
+- **Cronジョブ**: Convexの`crons.ts`で毎日決まった時間（デフォルト: 朝9時）に実行
+- **内部Action**: `internal.discord.sendDailyReport`でDiscord Webhookに送信
+- **統計Query**: `internal.stats.getYesterdayStats`で昨日の統計データを取得
+
+**送信内容**:
+```
+📊 ペットケアアプリ日報 [2026/02/01]
+
+👤 ユーザーアクティビティ
+- 新規登録: 15名
+- アクティブユーザー: 120名
+- プレミアム移行: 2名
+
+📝 記録統計
+- 日記: 45件 (😊 20 / 😴 15 / 🥺 10)
+- トイレ: 80件 / 餌: 150件
+- リマインダー完了率: 85%
+
+💰 ビジネス・システム
+- Amazon API更新: 1,200件
+- ポイント発行総数: 4,500pt
+- エラーログ発生: 0件 ✅
+
+🚨 システム健全性
+- APIレスポンス平均: 120ms (正常)
+- エラーログ（Level: Error）: 2件 [詳細リンク]
+- 外部API（Amazon/Clerk）生存確認: 100%
+
+[管理画面で詳細を確認する](https://admin.example.com/dashboard)
+```
+
+**技術実装**:
+```typescript
+// packages/backend/convex/discord.ts
+export const sendDailyReport = internalAction({
+  handler: async (ctx) => {
+    // 1. 昨日の統計データを取得
+    const stats = await ctx.runQuery(internal.stats.getYesterdayStats);
+    
+    // 2. Discord Webhookへ送信
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL!;
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        embeds: [{
+          title: `📊 アプリ日報 [${stats.date}]`,
+          description: stats.summary,
+          color: 0x5865F2, // Discord Blurple
+          fields: [
+            { name: "👤 ユーザーアクティビティ", value: stats.userActivity, inline: false },
+            { name: "📝 記録統計", value: stats.records, inline: false },
+            { name: "💰 ビジネス・システム", value: stats.business, inline: false },
+            { name: "🚨 システム健全性", value: stats.health, inline: false },
+          ],
+        }],
+      }),
+    });
+  },
+});
+
+// packages/backend/convex/crons.ts
+import { cronJobs } from "convex/server";
+import { internal } from "./_generated/api";
+
+export const crons = cronJobs({
+  dailyReport: {
+    cron: "0 9 * * *", // 毎日朝9時
+    args: {},
+    handler: internal.discord.sendDailyReport,
+  },
+});
+```
+
+#### Better Stack連携（ADM-014）
+
+**実装方法**:
+- **構造化ログ送信**: Convex Action内で、特定のイベント（日記投稿、リマインダー完了、プレミアム登録など）をBetter Stack Logsへ送信
+- **Heartbeat監視**: ConvexのCronが正常に動作していることをBetter Stack Uptimeに報告
+- **アラート設定**: Better Stack側でSQLクエリベースのアラートを設定
+
+**送信するログの種類**:
+- **ビジネスメトリクス**: 日記投稿、リマインダー完了、プレミアム登録などのイベント
+- **エラーログ**: システムエラー、APIエラーなど
+- **パフォーマンスログ**: APIレスポンス時間、Action実行時間など
+
+**技術実装**:
+```typescript
+// packages/backend/convex/betterstack.ts
+export const sendToBetterStack = internalAction({
+  args: {
+    level: v.union(v.literal("info"), v.literal("warn"), v.literal("error"), v.literal("crit")),
+    message: v.string(),
+    data: v.any(),
+  },
+  handler: async (ctx, args) => {
+    await fetch("https://in.logs.betterstack.app", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.BETTER_STACK_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        level: args.level,
+        message: args.message,
+        ...args.data,
+        timestamp: Date.now(),
+      }),
+    });
+  },
+});
+
+// 日報送信完了時にHeartbeatを報告
+export const reportHeartbeat = internalAction({
+  handler: async (ctx) => {
+    await fetch(`https://uptime.betterstack.com/api/v1/heartbeat/${process.env.BETTER_STACK_HEARTBEAT_ID}`, {
+      method: "POST",
+    });
+  },
+});
+```
+
+**Better Stack側のアラート設定例**:
+- **SQLクエリ**: `SELECT COUNT(*) FROM logs WHERE level = 'crit' AND timestamp > NOW() - INTERVAL '1 hour'`
+- **アラート条件**: 1時間以内に`crit`レベルのログが3件以上発生したらDiscordに通知
+
+#### アラート設定機能（ADM-015）
+
+**閾値設定**:
+- **警告（80%）**: リソース使用率が80%に達した際に通知
+- **注意（90%）**: リソース使用率が90%に達した際に通知
+- **緊急（95%）**: リソース使用率が95%に達した際に通知（@everyoneメンション付き）
+
+**自動対策**:
+- **データ圧縮**: 1年以上前のログを自動でアーカイブまたは削除
+- **クロール制限**: Amazon APIの更新頻度を自動で下げる（1日1回→3日に1回）
+- **オンデマンド無効化**: 一時的にオンデマンド更新を停止し、キャッシュされたデータを使用
+
+**技術実装**:
+```typescript
+// packages/backend/convex/alerts.ts
+export const checkResourceLimits = internalAction({
+  handler: async (ctx) => {
+    const stats = await ctx.runQuery(internal.health.getResourceUsage);
+    
+    // 閾値をチェック
+    if (stats.usageRate.db > 95) {
+      // 緊急: @everyoneメンション付きでDiscordに通知
+      await ctx.runAction(internal.discord.sendAlert, {
+        level: "crit",
+        message: `🚨 緊急: データベース使用率が${stats.usageRate.db.toFixed(1)}%に達しました！`,
+        mentionEveryone: true,
+      });
+      
+      // 自動対策: 古いログを削除
+      await ctx.runMutation(internal.cleanup.purgeOldLogs, {
+        olderThanDays: 365,
+      });
+    } else if (stats.usageRate.db > 90) {
+      // 注意: 通常の通知
+      await ctx.runAction(internal.discord.sendAlert, {
+        level: "warn",
+        message: `⚠️ 注意: データベース使用率が${stats.usageRate.db.toFixed(1)}%に達しました。`,
+      });
+    } else if (stats.usageRate.db > 80) {
+      // 警告: 通常の通知
+      await ctx.runAction(internal.discord.sendAlert, {
+        level: "info",
+        message: `ℹ️ 警告: データベース使用率が${stats.usageRate.db.toFixed(1)}%に達しました。`,
+      });
+    }
+    
+    // Better Stackにも送信
+    await ctx.runAction(internal.betterstack.sendToBetterStack, {
+      level: stats.usageRate.db > 95 ? "crit" : stats.usageRate.db > 90 ? "warn" : "info",
+      message: "Convex Resource Health Check",
+      data: {
+        db_rows: stats.dbRows,
+        storage_gb: stats.storageGB,
+        action_calls: stats.monthlyOperations,
+        usage_rate: stats.usageRate,
+      },
+    });
+  },
+});
+
+// Cronで1時間ごとにチェック
+export const crons = cronJobs({
+  resourceCheck: {
+    cron: "0 * * * *", // 毎時0分
+    args: {},
+    handler: internal.alerts.checkResourceLimits,
+  },
+});
+```
+
+#### ダッシュボードUI設計
+
+**管理画面のダッシュボード構成**:
+- **リソース監視セクション**: 各リソースの使用率を視覚的に表示（プログレスバー、グラフ）
+- **統計情報セクション**: ユーザー数、記録数、プレミアム会員数などの統計
+- **アラート履歴セクション**: 過去のアラート送信履歴
+- **設定セクション**: Discord Webhook URL、Better Stack設定、アラート閾値の設定
+
+**UX設計**:
+- **色分け**: 使用率が80%未満は緑、80-90%は黄、90-95%はオレンジ、95%以上は赤
+- **リアルタイム更新**: ダッシュボードを開いている間、定期的に（例: 5分ごと）データを更新
+- **詳細リンク**: 各リソースの詳細ページへのリンクを提供
 
 ---
 

@@ -8,11 +8,13 @@
 - **アプリ**: 
   - `apps/expo/` (React Native Expo モバイルアプリ)
   - `apps/admin/` (Next.js 管理画面、ローカルのみ)
+  - `apps/www/` (Next.js 公式サイト、Vercelにデプロイ) ✅ **2026年追加**
 - **共有パッケージ**: 
   - `packages/backend/` (Convexバックエンド - 独立パッケージ)
   - `packages/ui/` (共通UIコンポーネント - Tamagui)
   - `packages/utils/` (共通ロジック - ビジネスロジック)
   - `packages/tsconfig/` (TypeScript共通設定)
+  - `packages/policy/` (法務ドキュメント - Markdown形式) ✅ **2026年追加**
 - **デザイン**: 
   - `designs/` (Pencil.devデザインファイル - `.pen`形式)
 
@@ -22,6 +24,7 @@
 - `pnpm dev`: すべてのアプリを起動（Turborepo経由）
 - `pnpm --filter expo dev`: モバイルアプリのみ起動
 - `pnpm --filter admin dev`: 管理画面のみ起動
+- `pnpm --filter www dev`: 公式サイトのみ起動 ✅ **2026年追加**
 - `pnpm --filter backend dev`: Convexバックエンドのみ起動
 - `pnpm turbo build`: すべてのパッケージをビルド
 
@@ -58,6 +61,15 @@
 - ローカル環境でのみ動作（デプロイしない）
 - Convex関数は`@repo/backend`から型安全に呼び出す
 
+### Next.js (公式サイト) (`apps/www/`) ✅ **2026年追加**
+- App Routerを使用（`app/`ディレクトリ）
+- Server Componentsを優先
+- Vercelにデプロイ（Edge Runtimeで高速配信）
+- SEO最適化：sitemap.xml、robots.txt、構造化データ（JSON-LD）を自動生成
+- LLMフレンドリー：Semantic HTML、構造化データ、API Route（/api/ai-info）を提供
+- Convex関数は`@repo/backend`から型安全に呼び出す（ニュース、法務ドキュメントなど）
+- 法務ドキュメントは`@repo/policy`からMarkdown形式で読み込む
+
 ### Convex (`packages/backend/`)
 - **重要**: Convexは独立したパッケージ（`packages/backend/`）に配置
 - スキーマ、関数、AIアクションは`convex/`ディレクトリに配置
@@ -81,11 +93,19 @@
 - 画面: `app/`ディレクトリ（Expo Router）
 - アプリ専用コンポーネント: `components/`ディレクトリ
 - 共通UIコンポーネント: `@repo/ui`からインポート
+- **ディレクトリ構成**: `APP_DIRECTORY_STRUCTURE.md`を参照 ✅ **2026年追加**
 
 **管理画面 (`apps/admin/`)**:
 - 画面: `app/`ディレクトリ（Next.js App Router）
 - 管理画面専用コンポーネント: `components/`ディレクトリ
 - 共通UIコンポーネント: `@repo/ui`からインポート
+
+**公式サイト (`apps/www/`)** ✅ **2026年追加**:
+- 画面: `app/`ディレクトリ（Next.js App Router）
+- 公式サイト専用コンポーネント: `components/`ディレクトリ
+- SEO関連: `app/sitemap.ts`, `app/robots.ts`, `app/api/ai-info/route.ts`
+- 構造化データ: 各ページでJSON-LDを生成
+- 法務ドキュメント: `@repo/policy`からMarkdown形式で読み込む
 
 **バックエンド (`packages/backend/`)**:
 - Convex関数: `convex/`ディレクトリ
@@ -96,6 +116,10 @@
 - UIコンポーネント: `packages/ui/src/`
 - ユーティリティ: `packages/utils/src/`（ビジネスロジックを集約）
 - TypeScript設定: `packages/tsconfig/`
+- 法務ドキュメント: `packages/policy/` ✅ **2026年追加**
+  - プライバシーポリシー、利用規約、特定商取引法表記などをMarkdown形式で管理
+  - 公式サイト（`apps/www`）とアプリ（`apps/expo`）の両方から参照可能
+  - バージョン管理と改定履歴を保持
 
 ### Gitワークフロー
 - ブランチ名: `feature/`, `fix/`, `refactor/`プレフィックスを使用
@@ -181,7 +205,10 @@
 
 ## ユーザーストーリーの活用
 
-機能実装時は、**[USER_STORIES.md](../../USER_STORIES.md)** または **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)** を必ず参照してください。
+機能実装時は、以下のドキュメントを必ず参照してください：
+- **[USER_STORIES.md](../../USER_STORIES.md)**: モバイルアプリの機能
+- **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**: 管理画面の機能
+- **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)**: 公式サイトの機能 ✅ **2026年追加**
 
 詳細は **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)** の「クイックリファレンス」セクションを参照してください。
 
@@ -192,5 +219,6 @@
 - **モノレポ**: 共有パッケージを活用し、重複コードを避ける
 - **型安全性**: TypeScriptの型を最大限活用し、`any`は避ける
 - **MCP活用**: Convexのようなモダンなツールは進化が早いため、AIが「最新のドキュメント」と「あなたのローカルコード」を同時に見られる状態（MCP環境）を作ることが最強の開発効率を実現する鍵
-- **ユーザーストーリー重視**: 機能実装時は、必ず **[USER_STORIES.md](../../USER_STORIES.md)** または **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)** を参照し、ユーザーの体験価値を重視した実装を行う
+- **ユーザーストーリー重視**: 機能実装時は、必ず **[USER_STORIES.md](../../USER_STORIES.md)**、**[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**、または **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)** を参照し、ユーザーの体験価値を重視した実装を行う
+- **公式サイト開発**: 公式サイト（`apps/www/`）を開発する際は、ブランド戦略・UI/UXガイドライン（WEB-015〜WEB-017）を重視し、SEO・LLM最適化を実現 ✅ **2026年追加**
 - **ドキュメント参照**: 詳細な情報が必要な場合は、**[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)** から適切なドキュメントを参照してください

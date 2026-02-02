@@ -15,16 +15,20 @@ my-pet-platform/
 │   ├── expo/                # モバイルアプリ (React Native Expo)
 │   │   ├── app/             # Expo Router (画面定義)
 │   │   └── components/      # アプリ専用UI
-│   └── admin/               # ローカル専用管理画面 (Next.js)
+│   ├── admin/               # ローカル専用管理画面 (Next.js)
+│   │   ├── app/             # App Router
+│   │   └── components/      # 管理画面専用UI
+│   └── www/                 # 公式サイト (Next.js + Vercel) ✅ **2026年追加**
 │       ├── app/             # App Router
-│       └── components/      # 管理画面専用UI
+│       └── components/      # 公式サイト専用UI
 ├── packages/
 │   ├── backend/             # バックエンド (Convex) - 独立パッケージ ✅
 │   │   ├── convex/          # スキーマ、関数、AIアクション
 │   │   └── package.json
 │   ├── ui/                  # 共通UIコンポーネント (Tamagui)
 │   ├── utils/               # 共通ロジック (ビジネスロジック)
-│   └── tsconfig/            # TypeScript共通設定
+│   ├── tsconfig/            # TypeScript共通設定
+│   └── policy/              # 法務ドキュメント (Markdown形式) ✅ **2026年追加**
 ├── package.json             # ルートの依存関係・ワークスペース定義
 ├── turbo.json               # Turborepoのタスクパイプライン設定
 └── pnpm-workspace.yaml      # pnpmのモノレポ定義
@@ -112,6 +116,12 @@ apps/admin
   ├── @repo/ui (UIコンポーネント)
   └── @repo/utils (ビジネスロジック)
 
+apps/www ✅ **2026年追加**
+  ├── @repo/backend (Convex関数: news, legal_documents)
+  ├── @repo/ui (UIコンポーネント)
+  ├── @repo/utils (ビジネスロジック)
+  └── @repo/policy (法務ドキュメント: Markdown形式)
+
 packages/backend
   └── (外部依存のみ: Convex, OpenAI等)
 
@@ -120,6 +130,9 @@ packages/ui
 
 packages/utils
   └── (外部依存なし、純粋なロジック)
+
+packages/policy ✅ **2026年追加**
+  └── (外部依存なし、Markdownファイルのみ)
 ```
 
 ## 使用例
@@ -151,6 +164,8 @@ packages/utils/src/に新しい関数を追加してください。
 ## 注意事項
 
 - **バックエンドは独立パッケージ**: `packages/backend/`に配置し、アプリから依存する
-- **UIは共通化**: `packages/ui/`にTamaguiコンポーネントを配置
+- **UIは共通化**: `packages/ui/`にTamaguiコンポーネントを配置し、アプリと公式サイトで一貫したデザインを実現
 - **ロジックは集約**: `packages/utils/`にビジネスロジックを集約
+- **法務ドキュメントは一元管理**: `packages/policy/`にMarkdown形式で配置し、アプリと公式サイトの両方から参照 ✅ **2026年追加**
 - **型安全性**: Convexの型定義は`@repo/backend/convex/_generated/api`から自動生成される
+- **公式サイトの特徴**: `apps/www/`はSEO・LLM最適化を重視し、Convexの`news`と`legal_documents`テーブルを活用 ✅ **2026年追加**

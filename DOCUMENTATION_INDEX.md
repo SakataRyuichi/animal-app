@@ -15,9 +15,15 @@
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[USER_STORIES.md](./USER_STORIES.md)** | モバイルアプリのユーザーストーリー | 開発者・AI |
-| **[ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md)** | 管理画面のユーザーストーリー | 開発者・AI |
-| **[CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md)** | Convexスキーマ定義と実装例 | 開発者・AI |
+| **[USER_STORIES_INDEX.md](./USER_STORIES_INDEX.md)** | モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[USER_STORIES.md](./USER_STORIES.md)** | モバイルアプリのユーザーストーリー（統合版） | 開発者・AI |
+| **[ADMIN_USER_STORIES_INDEX.md](./ADMIN_USER_STORIES_INDEX.md)** | 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md)** | 管理画面のユーザーストーリー（統合版） | 開発者・AI |
+| **[WEB_USER_STORIES_INDEX.md](./WEB_USER_STORIES_INDEX.md)** | 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[WEB_USER_STORIES.md](./WEB_USER_STORIES.md)** | 公式サイトのユーザーストーリー（統合版） | 開発者・AI |
+| **[CONVEX_SCHEMA_INDEX.md](./CONVEX_SCHEMA_INDEX.md)** | Convexスキーマ定義と実装例（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md)** | Convexスキーマ定義と実装例（統合版） | 開発者・AI |
+| **[APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md)** | アプリディレクトリ構成と画面マッピング ✅ **2026年追加** | 開発者・AI |
 
 **関連ドキュメント**:
 - `DESIGN_DOCUMENT.md`: アプリ設計の詳細
@@ -29,9 +35,10 @@
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md)** | アプリ設計の詳細（フロー、機能詳細） | 開発者・AI |
+| **[DESIGN_DOCUMENT_INDEX.md](./DESIGN_DOCUMENT_INDEX.md)** | アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md)** | アプリ設計の詳細（統合版） | 開発者・AI |
 | **[TECH_STACK_PLANNING.md](./TECH_STACK_PLANNING.md)** | 技術選定の詳細と理由 | 開発者 |
-| **[IMAGE_STORAGE_STRATEGY.md](./IMAGE_STORAGE_STRATEGY.md)** | 画像保存戦略とConvexプライシング | 開発者・AI |
+| **[IMAGE_STORAGE_STRATEGY.md](./IMAGE_STORAGE_STRATEGY.md)** | 画像・動画保存戦略とCloudflare R2移行 ✅ **2026年更新** | 開発者・AI |
 
 **関連ドキュメント**:
 - `CONVEX_SCHEMA.md`: スキーマ定義
@@ -75,18 +82,25 @@
 | **[AGENTS.md](./AGENTS.md)** | Cursorエージェントの使い方とガイドライン | 開発者・AI |
 | **[SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)** | セットアップ前のチェックリスト | 開発者 |
 | **[CLAUDE.md](./CLAUDE.md)** | Claude AI固有の設定と補足 | 開発者・AI |
+| **[OBSIDIAN_SETUP.md](./OBSIDIAN_SETUP.md)** | Obsidian設定ガイド ✅ **2026年追加** | 開発者 |
+| **[ISSUE_GUIDELINES.md](./ISSUE_GUIDELINES.md)** | GitHub Issue作成ガイドライン ✅ **2026年追加** | 開発者 |
+| **[EPIC_OVERVIEW.md](./EPIC_OVERVIEW.md)** | 各エピックの概要とストーリー一覧 ✅ **2026年追加** | 開発者 |
+| **[PENCIL_DESIGN_BRIEF.md](./PENCIL_DESIGN_BRIEF.md)** | Pencilデザインブリーフ（画面単位のストーリーとデザイン要件） ✅ **2026年追加** | デザイナー・開発者 |
+| **[DIARY_DRAFT_VERIFICATION.md](./DIARY_DRAFT_VERIFICATION.md)** | 日記の更新・削除・下書き機能の検証と設計 ✅ **2026年追加** | 開発者 |
+| **[CLOUDFLARE_R2_MIGRATION.md](./CLOUDFLARE_R2_MIGRATION.md)** | Cloudflare R2移行設計（画像・動画保存） ✅ **2026年追加** | 開発者 |
 
 **関連ドキュメント**:
 - `TECH_STACK_PLANNING.md`: 技術スタックの詳細
 - `.cursor/README.md`: Cursor設定ファイルの説明
 - `.cursor/skills/documentation-access/SKILL.md`: ドキュメントへの効率的なアクセス方法
+- `.obsidian/README.md`: Obsidian設定の詳細 ✅ **2026年追加**
 
 ---
 
 ## 📖 ドキュメント詳細
 
-### USER_STORIES.md
-**パス**: `./USER_STORIES.md`  
+### USER_STORIES.md / USER_STORIES_INDEX.md
+**パス**: `./USER_STORIES.md`（統合版）、`./USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: モバイルアプリ（React Native Expo）の機能をユーザー視点で整理したユーザーストーリー  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -95,6 +109,25 @@
 - Phase 1〜3のユーザーストーリー
 - キラー機能（AI相談）とフック機能（コラム・記事）の定義
 - 各ストーリーの受け入れ基準、体験価値、使用シーン
+
+**分割ファイル**（`user-stories/`ディレクトリ）:
+- `01-authentication.md`: Epic 1（認証・ユーザー管理）
+- `02-pet-management.md`: Epic 2（ペット管理）
+- `03-activity-logs.md`: Epic 3（活動ログ記録・リマインダー・広告表示）
+- `04-dashboard-statistics.md`: Epic 4（ダッシュボード・統計）
+- `05-premium.md`: Epic 5（プレミアム機能）
+- `06-articles.md`: Epic 6（コラム・記事機能）
+- `07-ai-chat.md`: Epic 7（AI相談機能）
+- `08-collaboration.md`: Epic 8（共同管理）
+- `09-sns.md`: Epic 9（SNS機能）
+- `10-products.md`: Epic 10（商品データベース）
+- `11-reviews.md`: Epic 11（レビュー機能）
+- `12-media.md`: Epic 12（画像・動画管理機能）
+- `13-feedback.md`: Epic 13（ユーザーフィードバック機能）
+- `14-memorial.md`: Epic 14（メモリアル機能）
+- `15-albums.md`: Epic 15（アルバム管理機能）
+- `16-curation.md`: Epic 16（管理者厳選のキュレーション機能）
+- `17-gamification.md`: Epic 17（ゲーミフィケーション要素）
 
 **関連ドキュメント**:
 - `ADMIN_USER_STORIES.md`: 管理画面側のストーリー
@@ -109,8 +142,8 @@
 
 ---
 
-### ADMIN_USER_STORIES.md
-**パス**: `./ADMIN_USER_STORIES.md`  
+### ADMIN_USER_STORIES.md / ADMIN_USER_STORIES_INDEX.md
+**パス**: `./ADMIN_USER_STORIES.md`（統合版）、`./ADMIN_USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: 管理画面（Next.js）の機能を管理者視点で整理したユーザーストーリー  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -118,22 +151,99 @@
 **内容**:
 - コラム・記事管理機能（ADM-001〜ADM-003）
 - キュレーション記事管理機能（ADM-004〜ADM-005）
-- 商品データベース管理機能（ADM-006〜ADM-007）
-- ユーザー管理機能（ADM-008〜ADM-009）
-- 統計・分析機能（ADM-010）
+- 商品データベース管理機能（ADM-006〜ADM-008）
+- ユーザー管理機能（ADM-009〜ADM-010）
+- 統計・分析機能（ADM-011）
+- 監視・アラート機能（ADM-012〜ADM-015）✅ **2026年追加 - サービス停止防止**
+
+**分割ファイル**（`admin-user-stories/`ディレクトリ）:
+- `01-articles.md`: Epic ADM-1（コラム・記事管理機能）
+- `02-curations.md`: Epic ADM-2（キュレーション記事管理機能）
+- `03-products.md`: Epic ADM-3（商品データベース管理機能）
+- `04-users.md`: Epic ADM-4（ユーザー管理機能）
+- `05-statistics.md`: Epic ADM-5（統計・分析機能）
+- `06-monitoring.md`: Epic ADM-6（監視・アラート機能）
 
 **関連ドキュメント**:
 - `USER_STORIES.md`: モバイルアプリ側のストーリー
 - `CONVEX_SCHEMA.md`: スキーマ定義（curations, articlesテーブルなど）
+- `DESIGN_DOCUMENT.md`: 監視システムの設計（10.8）✅ **2026年追加**
 
 **参照される場所**:
 - `USER_STORIES.md`: Epic 6, Epic 10で参照
 - `CONVEX_SCHEMA.md`: キュレーション機能の説明で参照
+- `DESIGN_DOCUMENT.md`: 監視システムの設計で参照 ✅ **2026年追加**
 
 ---
 
-### CONVEX_SCHEMA.md
-**パス**: `./CONVEX_SCHEMA.md`  
+### WEB_USER_STORIES.md / WEB_USER_STORIES_INDEX.md
+**パス**: `./WEB_USER_STORIES.md`（統合版）、`./WEB_USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**目的**: 公式サイト（Next.js + Vercel）の機能をユーザー視点で整理したユーザーストーリー  
+**対象**: 開発者・AI（Cursor）  
+**重要度**: ⭐⭐⭐ **開発の憲法**
+
+**内容**:
+- トップページ・機能紹介（WEB-001〜WEB-002）
+- ニュース・更新情報（WEB-003〜WEB-005）
+- アプリダウンロード（WEB-006）
+- 法務ドキュメント（WEB-007〜WEB-010）
+- グローバル公開データの閲覧（将来機能）（WEB-011〜WEB-012）
+- SEO・LLM最適化（WEB-013〜WEB-014）
+- **ブランド戦略・UI/UXガイドライン** ✅ **2026年追加**:
+  - WEB-015: ビジュアル・アイデンティティ（幸福の想起）
+  - WEB-016: UIコンポーネントの共通化と拡張
+  - WEB-017: ストーリーテリング型のコンテンツ構成
+  - WEB-018: FAQセクションの構造化
+  - WEB-019: ニュース・更新情報の自動更新
+  - WEB-020: 法務ドキュメントの一元管理
+
+**分割ファイル**（`web-user-stories/`ディレクトリ）:
+- `01-top-page.md`: Epic 1（トップページ・機能紹介）
+- `02-news.md`: Epic 2（ニュース・更新情報）
+- `03-legal.md`: Epic 3（法務ドキュメント）
+- `04-seo.md`: Epic 4（SEO・LLM最適化）
+- `05-brand.md`: Epic 5（ブランド戦略・UI/UXガイドライン）
+- `06-monorepo.md`: Epic 6（モノレポ運用・自動更新）
+- `07-global-data.md`: Epic 7（グローバル公開データの閲覧）
+
+**関連ドキュメント**:
+- `USER_STORIES.md`: モバイルアプリ側のストーリー
+- `ADMIN_USER_STORIES.md`: 管理画面側のストーリー
+- `CONVEX_SCHEMA.md`: スキーマ定義（news, legal_documentsテーブルなど）
+- `DESIGN_DOCUMENT.md`: アプリ設計の詳細（ブランド戦略・UI/UXガイドライン含む）
+
+**参照される場所**:
+- `CONVEX_SCHEMA.md`: news, legal_documentsテーブルの説明で参照
+- `DESIGN_DOCUMENT.md`: 公式サイトの設計で参照
+
+---
+
+### APP_DIRECTORY_STRUCTURE.md
+**パス**: `./APP_DIRECTORY_STRUCTURE.md`  
+**目的**: モバイルアプリ（`apps/expo/`）のExpo Routerベースのディレクトリ構成と、各画面に紐づくユーザーストーリーを定義  
+**対象**: 開発者・AI（Cursor）  
+**重要度**: ⭐⭐⭐ **開発の憲法**
+
+**内容**:
+- Expo Routerのディレクトリ構成（`app/(auth)/`, `app/(tabs)/`, `app/pets/`, `app/shop/`, `app/points/`など）
+- 各画面パスとユーザーストーリーの対応表
+- 主要な画面遷移フロー
+- 画面ごとのユーザーストーリーID（US-001〜US-088）
+
+**関連ドキュメント**:
+- `USER_STORIES.md`: 各画面に対応するユーザーストーリーの詳細
+- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
+- `.cursor/rules/PROJECT.md`: プロジェクトルール
+
+**参照される場所**:
+- `USER_STORIES.md`: 各ストーリーに画面パス（`**画面パス**`）が記載
+- `.cursor/rules/PROJECT.md`: モバイルアプリのディレクトリ構成で参照
+- `AGENTS.md`: エージェントガイドラインで参照
+
+---
+
+### CONVEX_SCHEMA.md / CONVEX_SCHEMA_INDEX.md
+**パス**: `./CONVEX_SCHEMA.md`（統合版）、`./CONVEX_SCHEMA_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: Convexスキーマの定義と実装例  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -143,6 +253,42 @@
 - 各テーブルの目的、主要フィールド、インデックス
 - 実装例（Query/Mutation/Action）
 - 設計のポイント（論理削除、プレミアム権限管理など）
+
+**分割ファイル**（`convex-schema/`ディレクトリ）:
+- `00-schema-definition.md`: 全テーブルのTypeScript定義
+- `01-users.md`: 1. users（ユーザー）
+- `02-pets.md`: 2. pets（ペット）
+- `03-pet-members.md`: 3. pet_members（共同管理者）
+- `05-images.md`: 5. images（画像・動画管理）
+- `06-activities.md`: 6. activities（活動ログ）
+- `07-products.md`: 7. products（商品データベース）
+- `08-reviews.md`: 8. reviews（商品レビュー）
+- `09-follows.md`: 9. follows（フォロー関係）
+- `10-likes.md`: 10. likes（いいね・リアクション）
+- `11-articles.md`: 11. articles（コラム・記事）
+- `12-chat-threads.md`: 12. chat_threads（AIチャットスレッド）
+- `13-chat-messages.md`: 13. chat_messages（AIチャットメッセージ）
+- `14-albums.md`: 14. albums（アルバム）
+- `15-album-items.md`: 15. album_items（アルバムアイテム）
+- `16-premium-cancellation-reasons.md`: 16. premium_cancellation_reasons（プレミアム解除理由）
+- `17-account-deletion-reasons.md`: 17. account_deletion_reasons（退会理由）
+- `18-curations.md`: 18. curations（管理者厳選のキュレーション）
+- `19-curation-interactions.md`: 19. curation_interactions（キュレーションインタラクション）
+- `20-toilet-condition-masters.md`: 20. toilet_condition_masters（トイレ記録用マスターデータ）
+- `21-cleaning-action-masters.md`: 21. cleaning_action_masters（清掃アクションマスターデータ）
+- `22-reminder-category-masters.md`: 22. reminder_category_masters（リマインダーカテゴリマスターデータ）
+- `23-reminders.md`: 23. reminders（リマインダー設定）
+- `24-reminder-logs.md`: 24. reminder_logs（リマインダー完了履歴）
+- `25-knowledge-base.md`: 25. knowledge_base（知識ベース）
+- `26-assets.md`: 26. assets（ショップアイテム）
+- `27-badge-definitions.md`: 27. badge_definitions（バッジ定義）
+- `28-point-history.md`: 28. point_history（ポイント獲得履歴）
+- `29-news.md`: 29. news（ニュース・更新情報）
+- `31-diary-scenes.md`: 31. diary_scenes（日記シーンマスターデータ）
+- `32-diary-emotions.md`: 32. diary_emotions（日記感情マスターデータ）
+- `33-reaction-types.md`: 33. reaction_types（リアクションタイプマスターデータ）
+- `34-context-stamps.md`: 34. context_stamps（コンテキストスタンプマスターデータ）
+- `35-legal-documents.md`: 35. legal_documents（法務ドキュメント）
 
 **関連ドキュメント**:
 - `USER_STORIES.md`: ユーザーストーリー（各テーブルの使用例）
@@ -158,8 +304,8 @@
 
 ---
 
-### DESIGN_DOCUMENT.md
-**パス**: `./DESIGN_DOCUMENT.md`  
+### DESIGN_DOCUMENT.md / DESIGN_DOCUMENT_INDEX.md
+**パス**: `./DESIGN_DOCUMENT.md`（統合版）、`./DESIGN_DOCUMENT_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: アプリ設計の詳細（フロー、機能詳細、技術実装）  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐
@@ -169,6 +315,19 @@
 - データフロー（認証、ペット登録、活動ログ記録、AI相談など）
 - 機能詳細（AI相談機能、コラム機能、SNS機能など）
 - 技術実装の詳細
+
+**分割ファイル**（`design-document/`ディレクトリ）:
+- `01-project-overview.md`: 1. プロジェクト概要
+- `02-data-model.md`: 2. データモデル設計
+- `03-data-flow.md`: 3. データフロー設計
+- `04-features.md`: 4. 機能設計
+- `05-screens.md`: 5. 画面設計（Phase 1）
+- `06-api-design.md`: 6. API設計（Convex Functions）
+- `07-security.md`: 7. セキュリティ設計
+- `08-performance.md`: 8. パフォーマンス最適化
+- `09-extensibility.md`: 9. 将来の拡張性
+- `10-constraints.md`: 10. 技術的制約と考慮事項
+- `11-glossary.md`: 11. 用語集
 
 **関連ドキュメント**:
 - `CONVEX_SCHEMA.md`: スキーマ定義
@@ -203,27 +362,37 @@
 
 ---
 
-### IMAGE_STORAGE_STRATEGY.md
+### IMAGE_STORAGE_STRATEGY.md ✅ **2026年更新**
 **パス**: `./IMAGE_STORAGE_STRATEGY.md`  
-**目的**: 画像保存戦略とConvexプライシングの考慮  
+**目的**: 画像・動画保存戦略とCloudflare R2移行 ✅ **2026年更新**  
 **対象**: 開発者・AI（Cursor）  
-**重要度**: ⭐⭐
+**重要度**: ⭐⭐⭐
 
 **内容**:
-- Convexの無料枠の制限
+- Cloudflare R2への移行設計（コスト削減、パフォーマンス向上、スケーラビリティ） ✅ **2026年追加**
+- Cloudflare R2の無料枠と制限 ✅ **2026年追加**
 - 画像データサイズの試算
-- 無料ユーザーとプレミアムユーザーの機能差別化
+- 動画データサイズの試算 ✅ **2026年追加**
+- 無料ユーザーとプレミアムユーザーの機能差別化（画像・動画） ✅ **2026年更新**
 - ダブルストレージ構造（Preview/Original）
-- WebP形式の採用理由
+- WebP形式の採用理由（画像）
+- HEVC形式の採用理由（動画） ✅ **2026年追加**
+- 動画の自動圧縮 ✅ **2026年追加**
+- スキーマ設計（R2関連フィールド、動画関連フィールド） ✅ **2026年更新**
+- 画像・動画アップロード・処理フロー（R2経由） ✅ **2026年更新**
+- 画像・動画表示ロジック（R2 URL使用） ✅ **2026年更新**
+- コスト試算（Cloudflare R2 vs Convex File Storage） ✅ **2026年更新**
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: imagesテーブルの定義
-- `PREMIUM_FEATURES.md`: 画像管理のプレミアム機能
-- `USER_STORIES.md`: US-051〜US-054（画像管理機能）
+- `CONVEX_SCHEMA.md`: imagesテーブルの定義（R2関連フィールド、動画関連フィールド）
+- `PREMIUM_FEATURES.md`: 画像・動画管理のプレミアム機能
+- `USER_STORIES.md`: US-051〜US-054（画像管理機能）、US-092〜US-095（動画管理機能） ✅ **2026年追加**
+- `CLOUDFLARE_R2_MIGRATION.md`: Cloudflare R2移行設計 ✅ **2026年追加**
 
 **参照される場所**:
 - `CONVEX_SCHEMA.md`: imagesテーブルの説明で参照
-- `PREMIUM_FEATURES.md`: 画像管理機能の説明で参照
+- `PREMIUM_FEATURES.md`: 画像・動画管理機能の説明で参照
+- `DESIGN_DOCUMENT.md`: 画像・動画保存戦略の説明で参照
 
 ---
 
@@ -447,6 +616,27 @@
 
 ---
 
+### OBSIDIAN_SETUP.md ✅ **2026年追加**
+**パス**: `./OBSIDIAN_SETUP.md`  
+**目的**: Obsidian設定ガイド  
+**対象**: 開発者  
+**重要度**: ⭐
+
+**内容**:
+- Obsidianのセットアップ手順
+- 推奨プラグインのインストール方法
+- 既存のMarkdownドキュメントとの統合方法
+- ワークフロー例
+
+**関連ドキュメント**:
+- `.obsidian/README.md`: Obsidian設定の詳細
+- `DOCUMENTATION_INDEX.md`: ドキュメント構造の理解
+
+**参照される場所**:
+- `.obsidian/README.md`: 設定ファイルの説明で参照
+
+---
+
 ## 🔗 ドキュメント間の関係図
 
 ```
@@ -462,7 +652,7 @@
 │                   機能別設計書                                │
 ├─────────────────────────────────────────────────────────────┤
 │  PREMIUM_FEATURES.md                                        │
-│  IMAGE_STORAGE_STRATEGY.md                                  │
+│  IMAGE_STORAGE_STRATEGY.md  ←→  CLOUDFLARE_R2_MIGRATION.md ✅ **2026年追加**│
 │  AI_CHAT_DISCLAIMER.md  ←→  AI_CHAT_REVIEW.md              │
 └─────────────────────────────────────────────────────────────┘
                             ↓
@@ -481,6 +671,10 @@
 │         ↓                                                    │
 │  AGENTS.md  ←→  SETUP_CHECKLIST.md                        │
 │  CLAUDE.md  ←→  TECH_STACK_PLANNING.md                    │
+│  ISSUE_GUIDELINES.md  ←→  EPIC_OVERVIEW.md ✅ **2026年追加**│
+│  PENCIL_DESIGN_BRIEF.md ✅ **2026年追加**                  │
+│  DIARY_DRAFT_VERIFICATION.md ✅ **2026年追加**            │
+│  CLOUDFLARE_R2_MIGRATION.md ✅ **2026年追加**            │
 │  DOCUMENTATION_INDEX.md (このドキュメント)                  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -597,6 +791,163 @@
     - `DESIGN_DOCUMENT.md`のAPI設計セクション（6.3.2）に`getReminderLogsForTimeline`関数を追加
       - タイムライン統合用のリマインダー完了記録取得
       - 活動ログと統合しやすい形式で返す
+  - **公式サイト（Next.js + Vercel）の追加**:
+    - `WEB_USER_STORIES.md`を新規作成
+      - トップページ・機能紹介（WEB-001〜WEB-002）
+      - ニュース・更新情報（WEB-003〜WEB-005）
+      - アプリダウンロード（WEB-006）
+      - 法務ドキュメント（WEB-007〜WEB-010）
+      - グローバル公開データの閲覧（将来機能）（WEB-011〜WEB-012）
+      - SEO・LLM最適化（WEB-013〜WEB-014）
+    - `CONVEX_SCHEMA.md`に`news`テーブルを追加（29番目のテーブル）
+      - ニュースのタイトル、本文、カテゴリ、公開日時などを管理
+      - 公開済みニュースの一覧取得、カテゴリ別フィルタリングに対応
+    - `CONVEX_SCHEMA.md`に`legal_documents`テーブルを追加（35番目のテーブル）
+      - プライバシーポリシー、利用規約、特定商取引法表記、Amazonアソシエイト規約、Google AdMob規約、外部送信規約などを管理
+      - バージョン管理と改定履歴に対応
+    - `DESIGN_DOCUMENT.md`の「5.11 公式サイト（Next.js + Vercel）」セクションを追加
+      - トップページ、機能詳細ページ、ニュース・更新情報ページ、法務ドキュメントページ、アプリダウンロードページ、グローバル公開データのギャラリー（将来機能）の設計
+      - SEO最適化とLLMフレンドリーな構成の設計
+    - `DESIGN_DOCUMENT.md`のAPI設計セクション（6.16）に公式サイト関連のAPIを追加
+      - ニュース関連（`getNews`, `getNewsById`, `getLatestNews`, `createNews`, `updateNews`, `deleteNews`, `publishNews`）
+      - 法務ドキュメント関連（`getLegalDocument`, `getLegalDocumentByVersion`, `getLegalDocumentHistory`, `createLegalDocument`, `updateLegalDocument`）
+      - 統計情報（`getPublicStats`）
+      - グローバル公開データ（将来機能）（`getPublicPets`, `getPublicPetById`, `getPublicBadges`, `getPublicAlbums`）
+      - SEO・LLM最適化（sitemap.xml、robots.txt、構造化データ、API Route）
+  - **公式サイトのブランド戦略・UI/UXガイドラインの追加**:
+    - `WEB_USER_STORIES.md`にブランド戦略・UI/UXガイドラインのストーリーを追加
+      - WEB-015: ビジュアル・アイデンティティ（幸福の想起）
+      - WEB-016: UIコンポーネントの共通化と拡張
+      - WEB-017: ストーリーテリング型のコンテンツ構成
+      - WEB-018: FAQセクションの構造化
+      - WEB-019: ニュース・更新情報の自動更新
+      - WEB-020: 法務ドキュメントの一元管理
+    - `WEB_USER_STORIES.md`のWEB-001（トップページ表示）にストーリーテリング型のコンテンツ構成を追加
+      - Empathy（共感）、Solution（解決）、Future（未来）、Social Proof（信頼）のセクション
+    - `WEB_USER_STORIES.md`のWEB-002（機能詳細ページ表示）にインタラクティブ・デモと機能ごとの専用サブページを追加
+    - `WEB_USER_STORIES.md`のWEB-014（LLMフレンドリーな構成）にFAQセクションの構造化を追加
+    - `WEB_USER_STORIES.md`に新しいエピックを追加
+      - Epic 5: ブランド戦略・UI/UXガイドライン
+      - Epic 6: モノレポ運用・自動更新
+    - `DESIGN_DOCUMENT.md`の「5.11 公式サイト（Next.js + Vercel）」セクションを大幅に拡張
+      - 5.11.1: ブランド戦略：公式サイトの役割
+      - 5.11.2: ビジュアル・アイデンティティ：幸福の想起（メインビジュアル、カラーパレット、タイポグラフィ）
+      - 5.11.3: UIコンポーネントの共通化と拡張（インタラクティブ・デモ、カードデザインの共通化）
+      - 5.11.4: ストーリーテリング型のコンテンツ構成（Empathy、Solution、Future、Social Proof）
+      - 5.11.5: トップページ（メインビジュアル、ストーリーテリング型のコンテンツ構成）
+      - 5.11.6: 機能詳細ページ（機能ごとの専用サブページ、インタラクティブ・デモ）
+      - 5.11.7: ニュース・更新情報ページ（自動更新）
+      - 5.11.8: 法務ドキュメントページ（一元管理）
+      - 5.11.10: FAQセクション（SEO・LLM最適化）
+    - `DESIGN_DOCUMENT.md`のAPI設計セクション（6.16）に追加情報を追加
+      - ニュース関連の自動更新（On-demand ISR）
+      - 法務ドキュメント関連の一元管理（`packages/policy/`との同期）
+      - FAQ関連（Markdown管理、FAQPageの構造化データ）
+  - **アプリディレクトリ構成の追加**:
+    - `APP_DIRECTORY_STRUCTURE.md`を作成
+    - Expo Routerベースのディレクトリ構成を定義（`app/(auth)/`, `app/(tabs)/`, `app/pets/`, `app/shop/`, `app/points/`など）
+    - 各ユーザーストーリーに画面パス（`app/...`）を追加
+    - 画面とストーリーの対応表を作成
+    - 主要な画面遷移フローを定義
+  - **監視・アラートシステムの追加** ✅ **2026年追加 - サービス停止防止**:
+    - `ADMIN_USER_STORIES.md`に監視システム関連のストーリーを追加（ADM-012〜ADM-015）
+      - ADM-012: Convexリソース監視ダッシュボード表示
+      - ADM-013: Discord日報送信設定と履歴確認
+      - ADM-014: Better Stack連携設定
+      - ADM-015: アラート設定
+    - `DESIGN_DOCUMENT.md`に監視システムの設計セクションを追加（10.8）
+      - Convexリソース監視の仕組み
+      - Discord日報送信の仕組み
+      - Better Stack連携の仕組み
+      - アラート機能の仕組み
+      - ダッシュボードでの可視化
+  - **GitHub Issue化の準備** ✅ **2026年追加**:
+    - `ISSUE_GUIDELINES.md`を作成
+      - ユーザーストーリーからIssueへの変換方法
+      - 依存関係の記載方法
+      - 画面パスの記載方法
+      - エピックの記載方法
+      - 受け入れ基準のチェックリスト化
+    - `EPIC_OVERVIEW.md`を作成
+      - 各エピックの概要とストーリー一覧
+      - エピック間の依存関係
+      - エピック単位での進捗管理方法
+    - `.github/ISSUE_TEMPLATE/ai-task.yml`を拡張
+      - 依存関係フィールドの追加
+      - 画面パスフィールドの追加
+      - エピックフィールドの追加
+  - **Pencilデザインブリーフの作成** ✅ **2026年追加**:
+    - `PENCIL_DESIGN_BRIEF.md`を作成
+      - 画面単位のユーザーストーリーとデザイン要件を整理
+      - 32画面のデザインブリーフを記載
+      - デザインシステム（カラーパレット、タイポグラフィ、スペーシング、コンポーネントライブラリ）を定義
+      - Pencilでのデザイン作成手順とデザインからコードへの変換方法を記載
+  - **日記の更新・削除・下書き機能の検証** ✅ **2026年追加**:
+    - `DIARY_DRAFT_VERIFICATION.md`を作成
+      - 現在のユーザーストーリー（US-077、US-078）の確認と不足点を整理
+      - Convexでの実現可能性検証（日記の更新・削除、下書き機能、リアルタイム保存）
+      - 追加が必要なユーザーストーリー（US-089、US-090、US-091、US-077-1、US-078-1）を提案
+      - スキーマ変更の提案（`isDraft`フラグの追加）と実装時の注意事項を記載
+  - **動画機能の追加とCloudflare R2への移行** ✅ **2026年追加**:
+    - `CLOUDFLARE_R2_MIGRATION.md`を作成
+      - Cloudflare R2への移行設計（コスト削減、パフォーマンス向上、スケーラビリティ）
+      - R2の設定（バケット作成、CORS設定、カスタムドメイン、APIキー発行）
+      - アーキテクチャ設計（データフロー、メタデータ管理）
+      - スキーマ変更（`images`テーブルのR2関連フィールド追加）
+      - 実装詳細（Presigned URL発行、クライアント側アップロード、動画圧縮）
+      - コスト試算（Cloudflare R2の料金、動画の容量試算、無料枠での制限設計）
+      - Terraform設定（R2バケット、DNSレコード、CORS設定）
+      - 移行計画（段階的移行、移行スクリプト）
+    - `USER_STORIES.md`に動画管理機能のストーリーを追加
+      - US-092: 動画のアップロード
+      - US-093: 動画の再生
+      - US-094: 動画の制限と案内
+      - US-095: 動画のダウンロード
+    - `CONVEX_SCHEMA.md`の`images`テーブルを更新
+      - `mediaType`フィールドを追加（画像 or 動画）
+      - R2関連フィールド（`r2Key`, `r2Url`, `thumbnailR2Key`, `thumbnailR2Url`）を追加
+      - 動画関連フィールド（`videoDuration`, `videoCodec`, `videoResolution`）を追加
+      - 後方互換性のため、既存のConvex Storage IDも保持（移行期間中）
+    - `IMAGE_STORAGE_STRATEGY.md`を更新
+      - Cloudflare R2への移行設計を追加
+      - 動画データ量の試算を追加
+      - 動画の自動圧縮（HEVC形式）の設計を追加
+      - スキーマ設計を更新（R2関連フィールド、動画関連フィールド）
+      - アップロード処理フローをR2対応に更新
+      - 動画アップロード・処理フローを追加
+    - `DESIGN_DOCUMENT.md`を更新
+      - 画像・動画保存戦略セクションを更新（Cloudflare R2移行、動画対応）
+    - `EPIC_OVERVIEW.md`を更新（Epic 12に動画機能を追加）
+  - **日記機能の拡張（シーン・感情・タグによる簡単記録）**:
+    - `CONVEX_SCHEMA.md`に日記関連マスターデータテーブルを追加
+      - `diary_scenes`（31番目）: 日記シーンマスターデータ（お散歩、お昼寝、遊び、食事など）
+      - `diary_emotions`（32番目）: 日記感情マスターデータ（楽しい、愛しい、混乱、悲しいなど）
+      - `reaction_types`（33番目）: リアクションタイプマスターデータ（❤️, 🌻, 💪, 🌟, 🌈）
+      - `context_stamps`（34番目）: コンテキストスタンプマスターデータ（シーン+感情のセット）
+    - `CONVEX_SCHEMA.md`の`activities`テーブルの`payload`を拡張（日記用フィールドを追加）
+      - `scenes`: シーンIDの配列
+      - `emotion`: 感情ID
+      - `timeOfDay`: 時間帯（朝、昼、夕方、夜、深夜）
+      - `location`: 場所（おうち、公園、ドッグラン、病院、旅先）
+      - `contextStamp`: コンテキストスタンプID（シーン+感情のセット）
+    - `CONVEX_SCHEMA.md`の`likes`テーブルを拡張（多機能リアクション）
+      - `reactionType`フィールドを追加（reaction_typesのreactionIdを参照）
+      - `by_activity_reaction`インデックスを追加（リアクションタイプ別の集計用）
+    - `USER_STORIES.md`の「US-011: 日記投稿」を更新（シーン・感情・タグによる簡単記録）
+    - `USER_STORIES.md`に新しいストーリーを追加
+      - US-073: 日記のシーン・感情マスターデータ表示
+      - US-074: 日記のフィルタリング（シーン・感情・時間帯・場所）
+      - US-075: 多機能リアクション
+      - US-076: 日記の自動タグ付け（シーン連携）
+    - `USER_STORIES.md`の「US-042: いいね機能」を更新（多機能リアクション）
+    - `DESIGN_DOCUMENT.md`の「5.4 記録画面」に日記記録の詳細設計を追加
+      - シーン選択、感情選択、コンテキストスタンプ、時間帯・場所タグのUI設計
+    - `DESIGN_DOCUMENT.md`のAPI設計セクション（6.3.1）に日記関連マスターデータ取得用のQuery関数を追加
+      - `getDiaryScenes`, `getDiaryEmotions`, `getContextStamps`, `getReactionTypes`
+    - `DESIGN_DOCUMENT.md`のAPI設計セクション（6.3）に日記フィルタリング用のQuery関数を追加
+      - `getDiaryActivitiesWithFilters`: シーン、感情、時間帯、場所でフィルタリング
+    - `DESIGN_DOCUMENT.md`のデータフロー設計（3.9）にリアクションフローを追加
+      - 多機能リアクションのフロー（通常タップ/長押し、リアクションタイプ選択、集計表示）
 
 ---
 
@@ -608,9 +959,11 @@
 3. **必要に応じて**: `DESIGN_DOCUMENT.md` → `PREMIUM_FEATURES.md`
 
 ### AI（Cursor）への指示
-1. **機能実装**: `USER_STORIES.md`または`ADMIN_USER_STORIES.md`を参照
+1. **機能実装**: `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md`を参照
 2. **スキーマ実装**: `CONVEX_SCHEMA.md`を参照
 3. **設計確認**: `DESIGN_DOCUMENT.md`を参照
+4. **Issue作成**: `ISSUE_GUIDELINES.md`を参照 ✅ **2026年追加**
+5. **エピック確認**: `EPIC_OVERVIEW.md`を参照 ✅ **2026年追加**
 
 ### レビュー時
 1. **スキーマレビュー**: `SCHEMA_REVIEW.md`を参照
@@ -625,11 +978,19 @@
 
 | タスク | 参照するドキュメント |
 |--------|---------------------|
-| 新機能の実装 | `USER_STORIES.md` または `ADMIN_USER_STORIES.md` → `CONVEX_SCHEMA.md` → `DESIGN_DOCUMENT.md` |
+| 新機能の実装 | `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md` → `APP_DIRECTORY_STRUCTURE.md` → `CONVEX_SCHEMA.md` → `DESIGN_DOCUMENT.md` |
+| モバイルアプリ画面の実装 | `APP_DIRECTORY_STRUCTURE.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
+| GitHub Issueの作成 | `ISSUE_GUIDELINES.md` → `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
+| エピックの確認 | `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
+| Pencilでのデザイン作成 | `PENCIL_DESIGN_BRIEF.md` → `USER_STORIES.md` → `DESIGN_DOCUMENT.md` ✅ **2026年追加** |
+| 日記機能の実装 | `DIARY_DRAFT_VERIFICATION.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
+| 画像・動画機能の実装 | `CLOUDFLARE_R2_MIGRATION.md` → `IMAGE_STORAGE_STRATEGY.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
 | プレミアム機能の実装 | `PREMIUM_FEATURES.md` → `CONVEX_SCHEMA.md`（プレミアム権限管理） |
 | 画像機能の実装 | `IMAGE_STORAGE_STRATEGY.md` → `CONVEX_SCHEMA.md`（imagesテーブル） |
+| 動画機能の実装 | `CLOUDFLARE_R2_MIGRATION.md` → `IMAGE_STORAGE_STRATEGY.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
 | AIチャット機能の実装 | `AI_CHAT_REVIEW.md` → `AI_CHAT_DISCLAIMER.md` → `CONVEX_SCHEMA.md` |
 | 管理画面機能の実装 | `ADMIN_USER_STORIES.md` → `CONVEX_SCHEMA.md` |
+| 公式サイト機能の実装 | `WEB_USER_STORIES.md` → `CONVEX_SCHEMA.md`（news, legal_documentsテーブル） |
 | スキーマ設計のレビュー | `SCHEMA_REVIEW.md` → `CONVEX_SCHEMA.md` |
 | コードスタイル・ワークフロー確認 | `.cursor/rules/PROJECT.md` |
 | ドキュメントへのアクセス | `.cursor/skills/documentation-access/SKILL.md` → `DOCUMENTATION_INDEX.md` |
@@ -639,10 +1000,18 @@
 ## 📝 ドキュメントの更新ルール
 
 1. **新機能追加時**: 
-   - `USER_STORIES.md`または`ADMIN_USER_STORIES.md`にストーリーを追加
+   - `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md`にストーリーを追加
    - `CONVEX_SCHEMA.md`にスキーマ定義を追加
    - `DESIGN_DOCUMENT.md`に設計詳細を追加
+   - `APP_DIRECTORY_STRUCTURE.md`に画面パスを追加（モバイルアプリの場合）
+   - `EPIC_OVERVIEW.md`を更新（エピックにストーリーを追加）
+   - `PENCIL_DESIGN_BRIEF.md`にデザインブリーフを追加（モバイルアプリ画面の場合） ✅ **2026年追加**
    - `DOCUMENTATION_INDEX.md`を更新
+
+2. **GitHub Issue作成時**:
+   - `ISSUE_GUIDELINES.md`を参照してIssueを作成
+   - `EPIC_OVERVIEW.md`からエピックを確認
+   - 依存関係を確認して実装順序を決定
 
 2. **レビュー時**:
    - レビュー結果を`SCHEMA_REVIEW.md`、`REQUIREMENTS_REVIEW.md`、`DOCUMENT_REVIEW.md`に記録
@@ -663,6 +1032,7 @@
 - `CLAUDE.md`: 参考ドキュメントセクション
 - `USER_STORIES.md`: ドキュメント構造の説明
 - `ADMIN_USER_STORIES.md`: ドキュメント構造の説明
+- `WEB_USER_STORIES.md`: ドキュメント構造の説明
 - `CONVEX_SCHEMA.md`: ドキュメント構造の説明
 - `DESIGN_DOCUMENT.md`: ドキュメント構造の説明
 - `PREMIUM_FEATURES.md`: ドキュメント構造の説明

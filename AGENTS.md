@@ -96,11 +96,39 @@
 
 - **プロジェクトルール**: [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) - コードスタイル、ワークフロー、コマンド
 - **開発の憲法**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md#-開発の憲法必須読了) セクションを参照
+  - [USER_STORIES.md](./USER_STORIES.md): モバイルアプリのユーザーストーリー
+  - [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリのディレクトリ構成と画面マッピング ✅ **2026年追加 - Expo Routerの画面構成とユーザーストーリーの紐づけ**
+  - [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
+  - [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト、ブランド戦略**
+  - [CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md): Convexスキーマ定義
 - **Skills**: `.cursor/skills/` ディレクトリ内の各SKILL.mdを参照
   - `.cursor/skills/documentation-access/SKILL.md`: ドキュメントへの効率的なアクセス方法
+  - `.cursor/skills/monorepo-patterns/SKILL.md`: モノレポでの作業パターン
+  - `.cursor/skills/package-structure/SKILL.md`: パッケージ構造と依存関係
+  - `.cursor/skills/development-workflow/SKILL.md`: 開発後の自動検証とデバッグフロー
 
 ### ユーザーストーリーの活用
 
-機能実装時は、[USER_STORIES.md](./USER_STORIES.md) または [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md) を必ず参照してください。
+機能実装時は、以下のドキュメントを必ず参照してください：
+- [USER_STORIES.md](./USER_STORIES.md): モバイルアプリの機能
+- [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリの画面構成とユーザーストーリーのマッピング ✅ **2026年追加 - 画面パスとユーザーストーリーの対応関係**
+- [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面の機能
+- [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトの機能 ✅ **2026年追加**
+  - ブランド戦略・UI/UXガイドライン（WEB-015〜WEB-017）
+  - SEO・LLM最適化（WEB-013、WEB-014、WEB-018）
+  - モノレポ運用・自動更新（WEB-019、WEB-020）
 
 詳細は [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) の「クイックリファレンス」セクションを参照してください。
+
+### 公式サイト開発時の注意事項 ✅ **2026年追加**
+
+公式サイト（`apps/www/`）を開発する際は、以下の点に注意してください：
+
+- **ブランド戦略**: [WEB_USER_STORIES.md](./WEB_USER_STORIES.md)のWEB-015〜WEB-017を参照し、「清潔感（信頼）」と「体温（幸福）」の共存を実現
+- **ストーリーテリング**: Empathy（共感）→ Solution（解決）→ Future（未来）→ Social Proof（信頼）の流れを意識
+- **UIコンポーネントの共通化**: `packages/ui`のコンポーネントを活用し、アプリと公式サイトで一貫したデザインを実現
+- **SEO・LLM最適化**: sitemap.xml、robots.txt、構造化データ（JSON-LD）を適切に設定
+- **法務ドキュメントの一元管理**: `packages/policy/`のMarkdownファイルを参照し、アプリと公式サイトで同じ内容を表示
+- **ニュースの自動更新**: Convexの`news`テーブルを更新すると、VercelのOn-demand ISRにより自動的に反映される
+
+詳細は [DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md) の「5.11 公式サイト（Next.js + Vercel）」セクションを参照してください。

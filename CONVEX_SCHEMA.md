@@ -9,6 +9,7 @@ Phase 1からPhase 3までを見据えた設計になっています。
 **関連ドキュメント**:
 - [USER_STORIES.md](./USER_STORIES.md): モバイルアプリのユーザーストーリー
 - [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
+- [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加**
 - [DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md): アプリ設計の詳細
 - [IMAGE_STORAGE_STRATEGY.md](./IMAGE_STORAGE_STRATEGY.md): 画像保存戦略
 - [AI_CHAT_REVIEW.md](./AI_CHAT_REVIEW.md): AIチャット機能のレビュー
@@ -291,6 +292,14 @@ export default defineSchema({
       // ケア・医療用
       careType: v.optional(v.string()), // "nail", "shampoo", "vaccine"
       clinicName: v.optional(v.string()),
+
+      // 日記用 ✅ **2026年追加 - シーン・感情・タグによる簡単記録**
+      scenes: v.optional(v.array(v.string())), // シーンIDの配列（diary_scenesのsceneIdを参照）
+      emotion: v.optional(v.string()), // 感情ID（diary_emotionsのemotionIdを参照）
+      timeOfDay: v.optional(v.string()), // 時間帯（"morning", "noon", "evening", "night", "midnight"）
+      location: v.optional(v.string()), // 場所（"home", "park", "dog_run", "clinic", "travel"）
+      // コンテキスト・スタンプ（シーン+感情のセット）✅ **2026年追加 - クイック入力**
+      contextStamp: v.optional(v.string()), // コンテキストスタンプID（例: "play_excited", "alone_sad"）
     }),
 
     // ソーシャル機能 (Phase 3)
@@ -470,8 +479,8 @@ export default defineSchema({
     lastViewedAt: v.optional(v.number()), // 最終閲覧日時
   })
     .searchIndex("search_name", {
-      searchField: "name",
-      filterFields: ["category"],
+    searchField: "name",
+    filterFields: ["category"],
     })
     .index("by_category", ["category"])
     .index("by_brand", ["brand"])
@@ -579,15 +588,17 @@ export default defineSchema({
     .index("by_following", ["followingId"]) // フォロワー一覧取得
     .index("by_follower_following", ["followerId", "followingId"]), // フォロー関係の確認
 
-  // いいね
+  // いいね・リアクション ✅ **2026年更新 - 多機能リアクション**
   likes: defineTable({
     userId: v.id("users"),
     activityId: v.id("activities"),
+    reactionType: v.string(), // リアクションタイプ（reaction_typesのreactionIdを参照）✅ **2026年追加**
     createdAt: v.number(),
   })
-    .index("by_activity", ["activityId"]) // 投稿ごとのいいね一覧
-    .index("by_user_activity", ["userId", "activityId"]) // ユーザーがいいねしたかどうかの確認
-    .index("by_user", ["userId"]), // ユーザーがいいねした投稿一覧
+    .index("by_activity", ["activityId"]) // 投稿ごとのリアクション一覧
+    .index("by_user_activity", ["userId", "activityId"]) // ユーザーがリアクションしたかどうかの確認
+    .index("by_user", ["userId"]) // ユーザーがリアクションした投稿一覧
+    .index("by_activity_reaction", ["activityId", "reactionType"]), // 投稿・リアクションタイプでの検索 ✅ **2026年追加**
 
   // ---------------------------------------------------------
   // 10. AIチャット履歴 (Phase 1後半 / Phase 2)
@@ -1033,6 +1044,100 @@ export default defineSchema({
     createdAt: v.number(), // 獲得/消費日時
   }).index("by_user", ["userId", "createdAt"])
     .index("by_user_reason", ["userId", "reason"]),
+
+  // ---------------------------------------------------------
+  // 29. ニュース・更新情報（公式サイト用）✅ **2026年追加 - 公式サイト**
+  // ---------------------------------------------------------
+  news: defineTable({
+    title: v.string(), // ニュースのタイトル
+    content: v.string(), // ニュースの本文（Markdown形式）
+    category: v.union(
+      v.literal("feature"), // 機能追加
+      v.literal("bugfix"), // バグ修正
+      v.literal("announcement"), // お知らせ
+      v.literal("update") // アップデート
+    ), // カテゴリ
+    publishedAt: v.optional(v.number()), // 公開日時（公開されていない場合はundefined）
+    isPublished: v.boolean(), // 公開フラグ
+    imageUrl: v.optional(v.string()), // アイキャッチ画像のURL
+    createdAt: v.number(), // 作成日時
+    updatedAt: v.number(), // 更新日時
+    createdBy: v.id("users"), // 作成者（管理者）
+  })
+    .index("by_published", ["isPublished", "publishedAt"])
+    .index("by_category", ["category", "publishedAt"]),
+
+  // ---------------------------------------------------------
+  // 31. diary_scenes（日記シーンマスターデータ）✅ **2026年追加 - 日記の簡単記録**
+  // ---------------------------------------------------------
+  diary_scenes: defineTable({
+    sceneId: v.string(), // シーンID（例: "walk", "nap", "play", "meal"）
+    name: v.string(), // シーン名（例: "お散歩", "お昼寝", "遊び", "食事"）
+    icon: v.string(), // アイコン（絵文字またはアイコン名）
+    displayOrder: v.number(), // 表示順序
+    isActive: v.boolean(), // 有効/無効
+  })
+    .index("by_active_order", ["isActive", "displayOrder"]),
+
+  // ---------------------------------------------------------
+  // 32. diary_emotions（日記感情マスターデータ）✅ **2026年追加 - 日記の簡単記録**
+  // ---------------------------------------------------------
+  diary_emotions: defineTable({
+    emotionId: v.string(), // 感情ID（例: "happy", "loving", "confused", "sad"）
+    name: v.string(), // 感情名（例: "楽しい", "愛しい", "混乱", "悲しい"）
+    icon: v.string(), // アイコン（絵文字）
+    displayOrder: v.number(), // 表示順序
+    isActive: v.boolean(), // 有効/無効
+  })
+    .index("by_active_order", ["isActive", "displayOrder"]),
+
+  // ---------------------------------------------------------
+  // 33. reaction_types（リアクションタイプマスターデータ）✅ **2026年追加 - 多機能リアクション**
+  // ---------------------------------------------------------
+  reaction_types: defineTable({
+    reactionId: v.string(), // リアクションID（例: "heart", "sunflower", "muscle", "star", "rainbow"）
+    name: v.string(), // リアクション名（例: "大好き", "癒やされた", "応援してる", "キラキラ", "虹の橋"）
+    icon: v.string(), // アイコン（絵文字: ❤️, 🌻, 💪, 🌟, 🌈）
+    displayOrder: v.number(), // 表示順序
+    isActive: v.boolean(), // 有効/無効
+  })
+    .index("by_active_order", ["isActive", "displayOrder"]),
+
+  // ---------------------------------------------------------
+  // 34. context_stamps（コンテキストスタンプマスターデータ）✅ **2026年追加 - シーン+感情のセット**
+  // ---------------------------------------------------------
+  context_stamps: defineTable({
+    stampId: v.string(), // スタンプID（例: "play_excited", "alone_sad"）
+    name: v.string(), // スタンプ名（例: "遊び + 興奮", "お留守番 + 寂しい"）
+    sceneIds: v.array(v.string()), // シーンIDの配列（diary_scenesのsceneIdを参照）
+    emotionId: v.string(), // 感情ID（diary_emotionsのemotionIdを参照）
+    icon: v.string(), // アイコン（絵文字）
+    displayOrder: v.number(), // 表示順序
+    isActive: v.boolean(), // 有効/無効
+  })
+    .index("by_active_order", ["isActive", "displayOrder"]),
+
+  // ---------------------------------------------------------
+  // 35. 法務ドキュメント（公式サイト用）✅ **2026年追加 - 公式サイト**
+  // ---------------------------------------------------------
+  legal_documents: defineTable({
+    type: v.union(
+      v.literal("privacy_policy"), // プライバシーポリシー
+      v.literal("terms_of_service"), // 利用規約
+      v.literal("specific_commercial_transactions"), // 特定商取引法に基づく表記
+      v.literal("amazon_associate"), // Amazonアソシエイト規約
+      v.literal("google_admob"), // Google AdMob規約
+      v.literal("external_transmission") // 外部送信規約（電気通信事業法）
+    ), // ドキュメントタイプ
+    version: v.string(), // バージョン（例: "1.0", "2.0"）
+    content: v.string(), // ドキュメントの本文（Markdown形式）
+    effectiveDate: v.number(), // 効力発生日時
+    createdAt: v.number(), // 作成日時
+    updatedAt: v.number(), // 更新日時
+    createdBy: v.id("users"), // 作成者（管理者）
+  })
+    .index("by_type", ["type", "effectiveDate"])
+    .index("by_type_version", ["type", "version"]),
 });
 ```
 
@@ -1279,16 +1384,29 @@ export const checkAccess = query({
 
 ---
 
-### 5. images（画像管理）✅ **Convexのプライシングを考慮した設計**
+### 5. images（画像・動画管理）✅ **Convexのプライシングを考慮した設計・Cloudflare R2移行**
 
-**目的**: 画像を一元管理し、プレミアム機能としての最高画質保存と画像編集機能を実現
+**目的**: 画像・動画を一元管理し、プレミアム機能としての最高画質保存と画像編集機能を実現
 
 **主要フィールド**:
-- `previewStorageId`: 表示用WebP（無料ユーザーも参照可能、500KB程度）
-- `originalStorageId`: 最高画質WebP（プレミアムユーザーのみ参照可能、数MB以上）
-- `editMetadata`: 編集データ（プレミアムのみ：スタンプの位置や文字の内容）
-- `hasEdits`: 編集されているかどうか
-- `isPremiumAtUpload`: アップロード時のユーザー状態（プレミアムかどうか）
+- **メディアタイプ** ✅ **2026年追加**:
+  - `mediaType`: 画像 or 動画（`v.union(v.literal("image"), v.literal("video"))`）
+- **Cloudflare R2関連フィールド** ✅ **2026年追加**:
+  - `r2Key`: R2上のパス（例: `pets/123/image_abc.webp`）
+  - `r2Url`: カスタムドメイン経由のURL（例: `https://assets.your-pet-app.com/pets/123/image_abc.webp`）
+  - `thumbnailR2Key`: サムネイルのR2キー（動画用、オプション）
+  - `thumbnailR2Url`: サムネイルのURL（動画用、オプション）
+- **動画関連フィールド** ✅ **2026年追加**:
+  - `videoDuration`: 動画の長さ（秒、オプション）
+  - `videoCodec`: コーデック（HEVC, AV1など、オプション）
+  - `videoResolution`: 解像度（720p, 1080pなど、オプション）
+- **後方互換性のため、既存のConvex Storage IDも保持**（移行期間中）:
+  - `previewStorageId`: 表示用WebP（移行完了後に削除予定、オプション）
+  - `originalStorageId`: 最高画質WebP（移行完了後に削除予定、オプション）
+- **編集関連**:
+  - `editMetadata`: 編集データ（プレミアムのみ：スタンプの位置や文字の内容）
+  - `hasEdits`: 編集されているかどうか
+  - `isPremiumAtUpload`: アップロード時のユーザー状態（プレミアムかどうか）
 
 **インデックス**:
 - `by_user`: ユーザーでの検索
@@ -1296,12 +1414,17 @@ export const checkAccess = query({
 - `by_activity`: 活動ログでの検索
 - `by_user_active`: ユーザー・削除状態での検索（アクティブな画像のみ取得）
 
-**画像保存戦略**:
-- **無料ユーザー**: 累計50枚まで（約25MB）、表示用WebPのみ
-- **プレミアムユーザー**: 無制限、最高画質WebPも保存・表示可能
+**画像・動画保存戦略** ✅ **2026年更新 - Cloudflare R2移行**:
+- **画像**:
+  - **無料ユーザー**: 累計50枚まで（約25MB）、表示用WebPのみ
+  - **プレミアムユーザー**: 無制限、最高画質WebPも保存・表示可能
+- **動画** ✅ **2026年追加**:
+  - **無料ユーザー**: 1本あたり最大15秒、1ペットにつき月間3本まで、720p/HEVC（約15-20MB/分）
+  - **プレミアムユーザー**: 1本あたり最大60秒、無制限、1080p/HEVC（約30-40MB/分）
 - **編集機能**: 無料ユーザーは編集後の画像のみ保存、プレミアムユーザーは編集前・編集後の両方を保存（非破壊編集）
+- **ストレージ**: Cloudflare R2を使用（下り通信料無料、CDN統合） ✅ **2026年追加**
 
-**詳細**: `IMAGE_STORAGE_STRATEGY.md`を参照してください。
+**詳細**: `IMAGE_STORAGE_STRATEGY.md`、`CLOUDFLARE_R2_MIGRATION.md`を参照してください。
 
 **使用例**:
 ```typescript
@@ -1387,10 +1510,111 @@ if (isPremium) {
 - `cleaningActions`: 清掃アクションの配列（全種共通、cleaning_action_mastersのactionIdを参照）
 - `condition`: 後方互換性のため残す（既存データとの互換性）
 
+**日記記録（type: "diary"）のpayload構造** ✅ **2026年追加 - シーン・感情・タグによる簡単記録**:
+- `text`: 日記本文（オプション、テキストなしでも記録可能）
+- `scenes`: シーンIDの配列（diary_scenesのsceneIdを参照）
+  - 例: `["walk", "play"]`（お散歩と遊び）
+  - シーン例: "walk"（お散歩）、"nap"（お昼寝）、"play"（遊び）、"meal"（食事）、"clinic"（通院）、"grooming"（お手入れ）、"alone"（お留守番）
+- `emotion`: 感情ID（diary_emotionsのemotionIdを参照）
+  - 例: "happy"（楽しい😊）、"loving"（愛しい🥰）、"confused"（混乱😵）、"sad"（悲しい😢）
+- `timeOfDay`: 時間帯（オプション）
+  - "morning"（朝）、"noon"（昼）、"evening"（夕方）、"night"（夜）、"midnight"（深夜）
+- `location`: 場所（オプション）
+  - "home"（おうち）、"park"（公園）、"dog_run"（ドッグラン）、"clinic"（病院）、"travel"（旅先）
+- `contextStamp`: コンテキストスタンプID（オプション、シーン+感情のセット）
+  - 例: "play_excited"（遊び + 興奮😆）、"alone_sad"（お留守番 + 寂しい🥺）
+  - コンテキストスタンプを使用すると、`scenes`と`emotion`が自動で設定される
+
+**使用例**:
+```typescript
+// 日記記録（シーンと感情のみ、テキストなし）
+await ctx.db.insert("activities", {
+  petId: petId,
+  createdBy: userId,
+  loggedAt: Date.now(),
+  type: "diary",
+  payload: {
+    scenes: ["walk", "play"],
+    emotion: "happy",
+    timeOfDay: "evening",
+    location: "park",
+  },
+  isPublic: false,
+  likeCount: 0,
+});
+
+// 日記記録（コンテキストスタンプ使用）
+await ctx.db.insert("activities", {
+  petId: petId,
+  createdBy: userId,
+  loggedAt: Date.now(),
+  type: "diary",
+  payload: {
+    contextStamp: "play_excited", // シーンと感情が自動で設定される
+    text: "今日は公園でめちゃくちゃ遊んだ！",
+  },
+  isPublic: false,
+  likeCount: 0,
+});
+
+// 日記記録（テキストのみ、従来の形式もサポート）
+await ctx.db.insert("activities", {
+  petId: petId,
+  createdBy: userId,
+  loggedAt: Date.now(),
+  type: "diary",
+  payload: {
+    text: "今日はお散歩に行きました。",
+  },
+  isPublic: false,
+  likeCount: 0,
+});
+
+// 日記のフィルタリング（シーンと感情で検索）
+const diaryActivities = await ctx.db
+  .query("activities")
+  .withIndex("by_pet_active", (q) => 
+    q.eq("petId", petId).eq("deletion", undefined)
+  )
+  .filter((q) => 
+    q.and(
+      q.eq(q.field("type"), "diary"),
+      q.or(
+        // シーンでフィルター
+        q.field("payload.scenes").includes("walk"),
+        // 感情でフィルター
+        q.eq(q.field("payload.emotion"), "happy")
+      )
+    )
+  )
+  .order("desc")
+  .collect();
+```
+
 **インデックス**:
 - `by_pet_date`: ペット・日時での検索（タイムライン表示）
 - `by_pet_active`: ペット・削除状態での検索（アクティブなログのみ取得）
 - `by_public_feed`: 公開フィード用（Phase 3）
+
+**日記フィルタリング** ✅ **2026年追加 - シーン・感情・時間帯・場所での検索**:
+- 日記のフィルタリングは`by_pet_active`インデックスを使用し、`filter`でシーン、感情、時間帯、場所を絞り込む
+- 例: シーン「お散歩」と感情「楽しい」の日記を検索
+  ```typescript
+  const diaryActivities = await ctx.db
+    .query("activities")
+    .withIndex("by_pet_active", (q) => 
+      q.eq("petId", petId).eq("deletion", undefined)
+    )
+    .filter((q) => 
+      q.and(
+        q.eq(q.field("type"), "diary"),
+        q.field("payload.scenes").includes("walk"),
+        q.eq(q.field("payload.emotion"), "happy")
+      )
+    )
+    .order("desc")
+    .collect();
+  ```
 
 **削除機能**:
 - `deletion`オブジェクトが存在する場合、データは削除された状態
@@ -1766,35 +1990,64 @@ await ctx.db.delete(followId);
 
 ---
 
-### 10. likes（いいね）
+### 10. likes（いいね・リアクション）✅ **2026年更新 - 多機能リアクション**
 
-**目的**: Phase 3で実装。投稿へのいいねを管理
+**目的**: Phase 3で実装。投稿へのいいね・リアクションを管理
 
 **主要フィールド**:
-- `userId`: いいねしたユーザー
-- `activityId`: いいねされた投稿（activities）
-- `createdAt`: いいね日時
+- `userId`: リアクションしたユーザー
+- `activityId`: リアクションされた投稿（activities）
+- `reactionType`: リアクションタイプ（reaction_typesのreactionIdを参照）✅ **2026年追加**
+  - `"heart"`: ❤️ 大好き/共感
+  - `"sunflower"`: 🌻 癒やされた
+  - `"muscle"`: 💪 応援してる/頑張れ
+  - `"star"`: 🌟 キラキラした瞬間
+  - `"rainbow"`: 🌈 虹の橋のあちら側への祈り/想い
+- `createdAt`: リアクション日時
 
-**専門家のいいね機能**:
-- `users`テーブルの`isExpert`フラグが`true`のユーザーが「いいね」した場合、投稿に「獣医師が推奨」などの特別なバッジが表示される
-- 専門家の「いいね」は通常の「いいね」とは区別され、おすすめフィードで優先的に表示される
+**専門家のリアクション機能**:
+- `users`テーブルの`isExpert`フラグが`true`のユーザーがリアクションした場合、投稿に「獣医師が推奨」などの特別なバッジが表示される
+- 専門家のリアクションは通常のリアクションとは区別され、おすすめフィードで優先的に表示される
 
 **インデックス**:
-- `by_activity`: 投稿ごとのいいね一覧（いいね数カウント）
-- `by_user_activity`: ユーザーがいいねしたかどうかの確認（重複防止）
-- `by_user`: ユーザーがいいねした投稿一覧
+- `by_activity`: 投稿ごとのリアクション一覧（リアクション数カウント）
+- `by_user_activity`: ユーザーがリアクションしたかどうかの確認（重複防止）
+- `by_user`: ユーザーがリアクションした投稿一覧
+- `by_activity_reaction`: 投稿・リアクションタイプでの検索 ✅ **2026年追加**（リアクションタイプ別の集計用）
 
 **使用例**:
 ```typescript
-// いいね
+// リアクション（ハート）
 await ctx.db.insert("likes", {
   userId: currentUserId,
   activityId: activityId,
+  reactionType: "heart", // ✅ **2026年追加**
   createdAt: Date.now(),
 });
 
-// いいね解除
+// リアクション（虹の橋）
+await ctx.db.insert("likes", {
+  userId: currentUserId,
+  activityId: activityId,
+  reactionType: "rainbow", // ✅ **2026年追加**
+  createdAt: Date.now(),
+});
+
+// リアクション解除
 await ctx.db.delete(likeId);
+
+// 投稿ごとのリアクション集計
+const reactions = await ctx.db
+  .query("likes")
+  .withIndex("by_activity_reaction", (q) => 
+    q.eq("activityId", activityId)
+  )
+  .collect();
+
+const reactionCounts = reactions.reduce((acc, reaction) => {
+  acc[reaction.reactionType] = (acc[reaction.reactionType] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
 ```
 
 ---
@@ -1880,7 +2133,7 @@ export const createThread = mutation({
     const threadId = await ctx.db.insert("chat_threads", {
       userId: currentUser._id, // ✅ 現在のユーザーIDを使用
       petId: args.petId,
-      createdAt: Date.now(),
+  createdAt: Date.now(),
     });
 
     return threadId;
@@ -2632,6 +2885,298 @@ await ctx.db.insert("point_history", {
   assetId: assetId,
   createdAt: Date.now(),
 });
+```
+
+---
+
+### 29. news（ニュース・更新情報）✅ **2026年追加 - 公式サイト**
+
+**目的**: 公式サイトで公開するニュースや更新情報を管理。アプリの成長と開発の活発さを示す。
+
+**主要フィールド**:
+- `title`: ニュースのタイトル
+- `content`: ニュースの本文（Markdown形式）
+- `category`: カテゴリ（feature: 機能追加, bugfix: バグ修正, announcement: お知らせ, update: アップデート）
+- `publishedAt`: 公開日時（公開されていない場合はundefined）
+- `isPublished`: 公開フラグ
+- `imageUrl`: アイキャッチ画像のURL（オプション）
+- `createdAt`: 作成日時
+- `updatedAt`: 更新日時
+- `createdBy`: 作成者（管理者）
+
+**インデックス**:
+- `by_published`: 公開状態・公開日時での検索（公開済みニュースの一覧取得用）
+- `by_category`: カテゴリ・公開日時での検索（カテゴリ別フィルタリング用）
+
+**使用例**:
+```typescript
+// ニュースの作成（下書き）
+await ctx.db.insert("news", {
+  title: "新機能追加：リマインダー機能",
+  content: "掃除のタイマーやリマインダー機能を追加しました...",
+  category: "feature",
+  isPublished: false,
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  createdBy: adminUserId,
+});
+
+// ニュースの公開
+await ctx.db.patch(newsId, {
+  isPublished: true,
+  publishedAt: Date.now(),
+  updatedAt: Date.now(),
+});
+
+// 公開済みニュースの取得
+const publishedNews = await ctx.db
+  .query("news")
+  .withIndex("by_published", (q) =>
+    q.eq("isPublished", true).neq("publishedAt", undefined)
+  )
+  .order("desc")
+  .collect();
+```
+
+---
+
+### 30. （予約済み - 将来の拡張用）
+
+**注意**: 30番は将来の拡張用に予約されています。現在は使用されていません。
+
+---
+
+### 31. diary_scenes（日記シーンマスターデータ）✅ **2026年追加 - 日記の簡単記録**
+
+**目的**: 日記記録時に選択できるシーン（カテゴリ）のマスターデータを管理。テキスト入力なしでシーンを選択するだけで日記を記録できる。
+
+**主要フィールド**:
+- `sceneId`: シーンID（例: "walk", "nap", "play", "meal"）
+- `name`: シーン名（例: "お散歩", "お昼寝", "遊び", "食事"）
+- `icon`: アイコン（絵文字またはアイコン名）
+- `displayOrder`: 表示順序
+- `isActive`: 有効/無効
+
+**インデックス**:
+- `by_active_order`: 有効なシーンを表示順序で取得
+
+**使用例**:
+```typescript
+// シーンマスターデータの作成
+await ctx.db.insert("diary_scenes", {
+  sceneId: "walk",
+  name: "お散歩",
+  icon: "🚶",
+  displayOrder: 1,
+  isActive: true,
+});
+
+await ctx.db.insert("diary_scenes", {
+  sceneId: "play",
+  name: "遊び",
+  icon: "🎾",
+  displayOrder: 2,
+  isActive: true,
+});
+
+// 有効なシーン一覧を取得
+const activeScenes = await ctx.db
+  .query("diary_scenes")
+  .withIndex("by_active_order", (q) => q.eq("isActive", true))
+  .order("asc")
+  .collect();
+```
+
+---
+
+### 32. diary_emotions（日記感情マスターデータ）✅ **2026年追加 - 日記の簡単記録**
+
+**目的**: 日記記録時に選択できる感情のマスターデータを管理。顔文字アイコンで感情を選択できる。
+
+**主要フィールド**:
+- `emotionId`: 感情ID（例: "happy", "loving", "confused", "sad"）
+- `name`: 感情名（例: "楽しい", "愛しい", "混乱", "悲しい"）
+- `icon`: アイコン（絵文字: 😊, 🥰, 😵, 😢）
+- `displayOrder`: 表示順序
+- `isActive`: 有効/無効
+
+**インデックス**:
+- `by_active_order`: 有効な感情を表示順序で取得
+
+**使用例**:
+```typescript
+// 感情マスターデータの作成
+await ctx.db.insert("diary_emotions", {
+  emotionId: "happy",
+  name: "楽しい",
+  icon: "😊",
+  displayOrder: 1,
+  isActive: true,
+});
+
+await ctx.db.insert("diary_emotions", {
+  emotionId: "loving",
+  name: "愛しい",
+  icon: "🥰",
+  displayOrder: 2,
+  isActive: true,
+});
+
+// 有効な感情一覧を取得
+const activeEmotions = await ctx.db
+  .query("diary_emotions")
+  .withIndex("by_active_order", (q) => q.eq("isActive", true))
+  .order("asc")
+  .collect();
+```
+
+---
+
+### 33. reaction_types（リアクションタイプマスターデータ）✅ **2026年追加 - 多機能リアクション**
+
+**目的**: 投稿へのリアクションタイプのマスターデータを管理。単なる「いいね」だけでなく、複数のリアクションから選択できる。
+
+**主要フィールド**:
+- `reactionId`: リアクションID（例: "heart", "sunflower", "muscle", "star", "rainbow"）
+- `name`: リアクション名（例: "大好き", "癒やされた", "応援してる", "キラキラ", "虹の橋"）
+- `icon`: アイコン（絵文字: ❤️, 🌻, 💪, 🌟, 🌈）
+- `displayOrder`: 表示順序
+- `isActive`: 有効/無効
+
+**インデックス**:
+- `by_active_order`: 有効なリアクションタイプを表示順序で取得
+
+**使用例**:
+```typescript
+// リアクションタイプマスターデータの作成
+await ctx.db.insert("reaction_types", {
+  reactionId: "heart",
+  name: "大好き",
+  icon: "❤️",
+  displayOrder: 1,
+  isActive: true,
+});
+
+await ctx.db.insert("reaction_types", {
+  reactionId: "rainbow",
+  name: "虹の橋",
+  icon: "🌈",
+  displayOrder: 5,
+  isActive: true,
+});
+
+// 有効なリアクションタイプ一覧を取得
+const activeReactions = await ctx.db
+  .query("reaction_types")
+  .withIndex("by_active_order", (q) => q.eq("isActive", true))
+  .order("asc")
+  .collect();
+```
+
+---
+
+### 34. context_stamps（コンテキストスタンプマスターデータ）✅ **2026年追加 - シーン+感情のセット**
+
+**目的**: シーンと感情をセットで選択できるコンテキストスタンプのマスターデータを管理。1タップで「遊び + 興奮」などの組み合わせを記録できる。
+
+**主要フィールド**:
+- `stampId`: スタンプID（例: "play_excited", "alone_sad"）
+- `name`: スタンプ名（例: "遊び + 興奮", "お留守番 + 寂しい"）
+- `sceneIds`: シーンIDの配列（diary_scenesのsceneIdを参照）
+- `emotionId`: 感情ID（diary_emotionsのemotionIdを参照）
+- `icon`: アイコン（絵文字）
+- `displayOrder`: 表示順序
+- `isActive`: 有効/無効
+
+**インデックス**:
+- `by_active_order`: 有効なコンテキストスタンプを表示順序で取得
+
+**使用例**:
+```typescript
+// コンテキストスタンプマスターデータの作成
+await ctx.db.insert("context_stamps", {
+  stampId: "play_excited",
+  name: "遊び + 興奮",
+  sceneIds: ["play"],
+  emotionId: "happy",
+  icon: "😆",
+  displayOrder: 1,
+  isActive: true,
+});
+
+await ctx.db.insert("context_stamps", {
+  stampId: "alone_sad",
+  name: "お留守番 + 寂しい",
+  sceneIds: ["alone"],
+  emotionId: "sad",
+  icon: "🥺",
+  displayOrder: 2,
+  isActive: true,
+});
+
+// 有効なコンテキストスタンプ一覧を取得
+const activeStamps = await ctx.db
+  .query("context_stamps")
+  .withIndex("by_active_order", (q) => q.eq("isActive", true))
+  .order("asc")
+  .collect();
+```
+
+---
+
+### 35. legal_documents（法務ドキュメント）✅ **2026年追加 - 公式サイト**
+
+**目的**: プライバシーポリシー、利用規約、特定商取引法表記などの法務ドキュメントを管理。法的要件を満たし、必要に応じて更新できる。
+
+**主要フィールド**:
+- `type`: ドキュメントタイプ
+  - `privacy_policy`: プライバシーポリシー
+  - `terms_of_service`: 利用規約
+  - `specific_commercial_transactions`: 特定商取引法に基づく表記
+  - `amazon_associate`: Amazonアソシエイト規約
+  - `google_admob`: Google AdMob規約
+  - `external_transmission`: 外部送信規約（電気通信事業法）
+- `version`: バージョン（例: "1.0", "2.0"）
+- `content`: ドキュメントの本文（Markdown形式）
+- `effectiveDate`: 効力発生日時
+- `createdAt`: 作成日時
+- `updatedAt`: 更新日時
+- `createdBy`: 作成者（管理者）
+
+**インデックス**:
+- `by_type`: ドキュメントタイプ・効力発生日時での検索（最新版の取得用）
+- `by_type_version`: ドキュメントタイプ・バージョンでの検索（特定バージョンの取得用）
+
+**使用例**:
+```typescript
+// プライバシーポリシーの作成
+await ctx.db.insert("legal_documents", {
+  type: "privacy_policy",
+  version: "1.0",
+  content: "# プライバシーポリシー\n\n...",
+  effectiveDate: Date.now(),
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  createdBy: adminUserId,
+});
+
+// プライバシーポリシーの改定（新バージョン）
+await ctx.db.insert("legal_documents", {
+  type: "privacy_policy",
+  version: "2.0",
+  content: "# プライバシーポリシー（改定版）\n\n...",
+  effectiveDate: Date.now(),
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  createdBy: adminUserId,
+});
+
+// 最新版のプライバシーポリシーを取得
+const latestPrivacyPolicy = await ctx.db
+  .query("legal_documents")
+  .withIndex("by_type", (q) => q.eq("type", "privacy_policy"))
+  .order("desc")
+  .first();
 ```
 
 ---
@@ -4530,14 +5075,14 @@ ${knowledgeResults.map((k) => `- ${k.title}: ${k.content}`).join("\n")}`;
     let citedKnowledgeIds: Id<"knowledge_base">[] = [];
 
     try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-4o",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: args.message },
-        ],
-        temperature: 0.7,
-      });
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: args.message },
+      ],
+      temperature: 0.7,
+    });
 
       response = completion.choices[0].message.content || "";
       citedKnowledgeIds = knowledgeResults.map((k) => k._id);

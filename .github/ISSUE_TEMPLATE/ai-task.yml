@@ -53,6 +53,57 @@ body:
         - 『体験価値』: 専門知識がなくても記録できる
         - 『使用シーン』: 散歩後のトイレタイムに記録
 
+  - type: dropdown
+    id: epic
+    attributes:
+      label: 📦 エピック (Epic)
+      description: このタスクが属するエピックを選択してください。`USER_STORIES.md`のエピックセクションを参照してください。
+      options:
+        - Epic 1: 認証・ユーザー管理
+        - Epic 2: ペット管理
+        - Epic 3: 活動ログ記録・リマインダー・広告表示
+        - Epic 4: ダッシュボード・統計
+        - Epic 5: プレミアム機能
+        - Epic 6: コラム・記事機能
+        - Epic 7: AI相談機能
+        - Epic 8: 共同管理
+        - Epic 9: SNS機能
+        - Epic 10: 商品データベース
+        - Epic 11: レビュー機能
+        - Epic 12: 画像管理機能
+        - Epic 13: ユーザーフィードバック機能
+        - Epic 14: メモリアル機能
+        - Epic 15: アルバム管理機能
+        - Epic 16: 管理者厳選のキュレーション機能
+        - Epic 17: ゲーミフィケーション要素
+        - Epic ADM-1: コラム・記事管理機能（管理画面）
+        - Epic ADM-2: キュレーション記事管理機能（管理画面）
+        - Epic ADM-3: 商品データベース管理機能（管理画面）
+        - Epic ADM-4: ユーザー管理機能（管理画面）
+        - Epic ADM-5: 統計・分析機能（管理画面）
+        - Epic ADM-6: 監視・アラート機能（管理画面）
+        - 該当なし / 共通機能
+
+  - type: textarea
+    id: screen-path
+    attributes:
+      label: 📱 画面パス (Screen Path)
+      description: 実装する画面のパスを記載してください。`APP_DIRECTORY_STRUCTURE.md`を参照してください。
+      placeholder: |
+        例: `app/pets/[id]/activities/toilet.tsx`
+        複数の画面がある場合は、すべて記載してください。
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 🔗 依存関係 (Dependencies)
+      description: このタスクが依存する他のストーリーや機能を記載してください。先に実装が必要なものがあれば記載してください。
+      placeholder: |
+        例:
+        - US-068（ポイント獲得システム）: ポイント獲得機能が必要
+        - US-083（所持ポイント確認）: ポイント表示機能が必要
+        依存関係がない場合は「なし」と記載してください。
+
   - type: textarea
     id: technical-context
     attributes:

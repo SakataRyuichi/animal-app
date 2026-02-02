@@ -134,3 +134,4 @@ Tamaguiコンポーネントは @repo/ui からインポートしてください
 - Convex関数は`@repo/backend/convex/_generated/api`からインポート
 - UIコンポーネントは`@repo/ui`からインポート
 - ビジネスロジックは`@repo/utils`からインポート
+- 画面のディレクトリ構成とユーザーストーリーのマッピングは[APP_DIRECTORY_STRUCTURE.md](../../APP_DIRECTORY_STRUCTURE.md)を参照 ✅ **2026年追加**

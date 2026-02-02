@@ -24,7 +24,9 @@ This master document provides:
 
 #### 🎯 Development Constitution (Must Read)
 - **[USER_STORIES.md](../../USER_STORIES.md)**: Mobile app user stories
+- **[APP_DIRECTORY_STRUCTURE.md](../../APP_DIRECTORY_STRUCTURE.md)**: App directory structure and screen mapping ✅ **2026年追加 - Expo Router画面構成とユーザーストーリーの紐づけ**
 - **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**: Admin panel user stories
+- **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)**: Official website user stories ✅ **2026年追加**
 - **[CONVEX_SCHEMA.md](../../CONVEX_SCHEMA.md)**: Schema definitions and implementation examples
 
 #### 🏗️ Design & Architecture
@@ -46,7 +48,11 @@ This master document provides:
 
 ### For Feature Implementation
 1. Check [DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md) for quick reference
-2. Read relevant user story from [USER_STORIES.md](../../USER_STORIES.md) or [ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)
+2. Read relevant user story from:
+   - [USER_STORIES.md](../../USER_STORIES.md): Mobile app features
+   - [APP_DIRECTORY_STRUCTURE.md](../../APP_DIRECTORY_STRUCTURE.md): Screen paths and user story mapping ✅ **2026年追加 - 画面パスとユーザーストーリーの対応関係**
+   - [ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md): Admin panel features
+   - [WEB_USER_STORIES.md](../../WEB_USER_STORIES.md): Official website features ✅ **2026年追加**
 3. Review schema in [CONVEX_SCHEMA.md](../../CONVEX_SCHEMA.md)
 4. Check design details in [DESIGN_DOCUMENT.md](../../DESIGN_DOCUMENT.md)
 
@@ -71,7 +77,9 @@ This master document provides:
 
 | Task | Primary Document | Supporting Documents |
 |------|------------------|---------------------|
-| Implement new feature | USER_STORIES.md or ADMIN_USER_STORIES.md | CONVEX_SCHEMA.md, DESIGN_DOCUMENT.md |
+| Implement new feature | USER_STORIES.md, ADMIN_USER_STORIES.md, or WEB_USER_STORIES.md | APP_DIRECTORY_STRUCTURE.md, CONVEX_SCHEMA.md, DESIGN_DOCUMENT.md |
+| Implement mobile app screen | APP_DIRECTORY_STRUCTURE.md, USER_STORIES.md | CONVEX_SCHEMA.md, DESIGN_DOCUMENT.md |
+| Implement website feature | WEB_USER_STORIES.md | CONVEX_SCHEMA.md (news, legal_documents), DESIGN_DOCUMENT.md (5.11) |
 | Change schema | CONVEX_SCHEMA.md | SCHEMA_REVIEW.md, USER_STORIES.md |
 | Implement premium feature | PREMIUM_FEATURES.md | CONVEX_SCHEMA.md, IMAGE_STORAGE_STRATEGY.md |
 | Setup project | SETUP_CHECKLIST.md | TECH_STACK_PLANNING.md, AGENTS.md |

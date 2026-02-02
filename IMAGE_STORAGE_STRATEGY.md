@@ -1,27 +1,37 @@
-# 画像保存戦略
+# 画像・動画保存戦略
 
 **📚 ドキュメントインデックス**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)
 
 **関連ドキュメント**:
 - [CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md): imagesテーブルの定義
 - [PREMIUM_FEATURES.md](./PREMIUM_FEATURES.md): 画像管理のプレミアム機能
-- [USER_STORIES.md](./USER_STORIES.md): US-051〜US-054（画像管理機能）
+- [USER_STORIES.md](./USER_STORIES.md): US-051〜US-054（画像管理機能）、US-092〜US-095（動画管理機能） ✅ **2026年追加**
+- [CLOUDFLARE_R2_MIGRATION.md](./CLOUDFLARE_R2_MIGRATION.md): Cloudflare R2移行設計 ✅ **2026年追加**
 
 **作成日**: 2026年2月1日  
-**目的**: Convexのプライシングを考慮した画像保存戦略と、プレミアム機能としての画像管理機能の設計
+**最終更新**: 2026年2月1日（Cloudflare R2移行・動画対応）  
+**目的**: Cloudflare R2を活用した画像・動画保存戦略と、プレミアム機能としての画像・動画管理機能の設計
 
 ---
 
-## 1. Convexの無料枠と制限
+## 1. ストレージ戦略の変更 ✅ **2026年更新 - Cloudflare R2移行**
 
-### 1.1 Convex無料プランの制限
+### 1.1 Cloudflare R2への移行
 
-- **Database Storage**: 1 GB
-- **File Storage**: 1 GB
-- **Monthly Bandwidth**: 10 GB
-- **Monthly Computes**: 10万回（Functionの実行回数）
+**移行理由**:
+- **コスト削減**: 下り通信料（Egress Fee）が完全に無料
+- **パフォーマンス向上**: Cloudflare CDNとの統合により、世界中のユーザーに高速なコンテンツ配信
+- **スケーラビリティ**: 動画のような大容量ファイルも扱いやすい
 
-### 1.2 画像データ量の試算
+**詳細**: `CLOUDFLARE_R2_MIGRATION.md`を参照してください。
+
+### 1.2 Cloudflare R2の無料枠と制限
+
+- **ストレージ**: 10GBまで無料、10GB超は$0.015/GB/月（約2.25円/GB/月）
+- **帯域幅（Egress Fee）**: **完全に無料**（$0）
+- **操作（Operations）**: Class A（書き込み）$4.50/百万回、Class B（読み込み）$0.36/百万回
+
+### 1.3 画像データ量の試算
 
 **前提条件**:
 - スマホ画像1枚あたり（圧縮前）: 3MB 〜 6MB（JPEG/HEIC）
@@ -33,9 +43,26 @@
 - 表示用のみ: 30枚 × 500KB = 15MB / 月
 - 最高画質も保存: 30枚 × 2.5MB = 75MB / 月
 
-**無料枠（1GB）で耐えられるユーザー数**:
-- 表示用のみ: 約66,000ユーザー（1ヶ月分）
-- 最高画質も保存: 約13,000ユーザー（1ヶ月分）
+**無料枠（10GB）で耐えられるユーザー数**（Cloudflare R2）:
+- 表示用のみ: 約660,000ユーザー（1ヶ月分）
+- 最高画質も保存: 約130,000ユーザー（1ヶ月分）
+
+### 1.4 動画データ量の試算 ✅ **2026年追加**
+
+**前提条件**:
+- iOS/Androidの主要コーデック: HEVC (H.265)
+- 圧縮設定:
+  - 無料ユーザー: 720p/30fps/HEVC（約15-20MB/分）
+  - プレミアムユーザー: 1080p/30fps/HEVC（約30-40MB/分）
+
+**1ユーザーあたりの月間データ量**（動画）:
+- **無料ユーザー**: 月間3本、各15秒 = 3本 × 0.25分 × 17.5MB = 約13MB/月
+- **プレミアムユーザー**: 月間10本、各60秒 = 10本 × 1分 × 35MB = 約350MB/月
+
+**無料枠（10GB）で耐えられるユーザー数**（動画のみ）:
+- 無料ユーザーのみ: 約770ユーザー/月
+- プレミアムユーザーのみ: 約28ユーザー/月
+- 混合（無料:プレミアム = 9:1）: 約250ユーザー/月
 
 ---
 
@@ -44,34 +71,61 @@
 | 機能 | フリー（無料） | プレミアム | 狙い |
 |------|---------------|-----------|------|
 | **基本の記録** | 無制限（テキスト） | 無制限 | 毎日使ってもらい、離脱を防ぐ（習慣化） |
-| **画像保存** | 累計50枚まで（約25MB）または直近1ヶ月分のみ表示 | 無制限（または大容量） | ConvexのFile Storageコストを転嫁 |
+| **画像保存** | 累計50枚まで（約25MB）または直近1ヶ月分のみ表示 | 無制限（または大容量） | Cloudflare R2のストレージコストを転嫁 |
 | **画像画質** | 表示用WebP（500KB程度）のみ | 最高画質WebP（数MB）も保存・表示可能 | ストレージコストの回収 |
 | **画像編集** | 編集後の画像のみ保存（編集前は削除） | 編集前・編集後の両方を保存（非破壊編集） | 付加価値の提供 |
 | **画像ダウンロード** | 表示用WebPのみ（ウォーターマーク付き） | 最高画質WebP（ウォーターマークなし）、一括ダウンロード | 収益化と付加価値 |
+| **動画保存** ✅ **2026年追加** | 1本あたり最大15秒、1ペットにつき月間3本まで、720p/HEVC | 1本あたり最大60秒、無制限、1080p/HEVC | 動画の容量とコストを考慮した制限 |
+| **動画再生** ✅ **2026年追加** | 可能（Cloudflare CDN経由） | 可能（Cloudflare CDN経由） | 下り通信料無料のため、無料ユーザーも高速再生可能 |
+| **動画ダウンロード** ✅ **2026年追加** | 不可（プレミアム案内） | 可能（HEVC形式） | 収益化と付加価値 |
 | **AIチャット** | なし（または1日1回） | 無制限 | APIコストの回収と付加価値の提供 |
 | **家族共有** | 2人まで | 無制限（親戚も招待可） | コミュニティの拡大と定着 |
 | **データ書き出し** | なし | PDF/CSV出力 | 「大切な記録を残したい」層の獲得 |
 
 ---
 
-## 3. 画像保存の設計思想
+## 3. 画像・動画保存の設計思想 ✅ **2026年更新 - Cloudflare R2移行・動画対応**
 
-### 3.1 ダブルストレージ構造
+### 3.1 Cloudflare R2への移行 ✅ **2026年追加**
+
+**移行のメリット**:
+- **コスト削減**: 下り通信料（Egress Fee）が完全に無料のため、動画再生時のコストが大幅に削減
+- **パフォーマンス向上**: Cloudflare CDNとの統合により、世界中のユーザーに高速なコンテンツ配信
+- **スケーラビリティ**: 動画のような大容量ファイルも扱いやすい
+
+**詳細**: `CLOUDFLARE_R2_MIGRATION.md`を参照してください。
+
+### 3.2 ダブルストレージ構造
 
 **「温かみと誠実さ」を感じさせる設計**:
 - 無料ユーザーがアップロードした画像も、**裏で最高画質データを保存**
 - プレミアムにアップグレードした瞬間、過去の全ての写真が美しくなる「マジックモーメント」を実現
 - 「データは消していない（温かみ）」と「今すぐは見られない（制限）」を両立
 
-### 3.2 WebP形式の採用
+### 3.3 WebP形式の採用（画像）
 
 **2026年のモバイルアプリ開発において、WebPは必須の標準**:
 - JPEG/PNGと比較して、同等の画質で25%〜34%も軽量
-- Convexのストレージ料金を抑えられる
+- Cloudflare R2のストレージ料金を抑えられる
 - ユーザーの通信量（ギガ）の節約
 - アプリの読み込み速度（UX）の向上
 
-### 3.3 画像編集機能の設計
+### 3.4 HEVC形式の採用（動画） ✅ **2026年追加**
+
+**2026年のモバイルアプリ開発において、HEVC (H.265) は標準**:
+- iOS/Androidの双方でハードウェア加速が完全に普及
+- H.264の約半分の容量で同等の画質を維持
+- 無料ユーザー: 720p/30fps/HEVC（約15-20MB/分）
+- プレミアムユーザー: 1080p/30fps/HEVC（約30-40MB/分）
+
+### 3.5 動画の自動圧縮 ✅ **2026年追加**
+
+**クライアント側での圧縮**:
+- Expo（React Native）で`expo-video-compressor`を使用
+- アップロード前に自動で圧縮（ユーザーが意識せずに最適なサイズで保存）
+- サムネイル生成: 動画の最初のフレームから自動でサムネイル画像を生成
+
+### 3.6 画像編集機能の設計
 
 **Instagramのような編集機能**:
 - **無料ユーザー**: 編集後の画像のみ保存（編集前は上書きまたは削除）
@@ -83,24 +137,39 @@
 
 ---
 
-## 4. スキーマ設計
+## 4. スキーマ設計 ✅ **2026年更新 - Cloudflare R2移行・動画対応**
 
-### 4.1 imagesテーブル（新規追加）
+### 4.1 imagesテーブル（画像・動画管理）✅ **2026年更新**
 
-画像を一元管理するテーブルを追加します。
+画像・動画を一元管理するテーブルです。
 
 ```typescript
 // convex/schema.ts
 images: defineTable({
   userId: v.id("users"),
-  petId: v.optional(v.id("pets")), // ペット関連の画像の場合
-  activityId: v.optional(v.id("activities")), // 活動ログ関連の画像の場合
+  petId: v.optional(v.id("pets")), // ペット関連の画像・動画の場合
+  activityId: v.optional(v.id("activities")), // 活動ログ関連の画像・動画の場合
 
+  // メディアタイプ ✅ **2026年追加**
+  mediaType: v.union(v.literal("image"), v.literal("video")), // 画像 or 動画
+
+  // Cloudflare R2関連フィールド ✅ **2026年追加**
+  r2Key: v.string(), // R2上のパス（例: pets/123/image_abc.webp）
+  r2Url: v.string(), // カスタムドメイン経由のURL（例: https://assets.your-pet-app.com/pets/123/image_abc.webp）
+  thumbnailR2Key: v.optional(v.string()), // サムネイルのR2キー（動画用）
+  thumbnailR2Url: v.optional(v.string()), // サムネイルのURL（動画用）
+
+  // 動画関連フィールド ✅ **2026年追加**
+  videoDuration: v.optional(v.number()), // 動画の長さ（秒）
+  videoCodec: v.optional(v.string()), // コーデック（HEVC, AV1など）
+  videoResolution: v.optional(v.string()), // 解像度（720p, 1080pなど）
+
+  // 後方互換性のため、既存のConvex Storage IDも保持（移行期間中）✅ **2026年追加**
   // 1. 表示用（無料ユーザーも参照可能 / 500KB程度）
-  previewStorageId: v.string(), // WebP形式、幅1080px、Quality 0.6-0.7
+  previewStorageId: v.optional(v.string()), // WebP形式、幅1080px、Quality 0.6-0.7（移行完了後に削除予定）
   
   // 2. 最高画質（プレミアムユーザーのみ参照可能 / 数MB以上）
-  originalStorageId: v.string(), // WebP形式、リサイズなし、Quality 0.9-1.0
+  originalStorageId: v.optional(v.string()), // WebP形式、リサイズなし、Quality 0.9-1.0（移行完了後に削除予定）
   
   // 3. 編集データ（プレミアムのみ：スタンプの位置など）
   editMetadata: v.optional(
@@ -250,14 +319,57 @@ export async function processImageForUpload(uri: string) {
 }
 ```
 
-### 5.2 バックエンド（Convex Action）での処理
+### 5.2 バックエンド（Convex Action）での処理 ✅ **2026年更新 - Cloudflare R2移行**
 
 ```typescript
-// packages/backend/convex/actions/uploadImage.ts
-import { action } from "./_generated/server";
-import { v } from "convex/values";
-import { api } from "./_generated/api";
+// packages/backend/convex/actions/r2.ts
+import { internalAction } from "./_generated/server";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
+// Presigned URLの発行（画像・動画共通）
+export const generateR2UploadUrl = internalAction({
+  args: {
+    r2Key: v.string(), // 例: pets/123/image_abc.webp
+    contentType: v.string(), // 例: image/webp, video/mp4
+    fileSize: v.number(), // ファイルサイズ（バイト）
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("認証が必要です");
+    
+    // ファイルサイズ制限チェック
+    const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
+    if (args.fileSize > MAX_FILE_SIZE) {
+      throw new Error("ファイルサイズが大きすぎます");
+    }
+    
+    const s3Client = new S3Client({
+      region: "auto",
+      endpoint: process.env.CLOUDFLARE_R2_ENDPOINT,
+      credentials: {
+        accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY!,
+      },
+    });
+    
+    const command = new PutObjectCommand({
+      Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
+      Key: args.r2Key,
+      ContentType: args.contentType,
+    });
+    
+    // Presigned URLを発行（有効期限: 5分）
+    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 300 });
+    
+    return {
+      uploadUrl: signedUrl,
+      publicUrl: `${process.env.CLOUDFLARE_R2_PUBLIC_URL}/${args.r2Key}`,
+    };
+  },
+});
+
+// 画像アップロード（R2経由）✅ **2026年更新**
 export const uploadImage = action({
   args: {
     petId: v.optional(v.id("pets")),
@@ -283,16 +395,28 @@ export const uploadImage = action({
       }
     }
 
-    // Convex File Storageにアップロード
-    const previewStorageId = await ctx.storage.store(
-      Buffer.from(args.previewFile, "base64")
-    );
-    const originalStorageId = await ctx.storage.store(
-      Buffer.from(args.originalFile, "base64")
-    );
+    // R2キーの生成
+    const imageId = generateId(); // 一意のIDを生成
+    const previewR2Key = `images/${imageId}/preview.webp`;
+    const originalR2Key = `images/${imageId}/original.webp`;
+
+    // Presigned URLを取得
+    const previewUrl = await ctx.runAction(api.r2.generateR2UploadUrl, {
+      r2Key: previewR2Key,
+      contentType: "image/webp",
+      fileSize: args.fileSizePreview,
+    });
+    const originalUrl = await ctx.runAction(api.r2.generateR2UploadUrl, {
+      r2Key: originalR2Key,
+      contentType: "image/webp",
+      fileSize: args.fileSizeOriginal,
+    });
+
+    // R2に直接アップロード（クライアント側で実行）
+    // ここではPresigned URLを返すだけ
 
     // imagesテーブルに保存
-    const imageId = await ctx.runMutation(api.images.create, {
+    const savedImageId = await ctx.runMutation(api.images.create, {
       userId: user._id,
       petId: args.petId,
       activityId: args.activityId,
@@ -320,13 +444,13 @@ export const uploadImage = action({
 
 ---
 
-## 6. 画像表示ロジック
+## 6. 画像・動画表示ロジック ✅ **2026年更新 - Cloudflare R2移行**
 
-### 6.1 フロントエンドでの表示
+### 6.1 フロントエンドでの表示（R2経由）✅ **2026年更新**
 
 ```typescript
 // packages/ui/src/components/PetImage.tsx
-import { useQuery, useStorageUrl } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "@repo/backend/convex/_generated/api";
 
 export function PetImage({ imageId }: { imageId: Id<"images"> }) {
@@ -343,12 +467,14 @@ export function PetImage({ imageId }: { imageId: Id<"images"> }) {
       user.subscription.gracePeriodEndsAt && 
       Date.now() < user.subscription.gracePeriodEndsAt));
 
-  // プレミアムならオリジナル、そうでなければプレビューのURLを取得
-  const storageId = isPremium 
-    ? image.originalStorageId 
-    : image.previewStorageId;
-  
-  const imageUrl = useStorageUrl(storageId);
+  // R2 URLを使用（Cloudflare CDN経由で高速配信）✅ **2026年更新**
+  const imageUrl = image.r2Url; // カスタムドメイン経由のURL
+
+  // R2 URLを使用（Cloudflare CDN経由で高速配信）✅ **2026年更新**
+  // プレミアムなら最高画質、そうでなければプレビューのURLを使用
+  const imageUrl = isPremium && image.r2Url
+    ? image.r2Url // 最高画質のR2 URL
+    : image.thumbnailR2Url || image.r2Url; // プレビューまたはサムネイルのR2 URL
 
   return (
     <View>
@@ -471,56 +597,146 @@ export function PetImage({ imageId }: { imageId: Id<"images"> }) {
 
 ---
 
-## 11. コスト試算
+## 11. コスト試算 ✅ **2026年更新 - Cloudflare R2移行**
 
-### 11.1 ストレージコスト
+### 11.1 Cloudflare R2のストレージコスト ✅ **2026年更新**
 
 **シナリオ**: アクティブユーザー（MAU）1,000人の場合
 - 全員がリサイズ済み画像（表示用500KB + 最高画質2.5MB）を月30枚アップロード
+- 無料ユーザー: 月間3本の動画（各15秒、720p/HEVC、約13MB/月）
+- プレミアムユーザー: 月間10本の動画（各60秒、1080p/HEVC、約350MB/月）
 
-**月間の新規データ増分**: 1,000人 × 90MB = 90 GB / 月
+**月間の新規データ増分**:
+- 画像: 1,000人 × 90MB = 90 GB / 月
+- 動画（無料:プレミアム = 9:1）: 900人 × 13MB + 100人 × 350MB = 46.7 GB / 月
+- **合計**: 約137 GB / 月
 
-**1年後の総データ量**: 90GB × 12ヶ月 = 1,080 GB
+**1年後の総データ量**: 137GB × 12ヶ月 = 1,644 GB（約1.6 TB）
 
-**ストレージ月額費用（1年後）**:
-- File Storage: 1,080 GB × $0.20 = $216 / 月（約32,400円）
+**ストレージ月額費用（1年後、Cloudflare R2）**:
+- 10GBまで無料、10GB超は$0.015/GB/月
+- (1,644 GB - 10 GB) × $0.015 = 約$24.5/月（約3,675円/月）
 
-### 11.2 収益化の目安
+**帯域幅（Egress Fee）**: **完全に無料**（$0）✅ **2026年追加 - R2の最大のメリット**
+
+### 11.2 Convex File Storageとの比較 ✅ **2026年追加**
+
+**Convex File Storageの場合**（参考）:
+- ストレージ: 1GBまで無料、1GB超は$0.03/GB/月
+- 帯域幅: 10GB/月まで無料、10GB超は$0.30/GB
+- **1年後のストレージ費用**: (1,644 GB - 1 GB) × $0.03 = 約$49.3/月（約7,395円/月）
+- **帯域幅費用**: ユーザーが動画を再生するたびにコストが発生（バズった際に破産リスク）
+
+**Cloudflare R2の場合**:
+- ストレージ: 約$24.5/月（約3,675円/月）
+- 帯域幅: **完全に無料**（$0）
+- **総コスト**: 約$24.5/月（約3,675円/月）
+
+**削減効果**: 約50%のコスト削減 + 帯域幅コストの完全削減 ✅ **2026年追加**
+
+### 11.3 無料枠での制限設計 ✅ **2026年追加**
+
+**Cloudflare R2の無料枠（10GB）で耐えられるユーザー数**:
+- 画像のみ（表示用）: 約660,000ユーザー（1ヶ月分）
+- 画像のみ（最高画質も保存）: 約130,000ユーザー（1ヶ月分）
+- 動画のみ（無料ユーザーのみ）: 約770ユーザー（1ヶ月分）
+- 混合（画像 + 動画、無料:プレミアム = 9:1）: 約250ユーザー（1ヶ月分）
+
+**無料ユーザーへの制限**:
+- 画像: 累計50枚まで（約25MB）
+- 動画: 1本あたり最大15秒、1ペットにつき月間3本まで、720p/HEVC（約13MB/月）
+
+**プレミアムユーザーへの制限**:
+- 画像: 無制限
+- 動画: 1本あたり最大60秒、無制限、1080p/HEVC（約350MB/月）
+
+**ストレージ月額費用（1年後、Cloudflare R2）**:
+- 10GBまで無料、10GB超は$0.015/GB/月
+- (1,644 GB - 10 GB) × $0.015 = 約$24.5/月（約3,675円/月）
+
+**帯域幅（Egress Fee）**: **完全に無料**（$0）✅ **2026年追加 - R2の最大のメリット**
+
+### 11.2 Convex File Storageとの比較 ✅ **2026年追加**
+
+**Convex File Storageの場合**（参考）:
+- ストレージ: 1GBまで無料、1GB超は$0.03/GB/月
+- 帯域幅: 10GB/月まで無料、10GB超は$0.30/GB
+- **1年後のストレージ費用**: (1,644 GB - 1 GB) × $0.03 = 約$49.3/月（約7,395円/月）
+- **帯域幅費用**: ユーザーが動画を再生するたびにコストが発生（バズった際に破産リスク）
+
+**Cloudflare R2の場合**:
+- ストレージ: 約$24.5/月（約3,675円/月）
+- 帯域幅: **完全に無料**（$0）
+- **総コスト**: 約$24.5/月（約3,675円/月）
+
+**削減効果**: 約50%のコスト削減 + 帯域幅コストの完全削減 ✅ **2026年追加**
+
+### 11.3 収益化の目安 ✅ **2026年更新**
 
 1,000人のユーザーのうち、3〜5%（30〜50人）が月額500円のプレミアムプランに入れば：
 - 月額収益: 30〜50人 × 500円 = 15,000円 〜 25,000円
-- ストレージコスト: 約32,400円（1年後）
+- ストレージコスト（Cloudflare R2）: 約3,675円/月（1年後）
 
-**結論**: プレミアム会員率を5%以上に維持できれば、ストレージコストを回収可能
+**結論**: プレミアム会員率を3%以上に維持できれば、ストレージコストを回収可能 ✅ **2026年更新 - R2移行によりコストが大幅に削減**
 
 ---
 
-## 12. 実装の優先順位
+## 12. 実装の優先順位 ✅ **2026年更新 - Cloudflare R2移行・動画対応**
 
 ### Phase 1（必須）
 
-1. **画像アップロード機能（WebP変換）**
-   - Expoでの画像処理（表示用・最高画質の2種類）
-   - Convexへのアップロード
-   - `images`テーブルの作成
+1. **Cloudflare R2のセットアップ** ✅ **2026年追加**
+   - R2バケットの作成（Terraform）
+   - CORS設定
+   - カスタムドメインの設定
+   - R2 API Tokenの発行
+   - Convex環境変数の設定
 
-2. **画像表示機能**
+2. **画像アップロード機能（R2経由）** ✅ **2026年更新**
+   - Expoでの画像処理（表示用・最高画質の2種類、WebP変換）
+   - Presigned URLの発行（Convex Action）
+   - R2への直接アップロード（クライアント側）
+   - `images`テーブルの作成（R2関連フィールド追加）
+
+3. **画像表示機能（R2 URL使用）** ✅ **2026年更新**
+   - R2 URLを使用した画像表示（Cloudflare CDN経由）
    - プレミアム判定に応じた画像URLの切り替え
    - プレミアム案内の表示
 
-3. **画像枚数制限**
+4. **画像枚数制限**
    - 無料ユーザーの累計50枚制限
    - 制限到達時の案内
 
 ### Phase 2（高優先度）
 
-4. **画像ダウンロード機能**
+5. **動画アップロード機能** ✅ **2026年追加**
+   - 動画の自動圧縮（HEVC形式、720p/1080p）
+   - サムネイル生成
+   - Presigned URLの発行（Convex Action）
+   - R2への直接アップロード（クライアント側）
+   - `images`テーブルに動画関連フィールドを追加
+
+6. **動画再生機能** ✅ **2026年追加**
+   - R2 URLを使用した動画再生（Cloudflare CDN経由）
+   - 再生コントロール（再生・一時停止・シークバー）
+   - 全画面再生
+   - サムネイル表示
+
+7. **動画の制限と案内** ✅ **2026年追加**
+   - 無料ユーザー: 1本あたり最大15秒、1ペットにつき月間3本まで
+   - プレミアムユーザー: 1本あたり最大60秒、無制限
+   - 制限到達時の案内
+
+8. **画像ダウンロード機能**
    - プレミアム限定で最高画質ダウンロード
    - ウォーターマークの追加（無料ユーザー）
 
-5. **画像編集機能（基本）**
-   - スタンプ・文字入れ機能
-   - 編集後の画像保存
+9. **動画ダウンロード機能** ✅ **2026年追加**
+   - プレミアム限定で動画ダウンロード（HEVC形式）
+
+10. **画像編集機能（基本）**
+    - スタンプ・文字入れ機能
+    - 編集後の画像保存
 
 ### Phase 3（中優先度）
 
