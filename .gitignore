@@ -40,6 +40,9 @@ yarn-error.log*
 # ただし、.env.exampleはコミットする
 !.env.example
 
+# mise関連（設定ファイルはコミットするが、キャッシュは除外）
+.mise/cache/
+
 # Vercel
 .vercel
 

@@ -1,0 +1,40 @@
+# mise設定ファイル
+# Node.jsとpnpmのバージョン管理
+
+[tools]
+# Node.jsのバージョン（LTS推奨）
+node = "20.18.0"
+
+# pnpmのバージョン
+pnpm = "9.12.3"
+
+# その他のツール（必要に応じて追加）
+# terraform = "1.6.0"
+# python = "3.11.0"
+
+[env]
+# miseが自動的にPATHに追加するツールの設定
+# プロジェクトディレクトリに入ると自動的に有効化される
+
+# Node.jsの設定
+NODE_ENV = "development"
+
+# pnpmの設定
+PNPM_HOME = "{MISE_DATA_DIR}/installs/pnpm"
+
+# パフォーマンス設定
+NODE_OPTIONS = "--max-old-space-size=4096"
+
+[settings]
+# miseの動作設定
+# プロジェクトディレクトリに入ると自動的にツールを有効化
+activate_aggressive = true
+
+# ツールの自動インストール
+auto_install = true
+
+# ツールの自動更新（推奨しない）
+# auto_update = false
+
+# シェル統合の有効化
+# shell = "zsh"  # または "bash", "fish"

@@ -3,23 +3,33 @@
   "hooks": {
     "after_edit": [
       {
-        "command": "pnpm typecheck --filter $(git diff --name-only HEAD | head -1 | cut -d'/' -f1)",
-        "description": "ファイル編集後に変更されたパッケージの型チェックを実行",
+        "command": "mise exec -- pnpm typecheck --filter $(git diff --name-only HEAD | head -1 | cut -d'/' -f1)",
+        "description": "ファイル編集後に変更されたパッケージの型チェックを実行（mise経由）",
+        "optional": true
+      },
+      {
+        "command": "bash scripts/security-audit.sh",
+        "description": "ファイル編集後にセキュリティ監査を実行（IPAガイドライン準拠）",
         "optional": true
       }
     ],
     "before_commit": [
       {
-        "command": "pnpm format",
-        "description": "コミット前にコードをフォーマット"
+        "command": "mise exec -- pnpm format",
+        "description": "コミット前にコードをフォーマット（mise経由）"
       },
       {
-        "command": "pnpm lint --fix",
-        "description": "コミット前にリントを実行（自動修正含む）"
+        "command": "mise exec -- pnpm lint --fix",
+        "description": "コミット前にリントを実行（自動修正含む、mise経由）"
       },
       {
-        "command": "pnpm typecheck",
-        "description": "コミット前に型チェックを実行",
+        "command": "mise exec -- pnpm typecheck",
+        "description": "コミット前に型チェックを実行（mise経由）",
+        "optional": true
+      },
+      {
+        "command": "bash scripts/security-verify.sh",
+        "description": "コミット前に包括的なセキュリティ検証を実行（セキュリティ監査、依存関係監査、Terraformセキュリティスキャン）",
         "optional": true
       }
     ]

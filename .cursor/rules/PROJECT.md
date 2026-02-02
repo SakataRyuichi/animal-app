@@ -20,7 +20,50 @@
 - **デザイン**: 
   - `designs/` (Pencil.devデザインファイル - `.pen`形式)
 
+## 開発環境の管理
+
+このプロジェクトでは、**mise**を使用してNode.jsとpnpmのバージョンを管理します。
+
+**重要**: すべての開発者は、miseを使用して開発環境を統一してください。
+
+### miseのセットアップ
+
+```bash
+# miseをインストール（初回のみ）
+brew install mise  # macOS
+# または: curl https://mise.run | sh
+
+# シェル統合を有効化
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc  # zshの場合
+source ~/.zshrc
+
+# プロジェクトディレクトリでツールをインストール
+mise install
+
+# バージョンの確認
+node --version  # v20.18.0
+pnpm --version  # 9.12.3
+```
+
+詳細は **[MISE_SETUP.md](../../MISE_SETUP.md)** を参照してください。
+
+### ConvexとReact NativeのNode環境の分離 ⭐ **重要**
+
+**設計原則**: ConvexとReact NativeのNode環境は分離されています。
+
+- **React Native (Expo)**: ローカルマシンでビルドされ、iOS/Android端末上で動作
+- **Convex**: Convexのクラウドサーバー（V8ベース）で動作
+
+**実装**:
+- Convexは`convex.json`でクラウド上のバージョンを指定（ローカルのNode.jsバージョンに縛られない）
+- ローカル開発環境はmiseで統一管理（Node.js 20.18.0）
+- `packages/backend/`を独立パッケージとして配置
+
+詳細は **[.cursor/rules/TURBOREPO_CONVEX.md](./TURBOREPO_CONVEX.md)** を参照してください。
+
 ## コマンド
+
+**注意**: 以下のコマンドは、miseでツールが有効化された状態で実行してください。プロジェクトディレクトリに入ると自動的に有効化されます。
 
 ### 開発環境
 - `pnpm dev`: すべてのアプリを起動（Turborepo経由）
@@ -180,16 +223,41 @@ export const fetchExternalData = action({
 - 法務ドキュメントは`@repo/policy`からMarkdown形式で読み込む
 
 ### Convex (`packages/backend/`) ⚠️ **重要な制約**
+
+#### パッケージ構成
 - **重要**: Convexは独立したパッケージ（`packages/backend/`）に配置
 - スキーマ、関数、AIアクションは`convex/`ディレクトリに配置
+- **Node環境の分離**: Convexはクラウド上で動作するため、ローカルのNode.jsバージョンに縛られない
+  - Convexは`convex.json`でクラウド上のバージョンを指定
+  - ローカル開発環境はmiseで統一管理（Node.js 20.18.0）
+
+#### 関数の種類
 - Query関数: `query`を使用
 - Mutation関数: `mutation`を使用
 - Action関数: `action`を使用（外部API呼び出し時）
+
+#### 型安全性とセキュリティ
 - **型安全性**: `v`スキーマを使用し、型安全性を確保（`any`は禁止）
 - **外部API呼び出し**: Convex Actionからのみ外部API（Cloudflare R2、Discord、OpenAI等）を呼び出す
   - Query/Mutationから外部APIを呼び出すことは禁止
   - 外部APIのレスポンスはZodスキーマでバリデーション必須
+
+#### 型定義の共有
 - **共有**: `apps/expo`と`apps/admin`の両方から、同じバックエンド関数を型安全に呼び出す
+- **型定義のエクスポート**: `packages/backend/package.json`の`exports`フィールドで型定義をエクスポート
+- **使用例**:
+  ```typescript
+  // apps/expo/app/home.tsx または apps/admin/app/page.tsx
+  import { api } from "@repo/backend/convex/_generated/api";
+  import { useQuery } from "convex/react";
+  
+  const pets = useQuery(api.pets.getPetsByOwner); // 型安全！
+  ```
+
+#### Turborepoとの統合
+- **`convex dev`のキャッシュ対策**: `turbo.json`で`dev`タスクに`cache: false`を指定
+- **依存関係の分離**: `packages/backend/package.json`でConvex専用の依存関係を管理
+- **ワークスペース設定**: `pnpm-workspace.yaml`で`packages/backend/`を独立したワークスペースとして定義
 
 ## ワークフロー
 
@@ -243,6 +311,23 @@ export const fetchExternalData = action({
 すべてのAPIエラーは **RFC 9457 (Problem Details for HTTP APIs)** に準拠する必要があります。
 
 詳細は **[ERROR_HANDLING.md](./ERROR_HANDLING.md)** を参照してください。
+
+## セキュリティ実装規約（IPA準拠）
+
+IPA（情報処理推進機構）の「安全なウェブサイトの作り方」に基づくセキュリティ実装規約です。
+
+**重要**: すべてのコード実装は、この規約に従う必要があります。セキュリティは機能実装よりも優先されます。
+
+### 基本原則
+
+1. **SQLインジェクション対策**: Convexのクエリ引数（`v.string()`等）を必ず使用し、文字列結合によるクエリ構築を禁止
+2. **パストラバーサル対策**: Cloudflare R2へ保存するファイル名は、UUID等で生成し、ユーザー入力を直接使わない
+3. **XSS対策**: React/Next.jsのエスケープ機能を信頼し、`dangerouslySetInnerHTML`は原則使用禁止
+4. **CSRF対策**: Clerkの認証トークンが自動で付与されるConvexクライアントを使用し、認証が必要な処理には`ctx.auth.getUserIdentity()`のチェックを必須とする
+5. **エラーメッセージの情報漏洩対策**: エラーメッセージにサーバー内部の情報（スタックトレース、DB構造等）を含めない
+6. **3ヶ月ロック機能**: 有料級の動画URLを、CSS非表示だけで隠さず、Convex側でURLの発行自体を拒否する
+
+詳細は **[SECURITY_IPA.md](./SECURITY_IPA.md)** を参照してください。
 
 ### 監視・エラー追跡（Sentry + Better Stack）
 
@@ -400,11 +485,16 @@ throw new Error("プレミアムが必要です");
 ### マスタードキュメント
 - **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)**: すべてのドキュメントへのアクセス ⭐ **まずここから**
 
+### 技術スタック統合ガイド
+- **[DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md](../../DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md)**: mise + Convex + Turborepo設計レビュー ⭐ **技術スタック統合時は必読**
+- **[.cursor/rules/TURBOREPO_CONVEX.md](./TURBOREPO_CONVEX.md)**: Turborepo + Convex統合ガイド ⭐ **Convex開発時は必読**
+
 **重要**: 機能実装時は、必ず対応するユーザーストーリーを参照し、ユーザーの体験価値を重視した実装を行ってください。
 
 ## 重要な注意事項（憲法の原則）
 
 ### 技術的制約（絶対に守るべきルール）
+- **セキュリティ**: IPAガイドラインに準拠し、脆弱性を作らないことを最優先 ⭐ **最優先事項**
 - **関数型プログラミング**: 必須。副作用を最小限にし、純粋関数を優先
 - **変数名**: 短縮せず、読みやすい形式（例: `userName`、`petId`）
 - **モノレポ**: 共有パッケージを活用し、重複コードを避ける
@@ -412,11 +502,14 @@ throw new Error("プレミアムが必要です");
 - **Zodバリデーション**: 外部API、フォーム入力、環境変数で必須
 - **Convex制約**: Actionからのみ外部APIを呼び出す（Query/Mutationからは禁止）
 
+**重要**: セキュリティ実装規約の詳細は **[SECURITY_IPA.md](./SECURITY_IPA.md)** を参照してください。
+
 ### 開発の優先順位（意思決定の指針）
-1. **プライバシーとセキュリティ**: ペットの機微情報（健康ログ）の保護を最優先
-2. **パフォーマンス**: 動画・画像の高速表示（Cloudflare R2のCDN活用）
-3. **コスト効率**: ストレージ節約と無料枠の維持（Convexのプライシングを考慮）
-4. **型安全性**: ランタイムエラーを防ぐため、型チェックとバリデーションを徹底
+1. **セキュリティ**: 脆弱性を作らないことを最優先（IPAガイドラインに準拠） ⭐ **最優先事項**
+2. **プライバシーとセキュリティ**: ペットの機微情報（健康ログ）の保護
+3. **パフォーマンス**: 動画・画像の高速表示（Cloudflare R2のCDN活用）
+4. **コスト効率**: ストレージ節約と無料枠の維持（Convexのプライシングを考慮）
+5. **型安全性**: ランタイムエラーを防ぐため、型チェックとバリデーションを徹底
 
 ### 開発フローの原則
 - **MCP活用**: Convexのようなモダンなツールは進化が早いため、AIが「最新のドキュメント」と「あなたのローカルコード」を同時に見られる状態（MCP環境）を作ることが最強の開発効率を実現する鍵

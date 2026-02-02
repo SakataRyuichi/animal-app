@@ -10,13 +10,14 @@
 
 ## 📋 目次
 
-1. [Pencil.dev セットアップ](#1-pencildev-セットアップ) ✅ **新規追加**
-2. [MCP (Model Context Protocol) 設定](#2-mcp-model-context-protocol-設定)
-3. [Cursor Context設定](#3-cursor-context設定)
-4. [環境変数の設定](#4-環境変数の設定)
-5. [各サービスのプロジェクト作成とAPIキー取得](#5-各サービスのプロジェクト作成とapiキー取得)
-6. [GitHub Secrets設定（CI/CD用）](#6-github-secrets設定cicd用)
-7. [環境変数管理のベストプラクティス](#7-環境変数管理のベストプラクティス)
+1. [mise セットアップ](#1-mise-セットアップ) ⭐ **必須 - 最初に実行**
+2. [Pencil.dev セットアップ](#2-pencildev-セットアップ) ✅ **新規追加**
+3. [MCP (Model Context Protocol) 設定](#3-mcp-model-context-protocol-設定)
+4. [Cursor Context設定](#4-cursor-context設定)
+5. [環境変数の設定](#5-環境変数の設定)
+6. [各サービスのプロジェクト作成とAPIキー取得](#6-各サービスのプロジェクト作成とapiキー取得)
+7. [GitHub Secrets設定（CI/CD用）](#7-github-secrets設定cicd用)
+8. [環境変数管理のベストプラクティス](#8-環境変数管理のベストプラクティス)
 
 ---
 
@@ -71,7 +72,7 @@ Cursorで`.pen`ファイルを開くと、Pencilキャンバスが自動的に�
 
 ---
 
-## 2. MCP (Model Context Protocol) 設定
+## 3. MCP (Model Context Protocol) 設定
 
 ### 1.1 Cursor設定ファイルの場所
 
@@ -194,7 +195,7 @@ CursorのMCP設定ファイルは以下のいずれかの場所に配置しま�
 
 ---
 
-## 3. Cursor Context設定
+## 4. Cursor Context設定
 
 ### 2.1 設定が必要なファイル/ディレクトリ
 
@@ -220,7 +221,7 @@ Cursorの「Context」設定で、以下のファイル/ディレクトリを常
 
 ---
 
-## 4. 環境変数の設定
+## 5. 環境変数の設定
 
 ### 3.1 環境変数ファイルの構造
 
@@ -341,7 +342,7 @@ SENTRY_DSN=https://xxxxxxxxxxxxx@xxxxxxxxxxxxx.ingest.sentry.io/xxxxxxxxxxxxx
 
 ---
 
-## 5. 各サービスのプロジェクト作成とAPIキー取得
+## 6. 各サービスのプロジェクト作成とAPIキー取得
 
 ### 4.1 Convex
 
@@ -461,7 +462,7 @@ npx convex dev
 
 ---
 
-## 6. GitHub Secrets設定（CI/CD用）
+## 7. GitHub Secrets設定（CI/CD用）
 
 ### 5.1 設定が必要なSecrets
 
@@ -511,7 +512,7 @@ GitHubリポジトリのSettings > Secrets and variables > Actionsで以下を�
 
 ---
 
-## 7. 環境変数管理のベストプラクティス
+## 8. 環境変数管理のベストプラクティス
 
 ### 6.1 `.gitignore`の設定
 
@@ -618,11 +619,12 @@ export const validateEnv = () => {
 
 ---
 
-## 7. チェックリスト
+## 9. チェックリスト
 
 ### セットアップ前
 
 - [ ] このドキュメントを読む
+- [ ] **miseをインストール** ⭐ **必須**
 - [ ] 必要なサービスのアカウントを作成
 - [ ] 必要なAPIキーを取得する準備
 
@@ -671,7 +673,7 @@ export const validateEnv = () => {
 
 ---
 
-## 8. トラブルシューティング
+## 10. トラブルシューティング
 
 ### 環境変数が読み込まれない
 
@@ -711,7 +713,7 @@ export const validateEnv = () => {
 
 ---
 
-## 9. 参考リンク
+## 11. 参考リンク
 
 - [Convex Documentation](https://docs.convex.dev/)
 - [Clerk Documentation](https://clerk.com/docs)
@@ -723,23 +725,28 @@ export const validateEnv = () => {
 
 ---
 
-## 10. 次のステップ
+## 12. 次のステップ
 
 セットアップが完了したら、以下を実行：
 
-1. **プロジェクトの初期化**:
+1. **miseでツールをインストール**:
+   ```bash
+   mise install
+   ```
+
+2. **プロジェクトの初期化**:
    ```bash
    pnpm install
    pnpm dev
    ```
 
-2. **Convexスキーマの作成**:
+3. **Convexスキーマの作成**:
    ```bash
    cd packages/backend
-   npx convex dev
+   mise exec -- npx convex dev
    ```
 
-3. **開発開始**:
+4. **開発開始**:
    - `TECH_STACK_PLANNING.md`を参照
    - `DESIGN_DOCUMENT.md`を参照
    - `USER_STORIES.md`を参照

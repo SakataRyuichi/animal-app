@@ -81,6 +81,8 @@
 | **[.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md)** | プロジェクトルール（コードスタイル、ワークフロー、コマンド） | 開発者・AI |
 | **[AGENTS.md](./AGENTS.md)** | Cursorエージェントの使い方とガイドライン | 開発者・AI |
 | **[SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)** | セットアップ前のチェックリスト | 開発者 |
+| **[MISE_SETUP.md](./MISE_SETUP.md)** | miseセットアップガイド（Node.js/pnpmバージョン管理） ⭐ **2026年追加 - 必須** | 開発者 |
+| **[DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md](./DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md)** | mise + Convex + Turborepo設計レビュー ⭐ **2026年追加** | 開発者 |
 | **[CLAUDE.md](./CLAUDE.md)** | Claude AI固有の設定と補足 | 開発者・AI |
 | **[OBSIDIAN_SETUP.md](./OBSIDIAN_SETUP.md)** | Obsidian設定ガイド ✅ **2026年追加** | 開発者 |
 | **[ISSUE_GUIDELINES.md](./ISSUE_GUIDELINES.md)** | GitHub Issue作成ガイドライン ✅ **2026年追加** | 開発者 |
