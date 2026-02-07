@@ -24,6 +24,8 @@ Phase 1からPhase 3までを見据えた設計になっています。
 全テーブルの定義を含むスキーマ定義は以下のファイルを参照してください：
 - [00-schema-definition.md](./convex-schema/00-schema-definition.md): 全テーブルのTypeScript定義
 
+**ER図（テーブル関係の可視化）**: [docs/diagrams/er-diagram.drawio](../diagrams/er-diagram.drawio) — 主要テーブル（users, pets, activities, pet_members, images）のリレーションを図で確認できます。開き方・表記ルールは [docs/diagrams/README.md](../diagrams/README.md) を参照。
+
 ---
 
 ## テーブル詳細説明

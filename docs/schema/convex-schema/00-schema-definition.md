@@ -2,7 +2,7 @@
 
 **📚 インデックス**: [CONVEX_SCHEMA_INDEX.md](../CONVEX_SCHEMA_INDEX.md)
 
-このファイルには、全テーブルのTypeScript定義が含まれています。
+このファイルには、全テーブルのTypeScript定義が含まれています。テーブル間の関係の全体像は [ER図（docs/diagrams/er-diagram.drawio）](../../diagrams/er-diagram.drawio) を参照してください。
 
 ```typescript
 // convex/schema.ts

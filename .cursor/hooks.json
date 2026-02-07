@@ -31,6 +31,11 @@
         "command": "bash scripts/security-verify.sh",
         "description": "コミット前に包括的なセキュリティ検証を実行（セキュリティ監査、依存関係監査、Terraformセキュリティスキャン）",
         "optional": true
+      },
+      {
+        "command": "bash scripts/schema-docs-check.sh",
+        "description": "スキーマ変更時に関連ドキュメント（ER図など）の更新漏れを検知。docs/schema/ のみ変更時はコミットを阻止",
+        "optional": true
       }
     ]
   }
