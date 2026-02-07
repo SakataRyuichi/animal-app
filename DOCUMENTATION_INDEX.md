@@ -5,6 +5,8 @@
 
 各ドキュメントの目的、内容、関連ドキュメントへのリンクを提供します。
 
+**アプリケーション関連ドキュメント**（要件・設計・ストーリー・スキーマなど）は **[docs/](./docs/README.md)** ディレクトリに文脈別に整理しています。設定用ファイル（AGENTS.md、CLAUDE.md、.cursor/ など）はリポジトリルートにあります。
+
 ---
 
 ## 📚 ドキュメント一覧（カテゴリ別）
@@ -15,19 +17,19 @@
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[USER_STORIES_INDEX.md](./USER_STORIES_INDEX.md)** | モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
-| **[USER_STORIES.md](./USER_STORIES.md)** | モバイルアプリのユーザーストーリー（統合版） | 開発者・AI |
-| **[ADMIN_USER_STORIES_INDEX.md](./ADMIN_USER_STORIES_INDEX.md)** | 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
-| **[ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md)** | 管理画面のユーザーストーリー（統合版） | 開発者・AI |
-| **[WEB_USER_STORIES_INDEX.md](./WEB_USER_STORIES_INDEX.md)** | 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
-| **[WEB_USER_STORIES.md](./WEB_USER_STORIES.md)** | 公式サイトのユーザーストーリー（統合版） | 開発者・AI |
-| **[CONVEX_SCHEMA_INDEX.md](./CONVEX_SCHEMA_INDEX.md)** | Convexスキーマ定義と実装例（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
-| **[CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md)** | Convexスキーマ定義と実装例（統合版） | 開発者・AI |
-| **[APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md)** | アプリディレクトリ構成と画面マッピング ✅ **2026年追加** | 開発者・AI |
+| **[USER_STORIES_INDEX.md](./docs/stories/USER_STORIES_INDEX.md)** | モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[USER_STORIES.md](./docs/stories/USER_STORIES.md)** | モバイルアプリのユーザーストーリー（統合版） | 開発者・AI |
+| **[ADMIN_USER_STORIES_INDEX.md](./docs/stories/ADMIN_USER_STORIES_INDEX.md)** | 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md)** | 管理画面のユーザーストーリー（統合版） | 開発者・AI |
+| **[WEB_USER_STORIES_INDEX.md](./docs/stories/WEB_USER_STORIES_INDEX.md)** | 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[WEB_USER_STORIES.md](./docs/stories/WEB_USER_STORIES.md)** | 公式サイトのユーザーストーリー（統合版） | 開発者・AI |
+| **[CONVEX_SCHEMA_INDEX.md](./docs/schema/CONVEX_SCHEMA_INDEX.md)** | Convexスキーマ定義と実装例（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md)** | Convexスキーマ定義と実装例（統合版） | 開発者・AI |
+| **[APP_DIRECTORY_STRUCTURE.md](./docs/app-structure/APP_DIRECTORY_STRUCTURE.md)** | アプリディレクトリ構成と画面マッピング ✅ **2026年追加** | 開発者・AI |
 
 **関連ドキュメント**:
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `PREMIUM_FEATURES.md`: プレミアム機能の定義
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): プレミアム機能の定義
 
 ---
 
@@ -35,14 +37,14 @@
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[DESIGN_DOCUMENT_INDEX.md](./DESIGN_DOCUMENT_INDEX.md)** | アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
-| **[DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md)** | アプリ設計の詳細（統合版） | 開発者・AI |
-| **[TECH_STACK_PLANNING.md](./TECH_STACK_PLANNING.md)** | 技術選定の詳細と理由 | 開発者 |
-| **[IMAGE_STORAGE_STRATEGY.md](./IMAGE_STORAGE_STRATEGY.md)** | 画像・動画保存戦略とCloudflare R2移行 ✅ **2026年更新** | 開発者・AI |
+| **[DESIGN_DOCUMENT_INDEX.md](./docs/design/DESIGN_DOCUMENT_INDEX.md)** | アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版** | 開発者・AI |
+| **[DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md)** | アプリ設計の詳細（統合版） | 開発者・AI |
+| **[TECH_STACK_PLANNING.md](./docs/design/TECH_STACK_PLANNING.md)** | 技術選定の詳細と理由 | 開発者 |
+| **[IMAGE_STORAGE_STRATEGY.md](./docs/design/IMAGE_STORAGE_STRATEGY.md)** | 画像・動画保存戦略とCloudflare R2移行 ✅ **2026年更新** | 開発者・AI |
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: スキーマ定義
-- `PREMIUM_FEATURES.md`: プレミアム機能の定義
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): スキーマ定義
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): プレミアム機能の定義
 
 ---
 
@@ -50,27 +52,28 @@
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[PREMIUM_FEATURES.md](./PREMIUM_FEATURES.md)** | プレミアム機能の定義と制限 | 開発者・AI |
-| **[AI_CHAT_DISCLAIMER.md](./AI_CHAT_DISCLAIMER.md)** | AIチャット免責事項の設計 | 開発者・AI |
-| **[AI_CHAT_REVIEW.md](./AI_CHAT_REVIEW.md)** | AIチャット機能の設計レビュー | 開発者・AI |
+| **[PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md)** | プレミアム機能の定義と制限 | 開発者・AI |
+| **[AI_CHAT_DISCLAIMER.md](./docs/design/AI_CHAT_DISCLAIMER.md)** | AIチャット免責事項の設計 | 開発者・AI |
+| **[AI_CHAT_REVIEW.md](./docs/design/AI_CHAT_REVIEW.md)** | AIチャット機能の設計レビュー | 開発者・AI |
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: AIチャット機能のスキーマ定義
-- `USER_STORIES.md`: US-020〜US-025（AI相談機能）
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): AIチャット機能のスキーマ定義
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): US-020〜US-025（AI相談機能）
 
 ---
 
-### 🔍 レビュー・検証
+### 🔍 レビュー・検証（要件・議事録）
 
 | ドキュメント | 目的 | 対象 |
 |------------|------|------|
-| **[SCHEMA_REVIEW.md](./SCHEMA_REVIEW.md)** | スキーマ設計のレビュー結果 | 開発者 |
-| **[REQUIREMENTS_REVIEW.md](./REQUIREMENTS_REVIEW.md)** | 要件定義のレビュー結果 | 開発者 |
-| **[DOCUMENT_REVIEW.md](./DOCUMENT_REVIEW.md)** | ドキュメント全体のレビュー結果 | 開発者 |
+| **[SCHEMA_REVIEW.md](./docs/requirements/SCHEMA_REVIEW.md)** | スキーマ設計のレビュー結果 | 開発者 |
+| **[REQUIREMENTS_REVIEW.md](./docs/requirements/REQUIREMENTS_REVIEW.md)** | 要件定義のレビュー結果 | 開発者 |
+| **[DOCUMENT_REVIEW.md](./docs/requirements/DOCUMENT_REVIEW.md)** | ドキュメント全体のレビュー結果 | 開発者 |
+| **[DOCUMENT_REVIEW_2026.md](./docs/requirements/DOCUMENT_REVIEW_2026.md)** | ドキュメントレビュー（2026年） | 開発者 |
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: レビュー対象のスキーマ
-- `USER_STORIES.md`: レビュー対象のユーザーストーリー
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): レビュー対象のスキーマ
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): レビュー対象のユーザーストーリー
 
 ---
 
@@ -82,17 +85,17 @@
 | **[AGENTS.md](./AGENTS.md)** | Cursorエージェントの使い方とガイドライン | 開発者・AI |
 | **[SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)** | セットアップ前のチェックリスト | 開発者 |
 | **[MISE_SETUP.md](./MISE_SETUP.md)** | miseセットアップガイド（Node.js/pnpmバージョン管理） ⭐ **2026年追加 - 必須** | 開発者 |
-| **[DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md](./DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md)** | mise + Convex + Turborepo設計レビュー ⭐ **2026年追加** | 開発者 |
+| **[DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md](./docs/design/DESIGN_REVIEW_MISE_CONVEX_TURBOREPO.md)** | mise + Convex + Turborepo設計レビュー ⭐ **2026年追加** | 開発者 |
 | **[CLAUDE.md](./CLAUDE.md)** | Claude AI固有の設定と補足 | 開発者・AI |
 | **[OBSIDIAN_SETUP.md](./OBSIDIAN_SETUP.md)** | Obsidian設定ガイド ✅ **2026年追加** | 開発者 |
 | **[ISSUE_GUIDELINES.md](./ISSUE_GUIDELINES.md)** | GitHub Issue作成ガイドライン ✅ **2026年追加** | 開発者 |
-| **[EPIC_OVERVIEW.md](./EPIC_OVERVIEW.md)** | 各エピックの概要とストーリー一覧 ✅ **2026年追加** | 開発者 |
-| **[IMPLEMENTATION_PHASES.md](./IMPLEMENTATION_PHASES.md)** | 実装フェーズ計画（Phase 0〜Phase 3） ✅ **2026年追加** | 開発者 |
-| **[EPIC_IMPLEMENTATION_PLAN.md](./EPIC_IMPLEMENTATION_PLAN.md)** | エピックと実装タスクの詳細定義（Phase 0〜Phase 1） ✅ **2026年追加** | 開発者 |
+| **[EPIC_OVERVIEW.md](./docs/implementation/EPIC_OVERVIEW.md)** | 各エピックの概要とストーリー一覧 ✅ **2026年追加** | 開発者 |
+| **[IMPLEMENTATION_PHASES.md](./docs/implementation/IMPLEMENTATION_PHASES.md)** | 実装フェーズ計画（Phase 0〜Phase 3） ✅ **2026年追加** | 開発者 |
+| **[EPIC_IMPLEMENTATION_PLAN.md](./docs/implementation/EPIC_IMPLEMENTATION_PLAN.md)** | エピックと実装タスクの詳細定義（Phase 0〜Phase 1） ✅ **2026年追加** | 開発者 |
 | **[.cursor/rules/ISSUE_REFERENCE.md](./.cursor/rules/ISSUE_REFERENCE.md)** | GitHub Issue参照方法のガイドライン ✅ **2026年追加** | 開発者・AI |
-| **[PENCIL_DESIGN_BRIEF.md](./PENCIL_DESIGN_BRIEF.md)** | Pencilデザインブリーフ（画面単位のストーリーとデザイン要件） ✅ **2026年追加** | デザイナー・開発者 |
-| **[DIARY_DRAFT_VERIFICATION.md](./DIARY_DRAFT_VERIFICATION.md)** | 日記の更新・削除・下書き機能の検証と設計 ✅ **2026年追加** | 開発者 |
-| **[CLOUDFLARE_R2_MIGRATION.md](./CLOUDFLARE_R2_MIGRATION.md)** | Cloudflare R2移行設計（画像・動画保存） ✅ **2026年追加** | 開発者 |
+| **[PENCIL_DESIGN_BRIEF.md](./docs/design/PENCIL_DESIGN_BRIEF.md)** | Pencilデザインブリーフ（画面単位のストーリーとデザイン要件） ✅ **2026年追加** | デザイナー・開発者 |
+| **[DIARY_DRAFT_VERIFICATION.md](./docs/design/DIARY_DRAFT_VERIFICATION.md)** | 日記の更新・削除・下書き機能の検証と設計 ✅ **2026年追加** | 開発者 |
+| **[CLOUDFLARE_R2_MIGRATION.md](./docs/design/CLOUDFLARE_R2_MIGRATION.md)** | Cloudflare R2移行設計（画像・動画保存） ✅ **2026年追加** | 開発者 |
 
 **関連ドキュメント**:
 - `TECH_STACK_PLANNING.md`: 技術スタックの詳細
@@ -105,7 +108,7 @@
 ## 📖 ドキュメント詳細
 
 ### USER_STORIES.md / USER_STORIES_INDEX.md
-**パス**: `./USER_STORIES.md`（統合版）、`./USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**パス**: [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md)（統合版）、[docs/stories/USER_STORIES_INDEX.md](./docs/stories/USER_STORIES_INDEX.md)（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: モバイルアプリ（React Native Expo）の機能をユーザー視点で整理したユーザーストーリー  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -115,7 +118,7 @@
 - キラー機能（AI相談）とフック機能（コラム・記事）の定義
 - 各ストーリーの受け入れ基準、体験価値、使用シーン
 
-**分割ファイル**（`user-stories/`ディレクトリ）:
+**分割ファイル**（[docs/stories/user-stories/](./docs/stories/user-stories/)）:
 - `01-authentication.md`: Epic 1（認証・ユーザー管理）
 - `02-pet-management.md`: Epic 2（ペット管理）
 - `03-activity-logs.md`: Epic 3（活動ログ記録・リマインダー・広告表示）
@@ -135,20 +138,20 @@
 - `17-gamification.md`: Epic 17（ゲーミフィケーション要素）
 
 **関連ドキュメント**:
-- `ADMIN_USER_STORIES.md`: 管理画面側のストーリー
-- `CONVEX_SCHEMA.md`: スキーマ定義
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `PREMIUM_FEATURES.md`: プレミアム機能の定義
+- [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md): 管理画面側のストーリー
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): スキーマ定義
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): プレミアム機能の定義
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: 各テーブルの説明で参照
-- `DESIGN_DOCUMENT.md`: 機能詳細の説明で参照
-- `PREMIUM_FEATURES.md`: プレミアム機能の説明で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): 各テーブルの説明で参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 機能詳細の説明で参照
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): プレミアム機能の説明で参照
 
 ---
 
 ### ADMIN_USER_STORIES.md / ADMIN_USER_STORIES_INDEX.md
-**パス**: `./ADMIN_USER_STORIES.md`（統合版）、`./ADMIN_USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**パス**: [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md)（統合版）、[docs/stories/ADMIN_USER_STORIES_INDEX.md](./docs/stories/ADMIN_USER_STORIES_INDEX.md)（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: 管理画面（Next.js）の機能を管理者視点で整理したユーザーストーリー  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -161,7 +164,7 @@
 - 統計・分析機能（ADM-011）
 - 監視・アラート機能（ADM-012〜ADM-015）✅ **2026年追加 - サービス停止防止**
 
-**分割ファイル**（`admin-user-stories/`ディレクトリ）:
+**分割ファイル**（[docs/stories/admin-user-stories/](./docs/stories/admin-user-stories/)）:
 - `01-articles.md`: Epic ADM-1（コラム・記事管理機能）
 - `02-curations.md`: Epic ADM-2（キュレーション記事管理機能）
 - `03-products.md`: Epic ADM-3（商品データベース管理機能）
@@ -170,19 +173,19 @@
 - `06-monitoring.md`: Epic ADM-6（監視・アラート機能）
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: モバイルアプリ側のストーリー
-- `CONVEX_SCHEMA.md`: スキーマ定義（curations, articlesテーブルなど）
-- `DESIGN_DOCUMENT.md`: 監視システムの設計（10.8）✅ **2026年追加**
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): モバイルアプリ側のストーリー
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): スキーマ定義（curations, articlesテーブルなど）
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 監視システムの設計（10.8）✅ **2026年追加**
 
 **参照される場所**:
-- `USER_STORIES.md`: Epic 6, Epic 10で参照
-- `CONVEX_SCHEMA.md`: キュレーション機能の説明で参照
-- `DESIGN_DOCUMENT.md`: 監視システムの設計で参照 ✅ **2026年追加**
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): Epic 6, Epic 10で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): キュレーション機能の説明で参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 監視システムの設計で参照 ✅ **2026年追加**
 
 ---
 
 ### WEB_USER_STORIES.md / WEB_USER_STORIES_INDEX.md
-**パス**: `./WEB_USER_STORIES.md`（統合版）、`./WEB_USER_STORIES_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**パス**: [docs/stories/WEB_USER_STORIES.md](./docs/stories/WEB_USER_STORIES.md)（統合版）、[docs/stories/WEB_USER_STORIES_INDEX.md](./docs/stories/WEB_USER_STORIES_INDEX.md)（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: 公式サイト（Next.js + Vercel）の機能をユーザー視点で整理したユーザーストーリー  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -202,7 +205,7 @@
   - WEB-019: ニュース・更新情報の自動更新
   - WEB-020: 法務ドキュメントの一元管理
 
-**分割ファイル**（`web-user-stories/`ディレクトリ）:
+**分割ファイル**（[docs/stories/web-user-stories/](./docs/stories/web-user-stories/)）:
 - `01-top-page.md`: Epic 1（トップページ・機能紹介）
 - `02-news.md`: Epic 2（ニュース・更新情報）
 - `03-legal.md`: Epic 3（法務ドキュメント）
@@ -212,19 +215,19 @@
 - `07-global-data.md`: Epic 7（グローバル公開データの閲覧）
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: モバイルアプリ側のストーリー
-- `ADMIN_USER_STORIES.md`: 管理画面側のストーリー
-- `CONVEX_SCHEMA.md`: スキーマ定義（news, legal_documentsテーブルなど）
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細（ブランド戦略・UI/UXガイドライン含む）
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): モバイルアプリ側のストーリー
+- [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md): 管理画面側のストーリー
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): スキーマ定義（news, legal_documentsテーブルなど）
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細（ブランド戦略・UI/UXガイドライン含む）
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: news, legal_documentsテーブルの説明で参照
-- `DESIGN_DOCUMENT.md`: 公式サイトの設計で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): news, legal_documentsテーブルの説明で参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 公式サイトの設計で参照
 
 ---
 
 ### APP_DIRECTORY_STRUCTURE.md
-**パス**: `./APP_DIRECTORY_STRUCTURE.md`  
+**パス**: [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](./docs/app-structure/APP_DIRECTORY_STRUCTURE.md)  
 **目的**: モバイルアプリ（`apps/expo/`）のExpo Routerベースのディレクトリ構成と、各画面に紐づくユーザーストーリーを定義  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -236,19 +239,19 @@
 - 画面ごとのユーザーストーリーID（US-001〜US-088）
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: 各画面に対応するユーザーストーリーの詳細
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `.cursor/rules/PROJECT.md`: プロジェクトルール
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 各画面に対応するユーザーストーリーの詳細
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md): プロジェクトルール
 
 **参照される場所**:
-- `USER_STORIES.md`: 各ストーリーに画面パス（`**画面パス**`）が記載
-- `.cursor/rules/PROJECT.md`: モバイルアプリのディレクトリ構成で参照
-- `AGENTS.md`: エージェントガイドラインで参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 各ストーリーに画面パス（`**画面パス**`）が記載
+- [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md): モバイルアプリのディレクトリ構成で参照
+- [AGENTS.md](./AGENTS.md): エージェントガイドラインで参照
 
 ---
 
 ### CONVEX_SCHEMA.md / CONVEX_SCHEMA_INDEX.md
-**パス**: `./CONVEX_SCHEMA.md`（統合版）、`./CONVEX_SCHEMA_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**パス**: [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md)（統合版）、[docs/schema/CONVEX_SCHEMA_INDEX.md](./docs/schema/CONVEX_SCHEMA_INDEX.md)（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: Convexスキーマの定義と実装例  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐ **開発の憲法**
@@ -259,7 +262,7 @@
 - 実装例（Query/Mutation/Action）
 - 設計のポイント（論理削除、プレミアム権限管理など）
 
-**分割ファイル**（`convex-schema/`ディレクトリ）:
+**分割ファイル**（[docs/schema/convex-schema/](./docs/schema/convex-schema/)）:
 - `00-schema-definition.md`: 全テーブルのTypeScript定義
 - `01-users.md`: 1. users（ユーザー）
 - `02-pets.md`: 2. pets（ペット）
@@ -296,21 +299,21 @@
 - `35-legal-documents.md`: 35. legal_documents（法務ドキュメント）
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: ユーザーストーリー（各テーブルの使用例）
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `IMAGE_STORAGE_STRATEGY.md`: 画像保存戦略
-- `AI_CHAT_REVIEW.md`: AIチャット機能のレビュー
-- `SCHEMA_REVIEW.md`: スキーマ設計のレビュー
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): ユーザーストーリー（各テーブルの使用例）
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [docs/design/IMAGE_STORAGE_STRATEGY.md](./docs/design/IMAGE_STORAGE_STRATEGY.md): 画像保存戦略
+- [docs/design/AI_CHAT_REVIEW.md](./docs/design/AI_CHAT_REVIEW.md): AIチャット機能のレビュー
+- [docs/requirements/SCHEMA_REVIEW.md](./docs/requirements/SCHEMA_REVIEW.md): スキーマ設計のレビュー
 
 **参照される場所**:
-- `DESIGN_DOCUMENT.md`: データフローの説明で参照
-- `USER_STORIES.md`: 各ストーリーの実装時に参照
-- `PREMIUM_FEATURES.md`: プレミアム機能の実装時に参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): データフローの説明で参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 各ストーリーの実装時に参照
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): プレミアム機能の実装時に参照
 
 ---
 
 ### DESIGN_DOCUMENT.md / DESIGN_DOCUMENT_INDEX.md
-**パス**: `./DESIGN_DOCUMENT.md`（統合版）、`./DESIGN_DOCUMENT_INDEX.md`（インデックス）✅ **2026年追加 - 分割版**  
+**パス**: [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md)（統合版）、[docs/design/DESIGN_DOCUMENT_INDEX.md](./docs/design/DESIGN_DOCUMENT_INDEX.md)（インデックス）✅ **2026年追加 - 分割版**  
 **目的**: アプリ設計の詳細（フロー、機能詳細、技術実装）  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐
@@ -321,7 +324,7 @@
 - 機能詳細（AI相談機能、コラム機能、SNS機能など）
 - 技術実装の詳細
 
-**分割ファイル**（`design-document/`ディレクトリ）:
+**分割ファイル**（[docs/design/design-document/](./docs/design/design-document/)）:
 - `01-project-overview.md`: 1. プロジェクト概要
 - `02-data-model.md`: 2. データモデル設計
 - `03-data-flow.md`: 3. データフロー設計
@@ -335,18 +338,18 @@
 - `11-glossary.md`: 11. 用語集
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: スキーマ定義
-- `USER_STORIES.md`: ユーザーストーリー
-- `TECH_STACK_PLANNING.md`: 技術選定の詳細
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): スキーマ定義
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): ユーザーストーリー
+- [docs/design/TECH_STACK_PLANNING.md](./docs/design/TECH_STACK_PLANNING.md): 技術選定の詳細
 
 **参照される場所**:
-- `USER_STORIES.md`: 機能詳細の説明で参照
-- `CONVEX_SCHEMA.md`: 実装例の説明で参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 機能詳細の説明で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): 実装例の説明で参照
 
 ---
 
 ### PREMIUM_FEATURES.md
-**パス**: `./PREMIUM_FEATURES.md`  
+**パス**: [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md)  
 **目的**: プレミアム機能の定義と制限  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐
@@ -357,18 +360,18 @@
 - 機能制限の詳細
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: 各ストーリーのプレミアム制限
-- `CONVEX_SCHEMA.md`: プレミアム権限管理の実装例
-- `IMAGE_STORAGE_STRATEGY.md`: 画像管理のプレミアム制限
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 各ストーリーのプレミアム制限
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): プレミアム権限管理の実装例
+- [docs/design/IMAGE_STORAGE_STRATEGY.md](./docs/design/IMAGE_STORAGE_STRATEGY.md): 画像管理のプレミアム制限
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: プレミアム権限管理の説明で参照
-- `USER_STORIES.md`: 各ストーリーの機能制限で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): プレミアム権限管理の説明で参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 各ストーリーの機能制限で参照
 
 ---
 
 ### IMAGE_STORAGE_STRATEGY.md ✅ **2026年更新**
-**パス**: `./IMAGE_STORAGE_STRATEGY.md`  
+**パス**: [docs/design/IMAGE_STORAGE_STRATEGY.md](./docs/design/IMAGE_STORAGE_STRATEGY.md)  
 **目的**: 画像・動画保存戦略とCloudflare R2移行 ✅ **2026年更新**  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐⭐
@@ -389,20 +392,20 @@
 - コスト試算（Cloudflare R2 vs Convex File Storage） ✅ **2026年更新**
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: imagesテーブルの定義（R2関連フィールド、動画関連フィールド）
-- `PREMIUM_FEATURES.md`: 画像・動画管理のプレミアム機能
-- `USER_STORIES.md`: US-051〜US-054（画像管理機能）、US-092〜US-095（動画管理機能） ✅ **2026年追加**
-- `CLOUDFLARE_R2_MIGRATION.md`: Cloudflare R2移行設計 ✅ **2026年追加**
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): imagesテーブルの定義（R2関連フィールド、動画関連フィールド）
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): 画像・動画管理のプレミアム機能
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): US-051〜US-054（画像管理機能）、US-092〜US-095（動画管理機能） ✅ **2026年追加**
+- [docs/design/CLOUDFLARE_R2_MIGRATION.md](./docs/design/CLOUDFLARE_R2_MIGRATION.md): Cloudflare R2移行設計 ✅ **2026年追加**
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: imagesテーブルの説明で参照
-- `PREMIUM_FEATURES.md`: 画像・動画管理機能の説明で参照
-- `DESIGN_DOCUMENT.md`: 画像・動画保存戦略の説明で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): imagesテーブルの説明で参照
+- [docs/design/PREMIUM_FEATURES.md](./docs/design/PREMIUM_FEATURES.md): 画像・動画管理機能の説明で参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 画像・動画保存戦略の説明で参照
 
 ---
 
 ### AI_CHAT_DISCLAIMER.md
-**パス**: `./AI_CHAT_DISCLAIMER.md`  
+**パス**: [docs/design/AI_CHAT_DISCLAIMER.md](./docs/design/AI_CHAT_DISCLAIMER.md)  
 **目的**: AIチャット免責事項（ディスクレイマー）の設計  
 **対象**: 開発者・AI（Cursor）  
 **重要度**: ⭐⭐
@@ -416,18 +419,18 @@
 - 免責事項の文言テンプレート
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: chat_messagesテーブルの定義
-- `AI_CHAT_REVIEW.md`: AIチャット機能のレビュー
-- `USER_STORIES.md`: US-020〜US-025（AI相談機能）
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): chat_messagesテーブルの定義
+- [docs/design/AI_CHAT_REVIEW.md](./docs/design/AI_CHAT_REVIEW.md): AIチャット機能のレビュー
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): US-020〜US-025（AI相談機能）
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: chat_messagesテーブルの説明で参照
-- `USER_STORIES.md`: US-020の受け入れ基準で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): chat_messagesテーブルの説明で参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): US-020の受け入れ基準で参照
 
 ---
 
 ### AI_CHAT_REVIEW.md
-**パス**: `./AI_CHAT_REVIEW.md`  
+**パス**: [docs/design/AI_CHAT_REVIEW.md](./docs/design/AI_CHAT_REVIEW.md)  
 **目的**: AIチャット機能の設計レビュー（ユーザー・ペット情報へのアクセス、RAG統合）  
 **対象**: 開発者  
 **重要度**: ⭐
@@ -438,17 +441,17 @@
 - 実装チェックリスト
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: AIチャット機能の実装例
-- `AI_CHAT_DISCLAIMER.md`: 免責事項の設計
-- `USER_STORIES.md`: US-020〜US-025（AI相談機能）
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): AIチャット機能の実装例
+- [docs/design/AI_CHAT_DISCLAIMER.md](./docs/design/AI_CHAT_DISCLAIMER.md): 免責事項の設計
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): US-020〜US-025（AI相談機能）
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: AI機能の信頼性確保の説明で参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): AI機能の信頼性確保の説明で参照
 
 ---
 
 ### SCHEMA_REVIEW.md
-**パス**: `./SCHEMA_REVIEW.md`  
+**パス**: [docs/requirements/SCHEMA_REVIEW.md](./docs/requirements/SCHEMA_REVIEW.md)  
 **目的**: スキーマ設計のレビュー結果  
 **対象**: 開発者  
 **重要度**: ⭐
@@ -459,16 +462,16 @@
 - 将来の拡張性の検証
 
 **関連ドキュメント**:
-- `CONVEX_SCHEMA.md`: レビュー対象のスキーマ
-- `USER_STORIES.md`: ユーザーストーリーとの整合性確認
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): レビュー対象のスキーマ
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): ユーザーストーリーとの整合性確認
 
 **参照される場所**:
-- `CONVEX_SCHEMA.md`: 設計のポイントで参照
+- [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): 設計のポイントで参照
 
 ---
 
 ### REQUIREMENTS_REVIEW.md
-**パス**: `./REQUIREMENTS_REVIEW.md`  
+**パス**: [docs/requirements/REQUIREMENTS_REVIEW.md](./docs/requirements/REQUIREMENTS_REVIEW.md)  
 **目的**: 要件定義のレビュー結果  
 **対象**: 開発者  
 **重要度**: ⭐
@@ -479,16 +482,16 @@
 - 改善提案
 
 **関連ドキュメント**:
-- `USER_STORIES.md`: 要件定義の基盤
-- `DESIGN_DOCUMENT.md`: 設計ドキュメントとの整合性確認
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 要件定義の基盤
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 設計ドキュメントとの整合性確認
 
 **参照される場所**:
-- `USER_STORIES.md`: 要件の確認時に参照
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): 要件の確認時に参照
 
 ---
 
 ### DOCUMENT_REVIEW.md
-**パス**: `./DOCUMENT_REVIEW.md`  
+**パス**: [docs/requirements/DOCUMENT_REVIEW.md](./docs/requirements/DOCUMENT_REVIEW.md)  
 **目的**: ドキュメント全体のレビュー結果  
 **対象**: 開発者  
 **重要度**: ⭐
@@ -507,7 +510,7 @@
 ---
 
 ### TECH_STACK_PLANNING.md
-**パス**: `./TECH_STACK_PLANNING.md`  
+**パス**: [docs/design/TECH_STACK_PLANNING.md](./docs/design/TECH_STACK_PLANNING.md)  
 **目的**: 技術選定の詳細と理由  
 **対象**: 開発者  
 **重要度**: ⭐
@@ -518,12 +521,12 @@
 - 将来の拡張性の考慮
 
 **関連ドキュメント**:
-- `DESIGN_DOCUMENT.md`: アプリ設計の詳細
-- `AGENTS.md`: 開発ガイドライン
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): アプリ設計の詳細
+- [AGENTS.md](./AGENTS.md): 開発ガイドライン
 
 **参照される場所**:
-- `AGENTS.md`: 技術スタックの説明で参照
-- `DESIGN_DOCUMENT.md`: 技術実装の説明で参照
+- [AGENTS.md](./AGENTS.md): 技術スタックの説明で参照
+- [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md): 技術実装の説明で参照
 
 ---
 
@@ -589,11 +592,11 @@
 - 各種サービスの設定（Convex、Clerkなど）
 
 **関連ドキュメント**:
-- `TECH_STACK_PLANNING.md`: 技術スタックの詳細
-- `AGENTS.md`: 開発ガイドライン
+- [docs/design/TECH_STACK_PLANNING.md](./docs/design/TECH_STACK_PLANNING.md): 技術スタックの詳細
+- [AGENTS.md](./AGENTS.md): 開発ガイドライン
 
 **参照される場所**:
-- `AGENTS.md`: セットアップの説明で参照
+- [AGENTS.md](./AGENTS.md): セットアップの説明で参照
 
 ---
 
@@ -612,12 +615,12 @@
 - MCP設定の推奨事項
 
 **関連ドキュメント**:
-- `AGENTS.md`: Cursorエージェントガイドライン
-- `.cursor/rules/PROJECT.md`: プロジェクトルール
-- `USER_STORIES.md`: ユーザーストーリー
+- [AGENTS.md](./AGENTS.md): Cursorエージェントガイドライン
+- [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md): プロジェクトルール
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): ユーザーストーリー
 
 **参照される場所**:
-- `AGENTS.md`: Claude固有の設定として参照
+- [AGENTS.md](./AGENTS.md): Claude固有の設定として参照
 
 ---
 
@@ -648,25 +651,22 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                   開発の憲法（必須読了）                      │
 ├─────────────────────────────────────────────────────────────┤
-│  USER_STORIES.md  ←→  ADMIN_USER_STORIES.md                │
+│  docs/stories/ (USER_STORIES  ←→  ADMIN_USER_STORIES)      │
 │         ↓                    ↓                              │
-│  CONVEX_SCHEMA.md  ←→  DESIGN_DOCUMENT.md                 │
+│  docs/schema/  ←→  docs/design/DESIGN_DOCUMENT             │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │                   機能別設計書                                │
 ├─────────────────────────────────────────────────────────────┤
-│  PREMIUM_FEATURES.md                                        │
-│  IMAGE_STORAGE_STRATEGY.md  ←→  CLOUDFLARE_R2_MIGRATION.md ✅ **2026年追加**│
-│  AI_CHAT_DISCLAIMER.md  ←→  AI_CHAT_REVIEW.md              │
+│  docs/design/ (PREMIUM_FEATURES, IMAGE_STORAGE_STRATEGY,   │
+│    CLOUDFLARE_R2_MIGRATION, AI_CHAT_*)                      │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │                   レビュー・検証                              │
 ├─────────────────────────────────────────────────────────────┤
-│  SCHEMA_REVIEW.md                                           │
-│  REQUIREMENTS_REVIEW.md                                     │
-│  DOCUMENT_REVIEW.md                                         │
+│  docs/requirements/ (SCHEMA, REQUIREMENTS, DOCUMENT_REVIEW) │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -675,11 +675,10 @@
 │  .cursor/rules/PROJECT.md (基本ルール)                      │
 │         ↓                                                    │
 │  AGENTS.md  ←→  SETUP_CHECKLIST.md                        │
-│  CLAUDE.md  ←→  TECH_STACK_PLANNING.md                    │
-│  ISSUE_GUIDELINES.md  ←→  EPIC_OVERVIEW.md ✅ **2026年追加**│
-│  PENCIL_DESIGN_BRIEF.md ✅ **2026年追加**                  │
-│  DIARY_DRAFT_VERIFICATION.md ✅ **2026年追加**            │
-│  CLOUDFLARE_R2_MIGRATION.md ✅ **2026年追加**            │
+│  CLAUDE.md  ←→  docs/design/TECH_STACK_PLANNING            │
+│  ISSUE_GUIDELINES  ←→  docs/implementation/EPIC_OVERVIEW   │
+│  docs/design/ (PENCIL_DESIGN_BRIEF, DIARY_DRAFT_VERIFICATION,│
+│    CLOUDFLARE_R2_MIGRATION)                                │
 │  DOCUMENTATION_INDEX.md (このドキュメント)                  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -687,6 +686,18 @@
 ---
 
 ## 📋 ドキュメント更新履歴
+
+### 2026-02-07
+- **アプリケーション関連ドキュメントの整理**: 要件・設計・ストーリー・スキーマ等を [docs/](docs/README.md) に文脈別に移動
+  - **docs/stories/**: ユーザーストーリー（モバイル・管理画面・公式サイト）と分割ファイル
+  - **docs/requirements/**: 要件・レビュー・議事録（REQUIREMENTS_REVIEW, DOCUMENT_REVIEW, DOCUMENT_REVIEW_2026, SCHEMA_REVIEW）
+  - **docs/design/**: 詳細設計・アーキテクチャ・機能別設計書（DESIGN_DOCUMENT, TECH_STACK_PLANNING, IMAGE_STORAGE_STRATEGY, CLOUDFLARE_R2_MIGRATION, PENCIL_DESIGN_BRIEF, PREMIUM_FEATURES, AI_CHAT_*, DIARY_DRAFT_VERIFICATION 等）
+  - **docs/schema/**: Convexスキーマ定義と分割ファイル
+  - **docs/app-structure/**: APP_DIRECTORY_STRUCTURE
+  - **docs/implementation/**: EPIC_OVERVIEW, EPIC_IMPLEMENTATION_PLAN, IMPLEMENTATION_PHASES
+- 設定用ファイル（AGENTS.md, CLAUDE.md, .cursor/, MISE_SETUP.md 等）はルートに維持
+- DOCUMENTATION_INDEX および各 INDEX のリンクを docs/ パスに更新
+- AGENTS.md, CLAUDE.md, .cursor/rules/PROJECT.md の参照パスを更新
 
 ### 2026-02-01
 - `DOCUMENTATION_INDEX.md`を作成
@@ -960,20 +971,20 @@
 
 ### 新規開発者向け
 1. **まず読む**: `SETUP_CHECKLIST.md` → `AGENTS.md`
-2. **次に読む**: `USER_STORIES.md` → `CONVEX_SCHEMA.md`
-3. **必要に応じて**: `DESIGN_DOCUMENT.md` → `PREMIUM_FEATURES.md`
+2. **次に読む**: [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)
+3. **必要に応じて**: [docs/design/DESIGN_DOCUMENT.md](docs/design/DESIGN_DOCUMENT.md) → [docs/design/PREMIUM_FEATURES.md](docs/design/PREMIUM_FEATURES.md)
 
 ### AI（Cursor）への指示
-1. **機能実装**: `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md`を参照
-2. **スキーマ実装**: `CONVEX_SCHEMA.md`を参照
-3. **設計確認**: `DESIGN_DOCUMENT.md`を参照
+1. **機能実装**: [docs/stories/](docs/stories/)（USER_STORIES / ADMIN_USER_STORIES / WEB_USER_STORIES）を参照
+2. **スキーマ実装**: [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)を参照
+3. **設計確認**: [docs/design/DESIGN_DOCUMENT.md](docs/design/DESIGN_DOCUMENT.md)を参照
 4. **Issue作成**: `ISSUE_GUIDELINES.md`を参照 ✅ **2026年追加**
-5. **エピック確認**: `EPIC_OVERVIEW.md`を参照 ✅ **2026年追加**
+5. **エピック確認**: [docs/implementation/EPIC_OVERVIEW.md](docs/implementation/EPIC_OVERVIEW.md)を参照 ✅ **2026年追加**
 
 ### レビュー時
-1. **スキーマレビュー**: `SCHEMA_REVIEW.md`を参照
-2. **要件レビュー**: `REQUIREMENTS_REVIEW.md`を参照
-3. **ドキュメントレビュー**: `DOCUMENT_REVIEW.md`を参照
+1. **スキーマレビュー**: [docs/requirements/SCHEMA_REVIEW.md](docs/requirements/SCHEMA_REVIEW.md)を参照
+2. **要件レビュー**: [docs/requirements/REQUIREMENTS_REVIEW.md](docs/requirements/REQUIREMENTS_REVIEW.md)を参照
+3. **ドキュメントレビュー**: [docs/requirements/DOCUMENT_REVIEW.md](docs/requirements/DOCUMENT_REVIEW.md)を参照
 
 ---
 
@@ -983,20 +994,20 @@
 
 | タスク | 参照するドキュメント |
 |--------|---------------------|
-| 新機能の実装 | `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md` → `APP_DIRECTORY_STRUCTURE.md` → `CONVEX_SCHEMA.md` → `DESIGN_DOCUMENT.md` |
-| モバイルアプリ画面の実装 | `APP_DIRECTORY_STRUCTURE.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
-| GitHub Issueの作成 | `IMPLEMENTATION_PHASES.md` → `EPIC_IMPLEMENTATION_PLAN.md` → `ISSUE_GUIDELINES.md` → `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
-| エピックの確認 | `EPIC_OVERVIEW.md` → `USER_STORIES.md`（または`ADMIN_USER_STORIES.md`、`WEB_USER_STORIES.md`） ✅ **2026年追加** |
-| Pencilでのデザイン作成 | `PENCIL_DESIGN_BRIEF.md` → `USER_STORIES.md` → `DESIGN_DOCUMENT.md` ✅ **2026年追加** |
-| 日記機能の実装 | `DIARY_DRAFT_VERIFICATION.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
-| 画像・動画機能の実装 | `CLOUDFLARE_R2_MIGRATION.md` → `IMAGE_STORAGE_STRATEGY.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
-| プレミアム機能の実装 | `PREMIUM_FEATURES.md` → `CONVEX_SCHEMA.md`（プレミアム権限管理） |
-| 画像機能の実装 | `IMAGE_STORAGE_STRATEGY.md` → `CONVEX_SCHEMA.md`（imagesテーブル） |
-| 動画機能の実装 | `CLOUDFLARE_R2_MIGRATION.md` → `IMAGE_STORAGE_STRATEGY.md` → `USER_STORIES.md` → `CONVEX_SCHEMA.md` ✅ **2026年追加** |
-| AIチャット機能の実装 | `AI_CHAT_REVIEW.md` → `AI_CHAT_DISCLAIMER.md` → `CONVEX_SCHEMA.md` |
-| 管理画面機能の実装 | `ADMIN_USER_STORIES.md` → `CONVEX_SCHEMA.md` |
-| 公式サイト機能の実装 | `WEB_USER_STORIES.md` → `CONVEX_SCHEMA.md`（news, legal_documentsテーブル） |
-| スキーマ設計のレビュー | `SCHEMA_REVIEW.md` → `CONVEX_SCHEMA.md` |
+| 新機能の実装 | [docs/stories/](docs/stories/)（USER/ADMIN/WEB_STORIES）→ [docs/app-structure/](docs/app-structure/) → [docs/schema/](docs/schema/) → [docs/design/](docs/design/) |
+| モバイルアプリ画面の実装 | [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](docs/app-structure/APP_DIRECTORY_STRUCTURE.md) → [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) ✅ **2026年追加** |
+| GitHub Issueの作成 | [docs/implementation/IMPLEMENTATION_PHASES.md](docs/implementation/IMPLEMENTATION_PHASES.md) → [docs/implementation/EPIC_IMPLEMENTATION_PLAN.md](docs/implementation/EPIC_IMPLEMENTATION_PLAN.md) → `ISSUE_GUIDELINES.md` → [docs/implementation/EPIC_OVERVIEW.md](docs/implementation/EPIC_OVERVIEW.md) → [docs/stories/](docs/stories/) ✅ **2026年追加** |
+| エピックの確認 | [docs/implementation/EPIC_OVERVIEW.md](docs/implementation/EPIC_OVERVIEW.md) → [docs/stories/](docs/stories/) ✅ **2026年追加** |
+| Pencilでのデザイン作成 | [docs/design/PENCIL_DESIGN_BRIEF.md](docs/design/PENCIL_DESIGN_BRIEF.md) → [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/design/DESIGN_DOCUMENT.md](docs/design/DESIGN_DOCUMENT.md) ✅ **2026年追加** |
+| 日記機能の実装 | [docs/design/DIARY_DRAFT_VERIFICATION.md](docs/design/DIARY_DRAFT_VERIFICATION.md) → [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) ✅ **2026年追加** |
+| 画像・動画機能の実装 | [docs/design/CLOUDFLARE_R2_MIGRATION.md](docs/design/CLOUDFLARE_R2_MIGRATION.md) → [docs/design/IMAGE_STORAGE_STRATEGY.md](docs/design/IMAGE_STORAGE_STRATEGY.md) → [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) ✅ **2026年追加** |
+| プレミアム機能の実装 | [docs/design/PREMIUM_FEATURES.md](docs/design/PREMIUM_FEATURES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)（プレミアム権限管理） |
+| 画像機能の実装 | [docs/design/IMAGE_STORAGE_STRATEGY.md](docs/design/IMAGE_STORAGE_STRATEGY.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)（imagesテーブル） |
+| 動画機能の実装 | [docs/design/CLOUDFLARE_R2_MIGRATION.md](docs/design/CLOUDFLARE_R2_MIGRATION.md) → [docs/design/IMAGE_STORAGE_STRATEGY.md](docs/design/IMAGE_STORAGE_STRATEGY.md) → [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) ✅ **2026年追加** |
+| AIチャット機能の実装 | [docs/design/AI_CHAT_REVIEW.md](docs/design/AI_CHAT_REVIEW.md) → [docs/design/AI_CHAT_DISCLAIMER.md](docs/design/AI_CHAT_DISCLAIMER.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) |
+| 管理画面機能の実装 | [docs/stories/ADMIN_USER_STORIES.md](docs/stories/ADMIN_USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) |
+| 公式サイト機能の実装 | [docs/stories/WEB_USER_STORIES.md](docs/stories/WEB_USER_STORIES.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)（news, legal_documentsテーブル） |
+| スキーマ設計のレビュー | [docs/requirements/SCHEMA_REVIEW.md](docs/requirements/SCHEMA_REVIEW.md) → [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md) |
 | コードスタイル・ワークフロー確認 | `.cursor/rules/PROJECT.md` |
 | ドキュメントへのアクセス | `.cursor/skills/documentation-access/SKILL.md` → `DOCUMENTATION_INDEX.md` |
 
@@ -1005,23 +1016,23 @@
 ## 📝 ドキュメントの更新ルール
 
 1. **新機能追加時**: 
-   - `USER_STORIES.md`、`ADMIN_USER_STORIES.md`、または`WEB_USER_STORIES.md`にストーリーを追加
-   - `CONVEX_SCHEMA.md`にスキーマ定義を追加
-   - `DESIGN_DOCUMENT.md`に設計詳細を追加
-   - `APP_DIRECTORY_STRUCTURE.md`に画面パスを追加（モバイルアプリの場合）
-   - `EPIC_OVERVIEW.md`を更新（エピックにストーリーを追加）
-   - `PENCIL_DESIGN_BRIEF.md`にデザインブリーフを追加（モバイルアプリ画面の場合） ✅ **2026年追加**
+   - [docs/stories/](docs/stories/)（USER_STORIES / ADMIN_USER_STORIES / WEB_USER_STORIES）にストーリーを追加
+   - [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md)にスキーマ定義を追加
+   - [docs/design/DESIGN_DOCUMENT.md](docs/design/DESIGN_DOCUMENT.md)に設計詳細を追加
+   - [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](docs/app-structure/APP_DIRECTORY_STRUCTURE.md)に画面パスを追加（モバイルアプリの場合）
+   - [docs/implementation/EPIC_OVERVIEW.md](docs/implementation/EPIC_OVERVIEW.md)を更新（エピックにストーリーを追加）
+   - [docs/design/PENCIL_DESIGN_BRIEF.md](docs/design/PENCIL_DESIGN_BRIEF.md)にデザインブリーフを追加（モバイルアプリ画面の場合） ✅ **2026年追加**
    - `DOCUMENTATION_INDEX.md`を更新
 
 2. **GitHub Issue作成時**:
-   - `IMPLEMENTATION_PHASES.md`で実装フェーズを確認
-   - `EPIC_IMPLEMENTATION_PLAN.md`でエピックと実装タスクを確認
+   - [docs/implementation/IMPLEMENTATION_PHASES.md](docs/implementation/IMPLEMENTATION_PHASES.md)で実装フェーズを確認
+   - [docs/implementation/EPIC_IMPLEMENTATION_PLAN.md](docs/implementation/EPIC_IMPLEMENTATION_PLAN.md)でエピックと実装タスクを確認
    - `ISSUE_GUIDELINES.md`を参照してIssueを作成
-   - `EPIC_OVERVIEW.md`からエピックを確認
+   - [docs/implementation/EPIC_OVERVIEW.md](docs/implementation/EPIC_OVERVIEW.md)からエピックを確認
    - 依存関係を確認して実装順序を決定
 
 2. **レビュー時**:
-   - レビュー結果を`SCHEMA_REVIEW.md`、`REQUIREMENTS_REVIEW.md`、`DOCUMENT_REVIEW.md`に記録
+   - レビュー結果を[docs/requirements/](docs/requirements/)（SCHEMA_REVIEW, REQUIREMENTS_REVIEW, DOCUMENT_REVIEW）に記録
    - 必要に応じて各ドキュメントを更新
 
 3. **設計変更時**:
@@ -1037,17 +1048,17 @@
 - `.cursor/rules/PROJECT.md`: 重要な注意事項セクション
 - `AGENTS.md`: 参考ドキュメントセクション
 - `CLAUDE.md`: 参考ドキュメントセクション
-- `USER_STORIES.md`: ドキュメント構造の説明
-- `ADMIN_USER_STORIES.md`: ドキュメント構造の説明
-- `WEB_USER_STORIES.md`: ドキュメント構造の説明
-- `CONVEX_SCHEMA.md`: ドキュメント構造の説明
-- `DESIGN_DOCUMENT.md`: ドキュメント構造の説明
-- `PREMIUM_FEATURES.md`: ドキュメント構造の説明
-- `IMAGE_STORAGE_STRATEGY.md`: ドキュメント構造の説明
-- `AI_CHAT_DISCLAIMER.md`: ドキュメント構造の説明
-- `AI_CHAT_REVIEW.md`: ドキュメント構造の説明
-- `SCHEMA_REVIEW.md`: ドキュメント構造の説明
-- `REQUIREMENTS_REVIEW.md`: ドキュメント構造の説明
-- `DOCUMENT_REVIEW.md`: ドキュメント構造の説明
-- `TECH_STACK_PLANNING.md`: ドキュメント構造の説明
+- [docs/stories/USER_STORIES.md](docs/stories/USER_STORIES.md): ドキュメント構造の説明
+- [docs/stories/ADMIN_USER_STORIES.md](docs/stories/ADMIN_USER_STORIES.md): ドキュメント構造の説明
+- [docs/stories/WEB_USER_STORIES.md](docs/stories/WEB_USER_STORIES.md): ドキュメント構造の説明
+- [docs/schema/CONVEX_SCHEMA.md](docs/schema/CONVEX_SCHEMA.md): ドキュメント構造の説明
+- [docs/design/DESIGN_DOCUMENT.md](docs/design/DESIGN_DOCUMENT.md): ドキュメント構造の説明
+- [docs/design/PREMIUM_FEATURES.md](docs/design/PREMIUM_FEATURES.md): ドキュメント構造の説明
+- [docs/design/IMAGE_STORAGE_STRATEGY.md](docs/design/IMAGE_STORAGE_STRATEGY.md): ドキュメント構造の説明
+- [docs/design/AI_CHAT_DISCLAIMER.md](docs/design/AI_CHAT_DISCLAIMER.md): ドキュメント構造の説明
+- [docs/design/AI_CHAT_REVIEW.md](docs/design/AI_CHAT_REVIEW.md): ドキュメント構造の説明
+- [docs/requirements/SCHEMA_REVIEW.md](docs/requirements/SCHEMA_REVIEW.md): ドキュメント構造の説明
+- [docs/requirements/REQUIREMENTS_REVIEW.md](docs/requirements/REQUIREMENTS_REVIEW.md): ドキュメント構造の説明
+- [docs/requirements/DOCUMENT_REVIEW.md](docs/requirements/DOCUMENT_REVIEW.md): ドキュメント構造の説明
+- [docs/design/TECH_STACK_PLANNING.md](docs/design/TECH_STACK_PLANNING.md): ドキュメント構造の説明
 - `SETUP_CHECKLIST.md`: ドキュメント構造の説明

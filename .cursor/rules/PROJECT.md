@@ -273,7 +273,7 @@ export const fetchExternalData = action({
 - 画面: `app/`ディレクトリ（Expo Router）
 - アプリ専用コンポーネント: `components/`ディレクトリ
 - 共通UIコンポーネント: `@repo/ui`からインポート
-- **ディレクトリ構成**: `APP_DIRECTORY_STRUCTURE.md`を参照 ✅ **2026年追加**
+- **ディレクトリ構成**: [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](../../docs/app-structure/APP_DIRECTORY_STRUCTURE.md) を参照 ✅ **2026年追加**
 
 **管理画面 (`apps/admin/`)**:
 - 画面: `app/`ディレクトリ（Next.js App Router）
@@ -436,8 +436,8 @@ throw new Error("プレミアムが必要です");
 
 1. **Convex Schema の共有**:
    - Cursorの「Context」設定で、`packages/backend/convex/schema.ts` を常にインデックスに含める
-   - `CONVEX_SCHEMA.md` も参照可能にする
-   - 新しいチャット開始時は、`@schema.ts` または `@CONVEX_SCHEMA.md` を明示的に参照
+  - `docs/schema/CONVEX_SCHEMA.md` も参照可能にする
+  - 新しいチャット開始時は、`@schema.ts` または `@docs/schema/CONVEX_SCHEMA.md` を明示的に参照
 
 2. **生成された型定義の参照**:
    - `npx convex dev` 実行時に生成される `packages/backend/convex/_generated/api.d.ts` をAIにMCP的に参照させる
@@ -469,18 +469,18 @@ throw new Error("プレミアムが必要です");
 機能実装時は、以下のドキュメントを**必ず参照**してください：
 
 ### インデックスファイル（推奨） ✅ **2026年追加 - 分割版**
-- **[USER_STORIES_INDEX.md](../../USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）
-- **[CONVEX_SCHEMA_INDEX.md](../../CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）
-- **[DESIGN_DOCUMENT_INDEX.md](../../DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）
-- **[ADMIN_USER_STORIES_INDEX.md](../../ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）
-- **[WEB_USER_STORIES_INDEX.md](../../WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）
+- **[docs/stories/USER_STORIES_INDEX.md](../../docs/stories/USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）
+- **[docs/schema/CONVEX_SCHEMA_INDEX.md](../../docs/schema/CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）
+- **[docs/design/DESIGN_DOCUMENT_INDEX.md](../../docs/design/DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）
+- **[docs/stories/ADMIN_USER_STORIES_INDEX.md](../../docs/stories/ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）
+- **[docs/stories/WEB_USER_STORIES_INDEX.md](../../docs/stories/WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）
 
 ### 統合版ファイル（全体像の把握用）
-- **[USER_STORIES.md](../../USER_STORIES.md)**: モバイルアプリの機能（統合版）
-- **[CONVEX_SCHEMA.md](../../CONVEX_SCHEMA.md)**: Convexスキーマ定義（統合版）
-- **[DESIGN_DOCUMENT.md](../../DESIGN_DOCUMENT.md)**: アプリ設計の詳細（統合版）
-- **[ADMIN_USER_STORIES.md](../../ADMIN_USER_STORIES.md)**: 管理画面の機能（統合版）
-- **[WEB_USER_STORIES.md](../../WEB_USER_STORIES.md)**: 公式サイトの機能（統合版）
+- **[docs/stories/USER_STORIES.md](../../docs/stories/USER_STORIES.md)**: モバイルアプリの機能（統合版）
+- **[docs/schema/CONVEX_SCHEMA.md](../../docs/schema/CONVEX_SCHEMA.md)**: Convexスキーマ定義（統合版）
+- **[docs/design/DESIGN_DOCUMENT.md](../../docs/design/DESIGN_DOCUMENT.md)**: アプリ設計の詳細（統合版）
+- **[docs/stories/ADMIN_USER_STORIES.md](../../docs/stories/ADMIN_USER_STORIES.md)**: 管理画面の機能（統合版）
+- **[docs/stories/WEB_USER_STORIES.md](../../docs/stories/WEB_USER_STORIES.md)**: 公式サイトの機能（統合版）
 
 ### マスタードキュメント
 - **[DOCUMENTATION_INDEX.md](../../DOCUMENTATION_INDEX.md)**: すべてのドキュメントへのアクセス ⭐ **まずここから**

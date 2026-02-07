@@ -8,7 +8,7 @@
 **関連ドキュメント**:
 - [AGENTS.md](./AGENTS.md): Cursorエージェントガイドライン
 - [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md): プロジェクトルール
-- [USER_STORIES.md](./USER_STORIES.md): ユーザーストーリー
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): ユーザーストーリー
 
 ## プロジェクト概要
 
@@ -49,7 +49,7 @@
 
 1. **関連ファイルの確認**: 変更対象のファイルとその依存関係を確認
 2. **既存パターンの確認**: 同じパターンが既に存在するか確認
-3. **ユーザーストーリーの確認**: `USER_STORIES.md`を参照し、ユーザーの体験価値を重視
+3. **ユーザーストーリーの確認**: [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md) を参照し、ユーザーの体験価値を重視
 
 ### コード変更後
 
@@ -74,7 +74,7 @@
 
 ## ユーザーストーリーの活用
 
-機能実装時は、[USER_STORIES.md](./USER_STORIES.md) または [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md) を必ず参照してください。
+機能実装時は、[docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md) または [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md) を必ず参照してください。
 
 詳細は [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) の「クイックリファレンス」セクションを参照してください。
 

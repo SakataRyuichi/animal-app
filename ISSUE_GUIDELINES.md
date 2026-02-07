@@ -7,11 +7,11 @@
 このドキュメントは、ユーザーストーリーからGitHub Issueを作成する際のガイドラインです。一貫性のあるIssueを作成し、AIエージェントが効率的に実装できるようにします。
 
 **関連ドキュメント**:
-- [USER_STORIES.md](./USER_STORIES.md): モバイルアプリのユーザーストーリー
-- [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
-- [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー
-- [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリディレクトリ構成と画面マッピング
-- [EPIC_OVERVIEW.md](./EPIC_OVERVIEW.md): 各エピックの概要とストーリー一覧
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): モバイルアプリのユーザーストーリー
+- [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
+- [docs/stories/WEB_USER_STORIES.md](./docs/stories/WEB_USER_STORIES.md): 公式サイトのユーザーストーリー
+- [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](./docs/app-structure/APP_DIRECTORY_STRUCTURE.md): アプリディレクトリ構成と画面マッピング
+- [docs/implementation/EPIC_OVERVIEW.md](./docs/implementation/EPIC_OVERVIEW.md): 各エピックの概要とストーリー一覧
 
 ---
 

@@ -61,7 +61,7 @@
 Convexスキーマの定義方法については、以下のIssueを参照してください：
 
 - **実装ガイド**: [#123](https://github.com/your-org/animal-app/issues/123): TASK-0-3-1: Convexスキーマの定義（usersテーブル）
-- **実装計画**: [EPIC_IMPLEMENTATION_PLAN.md](../../EPIC_IMPLEMENTATION_PLAN.md): Epic 0-3の実装タスク
+- **実装計画**: [docs/implementation/EPIC_IMPLEMENTATION_PLAN.md](../../docs/implementation/EPIC_IMPLEMENTATION_PLAN.md): Epic 0-3の実装タスク
 
 ### 実装時の必須チェックリスト
 
@@ -129,7 +129,7 @@ gh issue list --limit 1
 - **スキーマ定義**: `CONVEX_SCHEMA.md`: usersテーブル定義（1. users）
 - **セキュリティ規約**: `.cursor/rules/SECURITY_IPA.md`: IPAセキュリティ実装規約
 - **ユーザーストーリー**: `USER_STORIES.md`: US-001（ユーザー登録）
-- **実装計画**: `IMPLEMENTATION_PHASES.md`: Phase 0-3の実装計画
+- **実装計画**: [docs/implementation/IMPLEMENTATION_PHASES.md](../../docs/implementation/IMPLEMENTATION_PHASES.md): Phase 0-3の実装計画
 
 **テンプレート**: `ai-task.yml`
 ```
@@ -144,5 +144,5 @@ gh issue list --limit 1
 ## 参考資料
 
 - [ISSUE_GUIDELINES.md](../../ISSUE_GUIDELINES.md): GitHub Issue作成ガイドライン
-- [EPIC_IMPLEMENTATION_PLAN.md](../../EPIC_IMPLEMENTATION_PLAN.md): エピックと実装タスクの詳細定義
-- [IMPLEMENTATION_PHASES.md](../../IMPLEMENTATION_PHASES.md): 実装フェーズ計画
+- [docs/implementation/EPIC_IMPLEMENTATION_PLAN.md](../../docs/implementation/EPIC_IMPLEMENTATION_PLAN.md): エピックと実装タスクの詳細定義
+- [docs/implementation/IMPLEMENTATION_PHASES.md](../../docs/implementation/IMPLEMENTATION_PHASES.md): 実装フェーズ計画

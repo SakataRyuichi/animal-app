@@ -198,16 +198,16 @@
 
 - **プロジェクトルール（憲法）**: [.cursor/rules/PROJECT.md](./.cursor/rules/PROJECT.md) - コードスタイル、ワークフロー、コマンド、型安全性のルール
 - **セキュリティ実装規約**: [.cursor/rules/SECURITY_IPA.md](./.cursor/rules/SECURITY_IPA.md) - IPAガイドラインに基づくセキュリティ実装規約 ⭐ **セキュリティ実装時は必読**
-- **開発の憲法**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md#-開発の憲法必須読了) セクションを参照
-  - **[USER_STORIES_INDEX.md](./USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
-  - **[CONVEX_SCHEMA_INDEX.md](./CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）✅ **2026年追加 - 分割版**
-  - **[DESIGN_DOCUMENT_INDEX.md](./DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版**
-  - **[ADMIN_USER_STORIES_INDEX.md](./ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
-  - **[WEB_USER_STORIES_INDEX.md](./WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
-  - [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリのディレクトリ構成と画面マッピング ✅ **2026年追加 - Expo Routerの画面構成とユーザーストーリーの紐づけ**
-  - [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
-  - [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト、ブランド戦略**
-  - [CONVEX_SCHEMA.md](./CONVEX_SCHEMA.md): Convexスキーマ定義
+- **開発の憲法**: [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md#-開発の憲法必須読了) セクションを参照（アプリ関連ドキュメントは [docs/](./docs/README.md) に整理）
+  - **[docs/stories/USER_STORIES_INDEX.md](./docs/stories/USER_STORIES_INDEX.md)**: モバイルアプリのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
+  - **[docs/schema/CONVEX_SCHEMA_INDEX.md](./docs/schema/CONVEX_SCHEMA_INDEX.md)**: Convexスキーマ定義（インデックス）✅ **2026年追加 - 分割版**
+  - **[docs/design/DESIGN_DOCUMENT_INDEX.md](./docs/design/DESIGN_DOCUMENT_INDEX.md)**: アプリ設計の詳細（インデックス）✅ **2026年追加 - 分割版**
+  - **[docs/stories/ADMIN_USER_STORIES_INDEX.md](./docs/stories/ADMIN_USER_STORIES_INDEX.md)**: 管理画面のユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
+  - **[docs/stories/WEB_USER_STORIES_INDEX.md](./docs/stories/WEB_USER_STORIES_INDEX.md)**: 公式サイトのユーザーストーリー（インデックス）✅ **2026年追加 - 分割版**
+  - [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](./docs/app-structure/APP_DIRECTORY_STRUCTURE.md): アプリのディレクトリ構成と画面マッピング ✅ **2026年追加 - Expo Routerの画面構成とユーザーストーリーの紐づけ**
+  - [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md): 管理画面のユーザーストーリー
+  - [docs/stories/WEB_USER_STORIES.md](./docs/stories/WEB_USER_STORIES.md): 公式サイトのユーザーストーリー ✅ **2026年追加 - SEO・LLMフレンドリーな公式サイト、ブランド戦略**
+  - [docs/schema/CONVEX_SCHEMA.md](./docs/schema/CONVEX_SCHEMA.md): Convexスキーマ定義
 - **Skills**: `.cursor/skills/` ディレクトリ内の各SKILL.mdを参照
   - `.cursor/skills/documentation-access/SKILL.md`: ドキュメントへの効率的なアクセス方法
   - `.cursor/skills/monorepo-patterns/SKILL.md`: モノレポでの作業パターン
@@ -217,10 +217,10 @@
 ### ユーザーストーリーの活用
 
 機能実装時は、以下のドキュメントを必ず参照してください：
-- [USER_STORIES.md](./USER_STORIES.md): モバイルアプリの機能
-- [APP_DIRECTORY_STRUCTURE.md](./APP_DIRECTORY_STRUCTURE.md): アプリの画面構成とユーザーストーリーのマッピング ✅ **2026年追加 - 画面パスとユーザーストーリーの対応関係**
-- [ADMIN_USER_STORIES.md](./ADMIN_USER_STORIES.md): 管理画面の機能
-- [WEB_USER_STORIES.md](./WEB_USER_STORIES.md): 公式サイトの機能 ✅ **2026年追加**
+- [docs/stories/USER_STORIES.md](./docs/stories/USER_STORIES.md): モバイルアプリの機能
+- [docs/app-structure/APP_DIRECTORY_STRUCTURE.md](./docs/app-structure/APP_DIRECTORY_STRUCTURE.md): アプリの画面構成とユーザーストーリーのマッピング ✅ **2026年追加 - 画面パスとユーザーストーリーの対応関係**
+- [docs/stories/ADMIN_USER_STORIES.md](./docs/stories/ADMIN_USER_STORIES.md): 管理画面の機能
+- [docs/stories/WEB_USER_STORIES.md](./docs/stories/WEB_USER_STORIES.md): 公式サイトの機能 ✅ **2026年追加**
   - ブランド戦略・UI/UXガイドライン（WEB-015〜WEB-017）
   - SEO・LLM最適化（WEB-013、WEB-014、WEB-018）
   - モノレポ運用・自動更新（WEB-019、WEB-020）
@@ -238,4 +238,4 @@
 - **法務ドキュメントの一元管理**: `packages/policy/`のMarkdownファイルを参照し、アプリと公式サイトで同じ内容を表示
 - **ニュースの自動更新**: Convexの`news`テーブルを更新すると、VercelのOn-demand ISRにより自動的に反映される
 
-詳細は [DESIGN_DOCUMENT.md](./DESIGN_DOCUMENT.md) の「5.11 公式サイト（Next.js + Vercel）」セクションを参照してください。
+詳細は [docs/design/DESIGN_DOCUMENT.md](./docs/design/DESIGN_DOCUMENT.md) の「5.11 公式サイト（Next.js + Vercel）」セクションを参照してください。
